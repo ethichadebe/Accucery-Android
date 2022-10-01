@@ -5,134 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:id="@+id/rlHead"
         style="@style/BackgroundColor"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
-        <RelativeLayout
-            style="@style/BackgroundColor"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/ivLogo"
+            style="@style/TitleBarImage"
+            android:contentDescription="@string/logo" />
 
-            <ImageView
-                android:id="@+id/ivLogo"
-                style="@style/TitleBarImage"
-                android:contentDescription="@string/logo" />
-
-            <TextView
-                style="@style/rittleColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="@dimen/_1sdp"
-                android:layout_marginBottom="@dimen/_2sdp"
-                android:layout_toEndOf="@id/ivLogo"
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="@string/rittle"
-                android:textSize="@dimen/_20sdp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+        <TextView
+            style="@style/rittleColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/_1sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_toEndOf="@id/ivLogo"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="@string/rittle"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/rlHead">
+        android:layout_below="@+id/rlHead"
+        android:layout_alignParentBottom="true">
 
-        <LinearLayout
-            android:id="@+id/llPrices"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/total"
-                    android:textColor="@color/textGrey"
-                    android:textSize="@dimen/_12ssp" />
-
-                <TextView
-                    android:id="@+id/tvTotal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="@string/r30_99"
-                    android:textSize="@dimen/_14ssp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/checked"
-                    android:textColor="@color/textGrey"
-                    android:textSize="@dimen/_12ssp" />
-
-                <TextView
-                    android:id="@+id/tvChecked"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="@string/r30_99"
-                    android:textSize="@dimen/_14ssp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/unchecked"
-                    android:textColor="@color/textGrey"
-                    android:textSize="@dimen/_12ssp" />
-
-                <TextView
-                    android:id="@+id/tvUnchecked"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/ubuntu_bold"
-                    android:text="@string/r30_99"
-                    android:textSize="@dimen/_14ssp" />
-
-            </LinearLayout>
-        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvItems"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/llPrices"
             tools:listitem="@layout/check_item" />
 
     </RelativeLayout>

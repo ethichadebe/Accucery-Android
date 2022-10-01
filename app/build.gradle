@@ -46,6 +46,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.5.0-alpha02"
 
     //CardView
-    //implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.cardview:cardview:1.0.0"
 
 }

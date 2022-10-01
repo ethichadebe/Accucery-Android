@@ -1,3 +1,34 @@
 <resources>
-    <string name="app_name">Brittle</string>
+    <string name="app_name">Brittle-Mobile</string>
+    <string name="clear_list">Clear List</string>
+    <string name="all">All</string>
+    <string name="r30_99">R30.99</string>
+    <string name="checked">Checked</string>
+    <string name="unchecked">Unchecked</string>
+    <string name="select_store">Select Store</string>
+    <string name="close">Close</string>
+    <string name="search_item">Search Item</string>
+    <string name="retry">Retry</string>
+    <string name="item_image">Item Image</string>
+    <string name="quantity">Quantity:</string>
+    <string name="increase_item_quantity">Increase item quantity</string>
+    <string name="decrease_item_quantity">Decrease item quantity</string>
+    <string name="headline">Headline</string>
+    <string name="advertiser">Advertiser</string>
+    <string name="ad_body">Ad body</string>
+    <string name="visit_site">Visit site</string>
+    <string name="shop_logo">Shop Logo</string>
+
+    <!--native banner test: ca-app-pub-3940256099942544/2247696110-->
+    <!--native banner Real: ca-app-pub-4662593343882096/1211282386-->
+    <string name="NativeAds">ca-app-pub-3940256099942544/2247696110</string>
+    <!--Ads banner Test: ca-app-pub-3940256099942544/6300978111-->
+    <!--Ads banner Real: ca-app-pub-4662593343882096/2029540035-->
+    <string name="BannerAds">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="logo">Logo</string>
+    <string name="rittle">rittle</string>
+    <string name="new_item">New Item</string>
+    <string name="total">Total</string>
+
+
 </resources>

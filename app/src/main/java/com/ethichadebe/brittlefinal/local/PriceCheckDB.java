@@ -2,6 +2,8 @@ package com.ethichadebe.brittlefinal.local;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -9,11 +11,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 
-@Database(entities = {GroceryItem.class, Shop.class}, version = 5)
+@Database(entities = {/*GroceryItem.class,*/ Shop.class}, version = 1)
 public abstract class PriceCheckDB extends RoomDatabase {
+    private static final String TAG = "PriceCheckDB";
 
     private static PriceCheckDB instance;
 
@@ -23,6 +25,7 @@ public abstract class PriceCheckDB extends RoomDatabase {
 
     public static synchronized PriceCheckDB getInstance(Context context){
         if (instance==null){
+            Log.d(TAG, "getInstance: instance is empty");
             instance = Room.databaseBuilder(context.getApplicationContext(), PriceCheckDB.class,"GroceryItemsTable")
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
@@ -36,6 +39,7 @@ public abstract class PriceCheckDB extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
+            new PopulateDBAsyncTask(instance).execute();
         }
     };
 

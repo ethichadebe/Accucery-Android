@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.ethichadebe.brittlefinal.R;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopItemViewHolder> {
@@ -57,7 +58,10 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
         }
     }
 
-    public ShopItemAdapter(Context context, List<Shop> shops) {
+    public ShopItemAdapter() {
+    }
+
+    public void setShopAdapter(Context context, List<Shop> shops) {
         this.context = context;
         this.shops = shops;
     }

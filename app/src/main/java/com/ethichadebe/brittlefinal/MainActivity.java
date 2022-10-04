@@ -13,10 +13,12 @@ import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    ShopViewModel shopViewModel;
+    private ShopViewModel shopViewModel;
+    private List<Shop> shops = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,18 +26,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView rvItems = findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(new GridLayoutManager(this,2));
+        rvItems.setLayoutManager(new GridLayoutManager(this, 2));
         rvItems.setHasFixedSize(true);
-
+        final ShopItemAdapter adapter = new ShopItemAdapter();
+        rvItems.setAdapter(adapter);
 
         shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
         shopViewModel.getShops().observe(this, new Observer<List<Shop>>() {
             @Override
             public void onChanged(List<Shop> shops) {
-                final ShopItemAdapter adapter = new ShopItemAdapter(MainActivity.this,shops);
-                rvItems.setAdapter(adapter);
-
-                Toast.makeText(MainActivity.this, "works", Toast.LENGTH_SHORT).show();
+                adapter.setShopAdapter(MainActivity.this, shops);
+                Toast.makeText(MainActivity.this, "OnChanged ", Toast.LENGTH_SHORT).show();
             }
         });
 

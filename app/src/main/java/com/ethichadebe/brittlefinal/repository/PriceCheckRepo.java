@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData;
 
 import com.ethichadebe.brittlefinal.local.PriceCheckDB;
 import com.ethichadebe.brittlefinal.local.ShopDao;
-import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.local.scyncTasks.DeleteAllShopsAsyncTask;
 import com.ethichadebe.brittlefinal.local.scyncTasks.DeleteShopAsyncTask;
@@ -16,8 +15,9 @@ import com.ethichadebe.brittlefinal.local.scyncTasks.UpdateShopAsyncTask;
 import java.util.List;
 
 public class PriceCheckRepo {
+    private static final String TAG = "PriceCheckRepo";
     //private GroceryItemDao groceryItemDao;
-    private LiveData<List<GroceryItem>> groceryItems;
+    //private LiveData<List<GroceryItem>> groceryItems;
 
     private ShopDao shopDao;
     private LiveData<List<Shop>> shops;
@@ -45,11 +45,11 @@ public class PriceCheckRepo {
 
     public void deleteAllGroceryItems(int sId) {
         new DeleteAllGroceryItemAsyncTask(groceryItemDao, sId).execute();
-    }*/
+    }
 
     public LiveData<List<GroceryItem>> getShopGroceryItems() {
         return groceryItems;
-    }
+    }*/
 
 
     public void insertShop(Shop shop) {

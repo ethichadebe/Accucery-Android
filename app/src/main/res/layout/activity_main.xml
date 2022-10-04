@@ -1,58 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clFirstBackground"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/rlHead"
-        style="@style/BackgroundColor"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ivLogo"
-            style="@style/TitleBarImage"
-            android:contentDescription="@string/logo" />
+        <RelativeLayout
+            android:id="@+id/rlHead"
+            style="@style/BackgroundColor"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
 
-        <TextView
-            style="@style/rittleColor"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/ivLogo"
+                style="@style/TitleBarImage"
+                android:contentDescription="@string/logo" />
+
+            <TextView
+                style="@style/rittleColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:layout_toEndOf="@id/ivLogo"
+                android:fontFamily="@font/ubuntu_bold"
+                android:text="@string/rittle"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="@dimen/_1sdp"
-            android:layout_marginBottom="@dimen/_2sdp"
-            android:layout_toEndOf="@id/ivLogo"
-            android:fontFamily="@font/ubuntu_bold"
-            android:text="@string/rittle"
-            android:textSize="@dimen/_20sdp"
-            android:textStyle="bold" />
+            android:layout_below="@+id/rlHead"
+            android:layout_alignParentBottom="true">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvItems"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/shop_item" />
+
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rlBottomSheet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rlHead"
-        android:padding="@dimen/_10sdp"
-        android:layout_alignParentBottom="true">
+        android:layout_height="match_parent"
+        app:behavior_hideable="false"
+        android:background="@color/white"
+        app:behavior_peekHeight="@dimen/_1sdp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvItems"
+        <RelativeLayout
+            android:id="@+id/rlHead2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/shop_item" />
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="match_parent"
+                android:background="@drawable/ripple_effect"
+                android:contentDescription="@string/logo"
+                android:padding="@dimen/_12sdp"
+                android:src="@drawable/back_24" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
     <!--<com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/BannerAds" />-->
+    android:id="@+id/adView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    ads:adSize="SMART_BANNER"
+    ads:adUnitId="@string/BannerAds" />-->
 
-</RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

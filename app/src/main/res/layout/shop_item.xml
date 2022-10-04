@@ -4,7 +4,7 @@
     style="@style/ShopCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="@dimen/_15sdp"
     app:cardCornerRadius="20dp"
     app:cardElevation="5dp">
 

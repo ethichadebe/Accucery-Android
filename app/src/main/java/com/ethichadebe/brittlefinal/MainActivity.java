@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView rvItems = findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(new GridLayoutManager(this, 2));
+        rvItems.setLayoutManager(new LinearLayoutManager(this));
         rvItems.setHasFixedSize(true);
         final ShopItemAdapter adapter = new ShopItemAdapter();
         rvItems.setAdapter(adapter);

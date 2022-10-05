@@ -60,12 +60,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
-        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+        mBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 if (newState == BottomSheetBehavior.STATE_DRAGGING) {
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 }
             }
 
@@ -73,5 +72,18 @@ public class MainActivity extends AppCompatActivity {
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
             }
         });
+    }
+
+    public void back(View view) {
+        mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+            mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }else {
+            finish();
+        }
     }
 }

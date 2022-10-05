@@ -68,7 +68,7 @@
 
     <!--Shop Card Background-->
     <style name="ShopCardBackground" parent="TextAppearance.AppCompat">
-        <item name="android:background">@color/black</item>
+        <item name="android:background">@drawable/ripple_effect_black</item>
     </style>
 
     <!--ShopItem-->

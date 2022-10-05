@@ -41,7 +41,7 @@
     <!--Clear list button-->
     <style name="clearList" parent="TextAppearance.AppCompat">
         <item name="android:background">@drawable/ripple_effect_red</item>
-        <item name="android:padding">@dimen/_10sdp</item>
+        <item name="android:padding">@dimen/_10sdp</item> 
         <item name="android:textColor">#FF2B2B</item>
         <item name="android:fontFamily">@font/ubuntu_bold</item>
         <item name="android:layout_width">wrap_content</item>
@@ -49,7 +49,7 @@
 
     <!--Shop Card Background-->
     <style name="ShopCardBackground" parent="TextAppearance.AppCompat">
-        <item name="android:background">#F1F1F1 </item>
+        <item name="android:background">@drawable/ripple_effect</item>
     </style>
 
     <!--Big text-->

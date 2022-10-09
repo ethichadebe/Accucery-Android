@@ -3,7 +3,6 @@ package com.ethichadebe.brittlefinal.local;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -11,31 +10,36 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.ethichadebe.brittlefinal.local.dao.GroceryItemDao;
+import com.ethichadebe.brittlefinal.local.dao.ShopDao;
+import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 
-@Database(entities = {/*GroceryItem.class,*/ Shop.class}, version = 1)
+import java.util.ArrayList;
+import java.util.List;
+
+@Database(entities = {Shop.class, GroceryItem.class}, version = 88)
 public abstract class PriceCheckDB extends RoomDatabase {
     private static final String TAG = "PriceCheckDB";
 
     private static PriceCheckDB instance;
 
-    //public abstract GroceryItemDao groceryItemDao();
+    public abstract GroceryItemDao groceryItemDao();
 
     public abstract ShopDao shopDao();
 
-    public static synchronized PriceCheckDB getInstance(Context context){
-        if (instance==null){
-            Log.d(TAG, "getInstance: instance is empty");
-            instance = Room.databaseBuilder(context.getApplicationContext(), PriceCheckDB.class,"GroceryItemsTable")
-                    .fallbackToDestructiveMigration()
+    public static synchronized PriceCheckDB getInstance(Context context) {
+        if (instance == null) {
+            instance = Room.databaseBuilder(context.getApplicationContext(), PriceCheckDB.class, "PriceCheckDatabaseTest1")
                     .addCallback(roomCallback)
+                    .enableMultiInstanceInvalidation()
                     .build();
         }
 
         return instance;
     }
 
-    private static Callback roomCallback = new Callback(){
+    private static Callback roomCallback = new Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -43,19 +47,31 @@ public abstract class PriceCheckDB extends RoomDatabase {
         }
     };
 
-    private static class PopulateDBAsyncTask extends AsyncTask<Void,Void,Void>{
+    private static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {
         private ShopDao shopDao;
+        private GroceryItemDao groceryItemDao;
 
-        private PopulateDBAsyncTask(PriceCheckDB db){
+        private PopulateDBAsyncTask(PriceCheckDB db) {
+            Log.d(TAG, "doInBackground: done");
             shopDao = db.shopDao();
+           groceryItemDao = db.groceryItemDao();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            shopDao.insert(new Shop(1,"CHECKERS","https://theflamingo.co.za/wp-content/uploads/2018/11/Checkers-1.png",true));
-            shopDao.insert(new Shop(2,"SHOPRITE","https://www.shoprite.co.za/c-2256/All-Departments?q=%3Arelevance%3AbrowseAllStoresFacetOff%3AbrowseAllStoresFacetOff&page=550",true));
-            shopDao.insert(new Shop(3,"CHECKERS","https://theflamingo.co.za/wp-content/uploads/2018/...",true));
-            shopDao.insert(new Shop(1,"CHECKERS","https://theflamingo.co.za/wp-content/uploads/2018/...", true));
+            shopDao.insert(new Shop(1, "CHECKERS", "https://theflamingo.co.za/wp-content/uploads/2018/11/Checkers-1.png", true));
+            shopDao.insert(new Shop(2, "SHOPRITE", "https://pbs.twimg.com/profile_images/1136175013009211392/Rf69JN5r_400x400.jpg", true));
+            shopDao.insert(new Shop(3, "Pick n Pay", "https://cdn-prd-02.pnp.co.za/sys-master/images/h42/hf7/8796170453022/onlineshopping_logo.png", true));
+            shopDao.insert(new Shop(4, "Woolworths", "https://www.goldenwalkcentre.co.za/wp-content/uploads/2018/03/woolworths-copy.png", true));
+            shopDao.insert(new Shop(5, "Makro", "https://www.thinklocal.co.za/images/NBSpu6SeLjmAuVp2/424846375810185_39_fs.jpg", true));
+            shopDao.insert(new Shop(6, "Game", "https://www.goldenwalkcentre.co.za/wp-content/uploads/2018/03/woolworths-copy.png", true));
+
+            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
+
             return null;
         }
     }

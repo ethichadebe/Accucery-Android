@@ -1,9 +1,9 @@
-/*package com.ethichadebe.brittlefinal.local.scyncTasks;
+package com.ethichadebe.brittlefinal.local.scyncTasks;
 
 import android.os.AsyncTask;
 
-import com.ethichadebe.brittle2.local.GroceryItemDao;
-import com.ethichadebe.brittle2.local.model.GroceryItem;
+import com.ethichadebe.brittlefinal.local.dao.GroceryItemDao;
+import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 
 public class InsertGroceryItemAsyncTask extends AsyncTask<GroceryItem,Void,Void> {
     private GroceryItemDao groceryItemDao;
@@ -17,4 +17,4 @@ public class InsertGroceryItemAsyncTask extends AsyncTask<GroceryItem,Void,Void>
         groceryItemDao.insert(groceryItems[0]);
         return null;
     }
-}*/
+}

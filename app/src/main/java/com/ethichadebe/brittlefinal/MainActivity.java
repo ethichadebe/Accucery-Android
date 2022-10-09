@@ -11,12 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
 import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
+import com.ethichadebe.brittlefinal.local.dao.GroceryItemDao;
+import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
+import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
@@ -24,8 +29,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private ShopViewModel shopViewModel;
-    private List<Shop> shops = new ArrayList<>();
+    private GroceryItemViewModel groceryItemViewModel;
+
+    private RecyclerView rvShops, rvItems;
 
     private BottomSheetBehavior mBehavior;
     private View bottomSheet;
@@ -39,25 +47,33 @@ public class MainActivity extends AppCompatActivity {
         mBehavior = BottomSheetBehavior.from(bottomSheet);
         mBehavior.setPeekHeight(0, true);
 
-        RecyclerView rvItems = findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(new LinearLayoutManager(this));
-        rvItems.setHasFixedSize(true);
-        final ShopItemAdapter adapter = new ShopItemAdapter();
-        rvItems.setAdapter(adapter);
+        rvShops = findViewById(R.id.rvShops);
+        rvShops.setLayoutManager(new LinearLayoutManager(this));
+        rvShops.setHasFixedSize(true);
+        final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
+        rvShops.setAdapter(shopItemAdapter);
 
-        adapter.setOnItemClickListener(new ShopItemAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        shopItemAdapter.setOnItemClickListener(position -> mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED));
+        shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
+        shopViewModel.getShops().observe(this, shops -> {
+            if (shops.size() > 0) {
+                Log.d(TAG, "onCreate: ibiziwe");
+                shopItemAdapter.setShopAdapter(MainActivity.this, shops);
+                shopItemAdapter.notifyDataSetChanged();
             }
         });
-        shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
-        shopViewModel.getShops().observe(this, new Observer<List<Shop>>() {
-            @Override
-            public void onChanged(List<Shop> shops) {
-                adapter.setShopAdapter(MainActivity.this, shops);
-                //Toast.makeText(MainActivity.this, "OnChanged ", Toast.LENGTH_SHORT).show();
-            }
+
+        rvItems = findViewById(R.id.rvItems);
+        rvItems.setLayoutManager(new LinearLayoutManager(this));
+        rvItems.setHasFixedSize(true);
+        final GroceryItemAdapter groceryItemAdapter = new GroceryItemAdapter();
+        rvItems.setAdapter(groceryItemAdapter);
+
+        groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
+        groceryItemViewModel.getGroceryItems().observe(this, groceryItems -> {
+            Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
+            groceryItemAdapter.setGroceryItemAdapter(MainActivity.this, groceryItems);
+            groceryItemAdapter.notifyDataSetChanged();
         });
 
         mBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -80,9 +96,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (mBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+        if (mBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        }else {
+        } else {
             finish();
         }
     }

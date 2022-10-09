@@ -3,13 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/drawable/black_gradient.xml" value="0.209" />
         <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/drawable/delete_24.xml" value="0.209" />
         <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/drawable/ripple_effect.xml" value="0.209" />
         <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/drawable/ripple_effect_black.xml" value="0.209" />
         <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/drawable/ripple_effect_red.xml" value="0.209" />
+        <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/drawable/white_gradient.xml" value="0.209" />
         <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/font/ubuntu_bold.xml" value="0.23177083333333334" />
         <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/layout/check_item.xml" value="0.2015625" />
+        <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/layout/check_item.xml" value="0.6089918256130791" />
         <entry key="..\:/Users/garet/AndroidStudioProjects/BrittleFinal/app/src/main/res/layout/shop_item.xml" value="0.413903743315508" />
       </map>
     </option>

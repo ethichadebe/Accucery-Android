@@ -2,7 +2,7 @@ package com.ethichadebe.brittlefinal.local.scyncTasks;
 
 import android.os.AsyncTask;
 
-import com.ethichadebe.brittlefinal.local.ShopDao;
+import com.ethichadebe.brittlefinal.local.dao.ShopDao;
 
 
 public class DeleteAllShopsAsyncTask extends AsyncTask<Void,Void,Void> {

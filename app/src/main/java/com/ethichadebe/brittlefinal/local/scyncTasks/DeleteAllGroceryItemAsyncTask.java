@@ -1,6 +1,8 @@
-/*package com.ethichadebe.brittlefinal.local.scyncTasks;
+package com.ethichadebe.brittlefinal.local.scyncTasks;
 
 import android.os.AsyncTask;
+
+import com.ethichadebe.brittlefinal.local.dao.GroceryItemDao;
 
 public class DeleteAllGroceryItemAsyncTask extends AsyncTask<Void,Void,Void> {
     private GroceryItemDao groceryItemDao;
@@ -16,4 +18,4 @@ public class DeleteAllGroceryItemAsyncTask extends AsyncTask<Void,Void,Void> {
         groceryItemDao.deleteAllGroceryItems(shopId);
         return null;
     }
-}*/
+}

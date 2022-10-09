@@ -22,7 +22,7 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
     private static final String TAG = "ShopItemAdapter";
     private Context context;
 
-    private List<Shop> shops;
+    private List<Shop> shops = new ArrayList<>();
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -56,9 +56,6 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
                 }
             });
         }
-    }
-
-    public ShopItemAdapter() {
     }
 
     public void setShopAdapter(Context context, List<Shop> shops) {

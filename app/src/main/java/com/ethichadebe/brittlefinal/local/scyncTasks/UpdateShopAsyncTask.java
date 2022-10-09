@@ -2,7 +2,7 @@ package com.ethichadebe.brittlefinal.local.scyncTasks;
 
 import android.os.AsyncTask;
 
-import com.ethichadebe.brittlefinal.local.ShopDao;
+import com.ethichadebe.brittlefinal.local.dao.ShopDao;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 
 public class UpdateShopAsyncTask extends AsyncTask<Shop,Void,Void> {

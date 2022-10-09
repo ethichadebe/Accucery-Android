@@ -94,10 +94,10 @@
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
+            style="@style/ShopCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            style="@style/ShopCard"
             android:layout_alignParentEnd="true"
             android:outlineSpotShadowColor="@color/white"
             app:cardCornerRadius="20dp"

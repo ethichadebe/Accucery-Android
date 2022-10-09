@@ -53,7 +53,17 @@ public class MainActivity extends AppCompatActivity {
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
         rvShops.setAdapter(shopItemAdapter);
 
-        shopItemAdapter.setOnItemClickListener(position -> mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED));
+        shopItemAdapter.setOnItemClickListener(new ShopItemAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+
+            @Override
+            public void onClearListClick(int position) {
+
+            }
+        });
         shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
         shopViewModel.getShops().observe(this, shops -> {
             if (shops.size() > 0) {

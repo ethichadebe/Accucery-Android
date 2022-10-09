@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mBehavior.setPeekHeight(0, true);
 
         rvShops = findViewById(R.id.rvShops);
-        rvShops.setLayoutManager(new LinearLayoutManager(this));
+        rvShops.setLayoutManager(new GridLayoutManager(this,2));
         rvShops.setHasFixedSize(true);
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
         rvShops.setAdapter(shopItemAdapter);

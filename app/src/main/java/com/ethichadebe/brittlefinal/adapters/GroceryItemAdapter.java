@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.ethichadebe.brittlefinal.R;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
+import com.google.android.material.transition.Hold;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,8 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
     public static class GroceryItemViewHolder extends RecyclerView.ViewHolder {
         public LottieAnimationView lavCheckBox;
         public ImageView ivItem, ivUp, ivDown;
-        public TextView tvSpace,tvName, tvTotal, tvPrice;
+        public TextView tvSpace, tvName, tvTotal, tvPrice;
+        public CardView cvAddContainer;
 
         public GroceryItemViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -51,6 +54,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
             ivDown = itemView.findViewById(R.id.ivDown);
             tvName = itemView.findViewById(R.id.tvName);
             tvTotal = itemView.findViewById(R.id.tvTotal);
+            cvAddContainer = itemView.findViewById(R.id.cvAddContainer);
 
             itemView.setOnClickListener(view -> {
                 if (listener != null) {
@@ -85,12 +89,17 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
         //holder.lavCheckBox.setColorFilter();
         Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivItem);
         holder.tvName.setText(item.getName());
-        holder.tvTotal.setText("x10 = " + item.getPrice());
         holder.tvPrice.setText("R" + item.getPrice());
+        holder.tvTotal.setText("x10 = " + item.getPrice());
 
         if (position == 0) {
             holder.tvSpace.setVisibility(View.VISIBLE);
+            holder.cvAddContainer.setVisibility(View.GONE);
+        } else if (position == groceryItems.size() - 1) {
+            holder.cvAddContainer.setVisibility(View.VISIBLE);
+            holder.tvSpace.setVisibility(View.GONE);
         } else {
+            holder.cvAddContainer.setVisibility(View.GONE);
             holder.tvSpace.setVisibility(View.GONE);
         }
 

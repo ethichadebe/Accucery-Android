@@ -66,11 +66,16 @@ public abstract class PriceCheckDB extends RoomDatabase {
             shopDao.insert(new Shop(5, "Makro", "https://www.thinklocal.co.za/images/NBSpu6SeLjmAuVp2/424846375810185_39_fs.jpg", true));
             shopDao.insert(new Shop(6, "Game", "https://www.goldenwalkcentre.co.za/wp-content/uploads/2018/03/woolworths-copy.png", true));
 
-            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("2021 A5 Hardcover Diary (Assorted Item - Single Product)", 19.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("100 Pipers Scotch Whisky 750ml", 129.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("100 Pipers Whisky Bottle 750ml", 49.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("1659 Natural Sweet Rosè Wine Bottle 750ml", 453.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("1659 Red Special Edition Red Wine Bottle 750ml", 24.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("Act II Sweet & Salty Kettle Corn Microwave Popcorn 85g", 345.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("100 Pipers Scotch Whisky 750ml", 12.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("100 Pipers Whisky Bottle 750ml", 65.5,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("1659 Natural Sweet Rosè Wine Bottle 750ml", 153.99,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("1659 Red Special Edition Red Wine Bottle 750ml", 543.54,"dwerew",0,1));
+            groceryItemDao.insert(new GroceryItem("Act II Sweet & Salty Kettle Corn Microwave Popcorn 85g", 121.90,"dwerew",0,1));
 
             return null;
         }

@@ -24,28 +24,30 @@
             android:layout_marginBottom="@dimen/_5sdp"
             android:src="@mipmap/ic_launcher" />
 
-        <View
-            android:id="@+id/vHori"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_below="@+id/ivPreview"
-            android:layout_margin="15dp"
-            android:background="@color/primary_green" />
 
         <TextView
             android:id="@+id/tvShopName"
-            style="@style/HeadingText"
+            style="@style/BoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/vHori"
+            android:layout_below="@+id/ivPreview"
             android:layout_marginStart="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:text="Shoprite" />
 
+        <View
+            android:id="@+id/vHori"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tvShopName"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/primary_green" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvShopName"
+            android:layout_below="@id/vHori"
             android:layout_marginBottom="@dimen/_15sdp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -92,31 +94,5 @@
                     android:text="Total price" />
             </LinearLayout>
         </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            style="@style/ShopCard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:outlineSpotShadowColor="@color/white"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="5dp">
-
-            <RelativeLayout
-                style="@style/ShopCardBackgroundRed"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_8sdp">
-
-                <TextView
-                    android:id="@+id/tvDele"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/clear_list"
-                    android:textColor="#CA2222"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

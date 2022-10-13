@@ -1,6 +1,7 @@
 package com.ethichadebe.brittlefinal.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -29,6 +30,7 @@ public class GroceryItemViewModel extends AndroidViewModel {
     }
 
     public void update(GroceryItem groceryItem){
+        Log.d(TAG, "update: Updated");
         repository.updateGroceryItem(groceryItem);
     }
 

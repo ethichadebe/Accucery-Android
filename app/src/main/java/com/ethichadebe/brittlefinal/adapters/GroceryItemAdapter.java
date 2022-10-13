@@ -31,6 +31,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
 
     public interface OnItemClickListener {
         void onAddQuantityClick(int position);
+
         void onSubQuantityClick(int position);
     }
 
@@ -41,7 +42,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
     public static class GroceryItemViewHolder extends RecyclerView.ViewHolder {
         public LottieAnimationView lavCheckBox;
         public ImageView ivItem, ivUp, ivDown;
-        public TextView tvSpace, tvName, tvTotal, tvPrice;
+        public TextView tvSpace, tvName, tvTotal, tvPrice, tvQuantity;
         public CardView cvAddContainer;
 
         public GroceryItemViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
@@ -55,6 +56,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
             ivDown = itemView.findViewById(R.id.ivDown);
             tvName = itemView.findViewById(R.id.tvName);
             tvTotal = itemView.findViewById(R.id.tvTotal);
+            tvQuantity = itemView.findViewById(R.id.tvQuantity);
             cvAddContainer = itemView.findViewById(R.id.cvAddContainer);
 
             ivUp.setOnClickListener(view -> {
@@ -100,7 +102,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
         Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivItem);
         holder.tvName.setText(item.getName());
         holder.tvPrice.setText("R" + item.getPrice());
-        holder.tvTotal.setText("x10 = " + item.getPrice());
+        holder.tvTotal.setText("x" + item.getQuantity() + " = " + item.getPrice()*item.getQuantity());
 
         if (position == 0) {
             holder.tvSpace.setVisibility(View.VISIBLE);
@@ -112,6 +114,8 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
             holder.cvAddContainer.setVisibility(View.GONE);
             holder.tvSpace.setVisibility(View.GONE);
         }
+
+        holder.tvQuantity.setText("" + item.getQuantity());
 
     /* if (!item.isActive()) {
             holder.rlCard.setForeground(context.getResources().getDrawable(R.color.opacity));

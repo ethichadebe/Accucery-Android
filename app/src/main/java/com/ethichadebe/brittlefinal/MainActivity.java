@@ -30,6 +30,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+
+    private List<Shop> shops = new ArrayList<>();
+    private List<GroceryItem> groceryItems = new ArrayList<>();
     private ShopViewModel shopViewModel;
     private GroceryItemViewModel groceryItemViewModel;
 
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mBehavior.setPeekHeight(0, true);
 
         rvShops = findViewById(R.id.rvShops);
-        rvShops.setLayoutManager(new GridLayoutManager(this,2));
+        rvShops.setLayoutManager(new GridLayoutManager(this, 2));
         rvShops.setHasFixedSize(true);
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
         rvShops.setAdapter(shopItemAdapter);
@@ -63,9 +66,29 @@ public class MainActivity extends AppCompatActivity {
                 rvItems.setAdapter(groceryItemAdapter);
                 groceryItemViewModel = new ViewModelProvider(MainActivity.this).get(GroceryItemViewModel.class);
                 groceryItemViewModel.getGroceryItems(position).observe(MainActivity.this, groceryItems -> {
+                    setGroceryItems(groceryItems);
                     Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
                     groceryItemAdapter.setGroceryItemAdapter(MainActivity.this, groceryItems);
                     groceryItemAdapter.notifyDataSetChanged();
+                });
+
+                groceryItemAdapter.setOnItemClickListener(new GroceryItemAdapter.OnItemClickListener() {
+                    @Override
+                    public void onAddQuantityClick(int position) {
+                        GroceryItem item = groceryItems.get(position);
+                        item.setQuantity(item.getQuantity() + 1);
+                        groceryItemViewModel.update(item);
+                        groceryItemAdapter.notifyItemChanged(position);
+                    }
+
+                    @Override
+                    public void onSubQuantityClick(int position) {
+                        GroceryItem item = groceryItems.get(position);
+                        if (item.getQuantity() > 1)
+                            item.setQuantity(item.getQuantity() - 1);
+                        groceryItemViewModel.update(item);
+                        groceryItemAdapter.notifyItemChanged(position);
+                    }
                 });
                 mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
@@ -109,5 +132,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    private void setGroceryItems(List<GroceryItem> groceryItems) {
+        this.groceryItems = groceryItems;
     }
 }

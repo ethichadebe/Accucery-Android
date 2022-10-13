@@ -22,8 +22,6 @@ public class GroceryItemViewModel extends AndroidViewModel {
     public GroceryItemViewModel(@NonNull Application application) {
         super(application);
         repository = new PriceCheckRepo(application);
-        repository.setGroceryItems(1);
-        groceryItems = repository.getShopGroceryItems();
     }
 
     public void insert(GroceryItem groceryItem){
@@ -41,7 +39,8 @@ public class GroceryItemViewModel extends AndroidViewModel {
         repository.deleteAllShops();
     }
 
-    public LiveData<List<GroceryItem>> getGroceryItems(){
-        return groceryItems;
+    public LiveData<List<GroceryItem>> getGroceryItems(int sID){
+        repository.setGroceryItems(sID);
+        return repository.getShopGroceryItems();
     }
 }

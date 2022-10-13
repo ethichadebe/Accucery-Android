@@ -56,6 +56,17 @@ public class MainActivity extends AppCompatActivity {
         shopItemAdapter.setOnItemClickListener(new ShopItemAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                rvItems = findViewById(R.id.rvItems);
+                rvItems.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+                rvItems.setHasFixedSize(true);
+                final GroceryItemAdapter groceryItemAdapter = new GroceryItemAdapter();
+                rvItems.setAdapter(groceryItemAdapter);
+                groceryItemViewModel = new ViewModelProvider(MainActivity.this).get(GroceryItemViewModel.class);
+                groceryItemViewModel.getGroceryItems(position).observe(MainActivity.this, groceryItems -> {
+                    Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
+                    groceryItemAdapter.setGroceryItemAdapter(MainActivity.this, groceryItems);
+                    groceryItemAdapter.notifyDataSetChanged();
+                });
                 mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
 
@@ -71,19 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 shopItemAdapter.setShopAdapter(MainActivity.this, shops);
                 shopItemAdapter.notifyDataSetChanged();
             }
-        });
-
-        rvItems = findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(new LinearLayoutManager(this));
-        rvItems.setHasFixedSize(true);
-        final GroceryItemAdapter groceryItemAdapter = new GroceryItemAdapter();
-        rvItems.setAdapter(groceryItemAdapter);
-
-        groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
-        groceryItemViewModel.getGroceryItems().observe(this, groceryItems -> {
-            Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
-            groceryItemAdapter.setGroceryItemAdapter(MainActivity.this, groceryItems);
-            groceryItemAdapter.notifyDataSetChanged();
         });
 
         mBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {

@@ -26,7 +26,6 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                style="@style/ShopCardBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -125,7 +124,7 @@
 
                             <ImageView
                                 android:id="@+id/ivDown"
-                                style="@style/ShopItem"
+                                style="@style/ShopCardBackgroundRed"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/increase_item_quantity"

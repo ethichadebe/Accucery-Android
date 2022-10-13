@@ -13,6 +13,7 @@ public class GroceryItem {
     private Double price;           //Grocery item price
     private String image;           //Grocery item image URL
     private int checked = 0;             //Grocery item shopID
+    private int quantity;
     private int shopId;             //Grocery item shopID
 
     public GroceryItem(String name, Double price, String image, int checked, int shopId) {
@@ -20,6 +21,7 @@ public class GroceryItem {
         this.price = price;
         this.image = image;
         this.checked = checked;
+        this.quantity = 1;
         this.shopId = shopId;
     }
 
@@ -69,5 +71,13 @@ public class GroceryItem {
 
     public void setShopId(int shopId) {
         this.shopId = shopId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

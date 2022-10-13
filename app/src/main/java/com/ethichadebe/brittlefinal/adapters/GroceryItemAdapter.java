@@ -30,7 +30,8 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onAddQuantityClick(int position);
+        void onSubQuantityClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -56,11 +57,20 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
             tvTotal = itemView.findViewById(R.id.tvTotal);
             cvAddContainer = itemView.findViewById(R.id.cvAddContainer);
 
-            itemView.setOnClickListener(view -> {
+            ivUp.setOnClickListener(view -> {
                 if (listener != null) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(position);
+                        listener.onAddQuantityClick(position);
+                    }
+                }
+            });
+
+            ivDown.setOnClickListener(view -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onSubQuantityClick(position);
                     }
                 }
             });

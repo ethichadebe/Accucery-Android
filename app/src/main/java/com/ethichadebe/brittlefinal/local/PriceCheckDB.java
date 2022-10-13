@@ -18,7 +18,7 @@ import com.ethichadebe.brittlefinal.local.model.Shop;
 import java.util.ArrayList;
 import java.util.List;
 
-@Database(entities = {Shop.class, GroceryItem.class}, version = 88)
+@Database(entities = {Shop.class, GroceryItem.class}, version = 87)
 public abstract class PriceCheckDB extends RoomDatabase {
     private static final String TAG = "PriceCheckDB";
 
@@ -30,7 +30,7 @@ public abstract class PriceCheckDB extends RoomDatabase {
 
     public static synchronized PriceCheckDB getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(), PriceCheckDB.class, "PriceCheckDatabaseTest1")
+            instance = Room.databaseBuilder(context.getApplicationContext(), PriceCheckDB.class, "PriceCheckDatabaseTest")
                     .addCallback(roomCallback)
                     .enableMultiInstanceInvalidation()
                     .build();

@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
@@ -31,13 +33,17 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    private ValueAnimator animator;
+
     private List<Shop> shops = new ArrayList<>();
     private List<GroceryItem> groceryItems = new ArrayList<>();
+
     private ShopViewModel shopViewModel;
     private GroceryItemViewModel groceryItemViewModel;
 
     private RecyclerView rvShops, rvItems;
 
+    private TextView tvPrice;
     private BottomSheetBehavior mBehavior;
     private View bottomSheet;
 
@@ -46,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomSheet = findViewById(R.id.rlBottomSheet);
+        tvPrice = findViewById(R.id.tvPrice);
 
         mBehavior = BottomSheetBehavior.from(bottomSheet);
         mBehavior.setPeekHeight(0, true);
@@ -59,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         shopItemAdapter.setOnItemClickListener(new ShopItemAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                startCountAnim(0, totalPrice(), 3000, tvPrice);
                 rvItems = findViewById(R.id.rvItems);
                 rvItems.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                 rvItems.setHasFixedSize(true);
@@ -72,24 +80,33 @@ public class MainActivity extends AppCompatActivity {
                     groceryItemAdapter.notifyDataSetChanged();
                 });
 
+
                 groceryItemAdapter.setOnItemClickListener(new GroceryItemAdapter.OnItemClickListener() {
                     @Override
                     public void onAddQuantityClick(int position) {
+                        double prevPrice = totalPrice();
                         GroceryItem item = groceryItems.get(position);
                         item.setQuantity(item.getQuantity() + 1);
                         groceryItemViewModel.update(item);
+                        groceryItems.get(position).setQuantity(item.getQuantity());
                         groceryItemAdapter.notifyItemChanged(position);
+                        startCountAnim(prevPrice, totalPrice(), 1000, tvPrice);
                     }
 
                     @Override
                     public void onSubQuantityClick(int position) {
+                        double prevPrice = totalPrice();
                         GroceryItem item = groceryItems.get(position);
-                        if (item.getQuantity() > 1)
+                        if (item.getQuantity() > 1) {
                             item.setQuantity(item.getQuantity() - 1);
-                        groceryItemViewModel.update(item);
-                        groceryItemAdapter.notifyItemChanged(position);
+                            groceryItemViewModel.update(item);
+                            groceryItems.get(position).setQuantity(item.getQuantity());
+                            groceryItemAdapter.notifyItemChanged(position);
+                            startCountAnim(prevPrice, totalPrice(), 1000, tvPrice);
+                        }
                     }
                 });
+
                 mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
 
@@ -127,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        animator.end();
         if (mBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             mBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else {
@@ -136,5 +154,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void setGroceryItems(List<GroceryItem> groceryItems) {
         this.groceryItems = groceryItems;
+    }
+
+    private void startCountAnim(double from, double to, int duration, TextView textView) {
+        animator = ValueAnimator.ofFloat((float) from, (float) to);
+        animator.setDuration(duration);
+        animator.addUpdateListener(valueAnimator -> textView.setText(animator.getAnimatedValue().toString()));
+        animator.start();
+    }
+
+    private double totalPrice() {
+        double total = 0;
+
+        for (GroceryItem item : groceryItems) {
+            total += (item.getPrice()*item.getQuantity());
+        }
+
+        return total;
     }
 }

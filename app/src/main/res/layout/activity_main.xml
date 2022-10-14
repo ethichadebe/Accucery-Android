@@ -174,7 +174,7 @@
                                 style="@style/BoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="13" />
+                                android:text="0" />
 
                             <TextView
                                 style="@style/Text"
@@ -196,7 +196,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/_14ssp"
-                                android:text="R 26.54" />
+                                android:text="R0.0" />
 
                             <TextView
                                 style="@style/Text"
@@ -217,7 +217,7 @@
                                 style="@style/BoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="68" />
+                                android:text="0" />
 
                             <TextView
                                 style="@style/Text"

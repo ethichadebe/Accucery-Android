@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -26,6 +27,7 @@ import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,18 +49,23 @@ public class MainActivity extends AppCompatActivity {
     private BottomSheetBehavior mBehavior;
     private View bottomSheet;
 
+    private ExtendedFloatingActionButton fabAddShop;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomSheet = findViewById(R.id.rlBottomSheet);
         tvPrice = findViewById(R.id.tvPrice);
+        fabAddShop = findViewById(R.id.fabAddShop);
 
         mBehavior = BottomSheetBehavior.from(bottomSheet);
         mBehavior.setPeekHeight(0, true);
 
         rvShops = findViewById(R.id.rvShops);
-        rvShops.setLayoutManager(new GridLayoutManager(this, 2));
+        fabAddShop.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CircularShopActivity.class)));
+        rvShops.setLayoutManager(new LinearLayoutManager(this));
         rvShops.setHasFixedSize(true);
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
         rvShops.setAdapter(shopItemAdapter);

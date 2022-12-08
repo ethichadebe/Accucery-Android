@@ -10,13 +10,13 @@ public class GroceryItem {
     @PrimaryKey(autoGenerate = true)
     private int itemId;                 //Grocery item id generated locally
     private String name;            //Grocery item name
-    private Double price;           //Grocery item price
+    private int price;           //Grocery item price
     private String image;           //Grocery item image URL
     private int checked = 0;             //Grocery item shopID
     private int quantity;
     private int shopId;             //Grocery item shopID
 
-    public GroceryItem(String name, Double price, String image, int checked, int shopId) {
+    public GroceryItem(String name, int price, String image, int checked, int shopId) {
         this.name = name;
         this.price = price;
         this.image = image;
@@ -41,11 +41,11 @@ public class GroceryItem {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

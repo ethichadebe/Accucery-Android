@@ -71,7 +71,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/rlHead2"
                 android:paddingBottom="@dimen/_10sdp"
-                tools:listitem="@layout/shop_item" />
+                tools:listitem="@layout/shop_item_selection" />
 
         </RelativeLayout>
 

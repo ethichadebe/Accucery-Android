@@ -16,7 +16,9 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
+import com.ethichadebe.brittlefinal.adapters.ShopSelectionAdapter;
 import com.ethichadebe.brittlefinal.local.model.Shop;
+import com.ethichadebe.brittlefinal.viewmodel.ShopSelectionViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
 
 import java.util.ArrayList;
@@ -28,8 +30,8 @@ public class CircularShopActivity extends AppCompatActivity {
     private FrameLayout root_layout;
 
     private List<Shop> shops = new ArrayList<>();
-    private ShopViewModel shopViewModel;
-    private ShopItemAdapter shopItemAdapter;
+    private ShopSelectionViewModel shopViewModel;
+    private ShopSelectionAdapter shopItemAdapter;
     private RecyclerView rvShops;
 
 
@@ -89,11 +91,11 @@ public class CircularShopActivity extends AppCompatActivity {
     private void setupShops() {
         rvShops.setLayoutManager(new GridLayoutManager(this, 2));
         rvShops.setHasFixedSize(true);
-        shopItemAdapter = new ShopItemAdapter();
+        shopItemAdapter = new ShopSelectionAdapter();
         rvShops.setAdapter(shopItemAdapter);
 
 
-        shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
+        shopViewModel = new ViewModelProvider(this).get(ShopSelectionViewModel.class);
         shopViewModel.getShops().observe(this, shops -> {
             Log.d(TAG, "setupShops: done");
             shopItemAdapter.setShopAdapter(CircularShopActivity.this, shops);

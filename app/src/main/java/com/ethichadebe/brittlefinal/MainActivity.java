@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 groceryItemAdapter.setOnItemClickListener(new GroceryItemAdapter.OnItemClickListener() {
                     @Override
                     public void onAddQuantityClick(int position) {
-                        double prevPrice = totalPrice();
+                        int prevPrice = totalPrice();
                         GroceryItem item = groceryItems.get(position);
                         item.setQuantity(item.getQuantity() + 1);
                         groceryItemViewModel.update(item);
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onSubQuantityClick(int position) {
-                        double prevPrice = totalPrice();
+                        int prevPrice = totalPrice();
                         GroceryItem item = groceryItems.get(position);
                         if (item.getQuantity() > 1) {
                             item.setQuantity(item.getQuantity() - 1);
@@ -163,18 +163,18 @@ public class MainActivity extends AppCompatActivity {
         this.groceryItems = groceryItems;
     }
 
-    private void startCountAnim(double from, double to, int duration, TextView textView) {
-        animator = ValueAnimator.ofFloat((float) from, (float) to);
+    private void startCountAnim(int from, int to, int duration, TextView textView) {
+        animator = ValueAnimator.ofFloat(from, to);
         animator.setDuration(duration);
         animator.addUpdateListener(valueAnimator -> textView.setText(animator.getAnimatedValue().toString()));
         animator.start();
     }
 
-    private double totalPrice() {
-        double total = 0;
+    private int totalPrice() {
+        int total = 0;
 
         for (GroceryItem item : groceryItems) {
-            total += (item.getPrice()*item.getQuantity());
+            total += (item.getPrice() * item.getQuantity());
         }
 
         return total;

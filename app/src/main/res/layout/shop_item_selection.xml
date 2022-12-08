@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/ShopCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_15sdp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="5dp">
+
+    <RelativeLayout
+        android:id="@+id/rlCard"
+        style="@style/ShopCardBackground"
+        android:layout_width="match_parent"
+        android:padding="@dimen/_15sdp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivPreview"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <TextView
+            android:id="@+id/tvShopName"
+            style="@style/BoldText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivPreview"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Shoprite" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

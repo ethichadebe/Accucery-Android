@@ -59,13 +59,14 @@ public class MainActivity extends AppCompatActivity {
         bottomSheet = findViewById(R.id.rlBottomSheet);
         tvPrice = findViewById(R.id.tvPrice);
         fabAddShop = findViewById(R.id.fabAddShop);
+        fabAddShop.setVisibility(View.GONE);
 
         mBehavior = BottomSheetBehavior.from(bottomSheet);
         mBehavior.setPeekHeight(0, true);
 
         rvShops = findViewById(R.id.rvShops);
         fabAddShop.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CircularShopActivity.class)));
-        rvShops.setLayoutManager(new LinearLayoutManager(this));
+        rvShops.setLayoutManager(new GridLayoutManager(this,2));
         rvShops.setHasFixedSize(true);
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
         rvShops.setAdapter(shopItemAdapter);
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                fabAddShop.setVisibility(View.VISIBLE);
             }
 
             @Override

@@ -43,7 +43,6 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
         public LottieAnimationView lavCheckBox;
         public ImageView ivItem, ivUp, ivDown;
         public TextView tvSpace, tvName, tvTotal, tvPrice, tvQuantity;
-        public CardView cvAddContainer;
 
         public GroceryItemViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -57,7 +56,6 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
             tvName = itemView.findViewById(R.id.tvName);
             tvTotal = itemView.findViewById(R.id.tvTotal);
             tvQuantity = itemView.findViewById(R.id.tvQuantity);
-            cvAddContainer = itemView.findViewById(R.id.cvAddContainer);
 
             ivUp.setOnClickListener(view -> {
                 if (listener != null) {
@@ -106,12 +104,9 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
 
         if (position == 0) {
             holder.tvSpace.setVisibility(View.VISIBLE);
-            holder.cvAddContainer.setVisibility(View.GONE);
         } else if (position == groceryItems.size() - 1) {
-            holder.cvAddContainer.setVisibility(View.VISIBLE);
             holder.tvSpace.setVisibility(View.GONE);
         } else {
-            holder.cvAddContainer.setVisibility(View.GONE);
             holder.tvSpace.setVisibility(View.GONE);
         }
 

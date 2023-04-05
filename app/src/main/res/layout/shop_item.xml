@@ -21,6 +21,8 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginBottom="@dimen/_5sdp"
             android:src="@mipmap/ic_launcher" />
 
@@ -28,11 +30,12 @@
         <TextView
             android:id="@+id/tvShopName"
             style="@style/BoldText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_toEndOf="@id/ivPreview"
+            android:layout_below="@id/ivPreview"
             android:text="Shoprite" />
 
         <androidx.cardview.widget.CardView
@@ -45,7 +48,6 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_toEndOf="@id/ivPreview"
             app:cardCornerRadius="@dimen/_2sdp"
             app:cardElevation="@dimen/_2sdp" />
 
@@ -54,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/vHori"
             android:layout_marginBottom="@dimen/_5sdp"
-            android:layout_toEndOf="@id/ivPreview"
             android:gravity="center"
             android:orientation="horizontal">
 

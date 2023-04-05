@@ -3,6 +3,7 @@ package com.ethichadebe.brittlefinal;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.Animator;
@@ -13,13 +14,10 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
-import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
-import com.ethichadebe.brittlefinal.adapters.ShopSelectionAdapter;
+import com.ethichadebe.brittlefinal.adapters.GroceryItemSearchAdapter;
 import com.ethichadebe.brittlefinal.local.model.Shop;
-import com.ethichadebe.brittlefinal.viewmodel.ShopSelectionViewModel;
-import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
+import com.ethichadebe.brittlefinal.viewmodel.GroceryItemSearchViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +28,8 @@ public class CircularShopActivity extends AppCompatActivity {
     private FrameLayout root_layout;
 
     private List<Shop> shops = new ArrayList<>();
-    private ShopSelectionViewModel shopViewModel;
-    private ShopSelectionAdapter shopItemAdapter;
+    private GroceryItemSearchViewModel shopViewModel;
+    private GroceryItemSearchAdapter groceryItemAdapter;
     private RecyclerView rvShops;
 
 
@@ -89,17 +87,17 @@ public class CircularShopActivity extends AppCompatActivity {
     }
 
     private void setupShops() {
-        rvShops.setLayoutManager(new GridLayoutManager(this, 2));
+        rvShops.setLayoutManager(new LinearLayoutManager(this));
         rvShops.setHasFixedSize(true);
-        shopItemAdapter = new ShopSelectionAdapter();
-        rvShops.setAdapter(shopItemAdapter);
+        groceryItemAdapter = new GroceryItemSearchAdapter();
+        rvShops.setAdapter(groceryItemAdapter);
 
 
-        shopViewModel = new ViewModelProvider(this).get(ShopSelectionViewModel.class);
-        shopViewModel.getShops().observe(this, shops -> {
+        shopViewModel = new ViewModelProvider(this).get(GroceryItemSearchViewModel.class);
+        shopViewModel.getGroceryItems(1).observe(this, items -> {
             Log.d(TAG, "setupShops: done");
-            shopItemAdapter.setShopAdapter(CircularShopActivity.this, shops);
-            shopItemAdapter.notifyDataSetChanged();
+            groceryItemAdapter.setGroceryItemSearchAdapter(CircularShopActivity.this, items);
+            groceryItemAdapter.notifyDataSetChanged();
         });
 
     }

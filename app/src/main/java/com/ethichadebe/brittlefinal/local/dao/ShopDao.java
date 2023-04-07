@@ -36,4 +36,7 @@ public interface ShopDao {
 
     @Query("SELECT * FROM ShopsTable")
     LiveData<List<Shop>> getShops();
+
+    @Query("SELECT * FROM ShopsTable WHERE isActive = :isActive")
+    LiveData<List<Shop>> getActiveShop(boolean isActive);
 }

@@ -18,7 +18,7 @@ import com.ethichadebe.brittlefinal.local.model.Shop;
 import java.util.ArrayList;
 import java.util.List;
 
-@Database(entities = {Shop.class, GroceryItem.class}, version = 85)
+@Database(entities = {Shop.class, GroceryItem.class}, version = 82)
 public abstract class PriceCheckDB extends RoomDatabase {
     private static final String TAG = "PriceCheckDB";
 
@@ -60,23 +60,19 @@ public abstract class PriceCheckDB extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            shopDao.insert(new Shop(1, "CHECKERS", "https://theflamingo.co.za/wp-content/uploads/2018/11/Checkers-1.png", true));
-            shopDao.insert(new Shop(2, "SHOPRITE", "https://pbs.twimg.com/profile_images/1136175013009211392/Rf69JN5r_400x400.jpg", true));
-            shopDao.insert(new Shop(3, "Pick n Pay", "https://cdn-prd-02.pnp.co.za/sys-master/images/h42/hf7/8796170453022/onlineshopping_logo.png", true));
-            shopDao.insert(new Shop(4, "Woolworths", "https://www.goldenwalkcentre.co.za/wp-content/uploads/2018/03/woolworths-copy.png", true));
-            shopDao.insert(new Shop(5, "Makro", "https://www.thinklocal.co.za/images/NBSpu6SeLjmAuVp2/424846375810185_39_fs.jpg", true));
-            shopDao.insert(new Shop(6, "Game", "https://www.goldenwalkcentre.co.za/wp-content/uploads/2018/03/woolworths-copy.png", true));
-
-            groceryItemDao.insert(new GroceryItem("100 Pipers Scotch Whisky 750ml", (int)129.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("100 Pipers Whisky Bottle 750ml", (int)49.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("1659 Natural Sweet Rosè Wine Bottle 750ml", (int)453.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("1659 Red Special Edition Red Wine Bottle 750ml", (int)24.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("Act II Sweet & Salty Kettle Corn Microwave Popcorn 85g",(int) 345.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("100 Pipers Scotch Whisky 750ml", (int)12.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("100 Pipers Whisky Bottle 750ml", (int)65.5,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("1659 Natural Sweet Rosè Wine Bottle 750ml", (int)153.99,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("1659 Red Special Edition Red Wine Bottle 750ml", (int)543.54,"dwerew",0,1));
-            groceryItemDao.insert(new GroceryItem("Act II Sweet & Salty Kettle Corn Microwave Popcorn 85g",(int) 121.90,"dwerew",0,1));
+            shopDao.insert(new Shop(1, "CHECKERS", "https://theflamingo.co.za/wp-content/uploads/2018/11/Checkers-1.png",
+                    "https://www.checkers.co.za/search/all?q=",true));
+            shopDao.insert(new Shop(2, "SHOPRITE", "https://pbs.twimg.com/profile_images/1136175013009211392/Rf69JN5r_400x400.jpg",
+                    "https://www.shoprite.co.za/search/all?q=", true));
+            shopDao.insert(new Shop(3, "Pick n Pay", "https://cdn-prd-02.pnp.co.za/sys-master/images/h42/hf7/8796170453022/onlineshopping_logo.png",
+                    "https://www.pnp.co.za/pnpstorefront/pnp/en/search/?text=",true));
+            shopDao.insert(new Shop(4, "Woolworths",
+                    "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/092010/woolworths_sa.jpg?itok=nhBxmCsE",
+                    "https://www.woolworths.co.za/cat?Ntt=banana&Dy=1",true));
+            shopDao.insert(new Shop(5, "Makro", "https://www.thinklocal.co.za/images/NBSpu6SeLjmAuVp2/424846375810185_39_fs.jpg",
+                    "https://www.makro.co.za/search/?text=", true));
+            shopDao.insert(new Shop(6, "Game", "https://www.vitatechhealth.com/wp-content/uploads/2020/04/game-logo.png",
+                    "https://www.game.co.za/l/search/?t=banana%20bag&q=banana%20bag%3Arelevance",true));
 
             return null;
         }

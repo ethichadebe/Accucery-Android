@@ -2,8 +2,6 @@ package com.ethichadebe.brittlefinal;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,16 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
 import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
-import com.ethichadebe.brittlefinal.local.dao.GroceryItemDao;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
@@ -45,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvShops, rvItems;
 
-    private TextView tvPrice;
+    private TextView tvPrice, tvShopName;
     private BottomSheetBehavior mBehavior;
     private View bottomSheet;
 
@@ -58,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bottomSheet = findViewById(R.id.rlBottomSheet);
         tvPrice = findViewById(R.id.tvPrice);
+        tvShopName = findViewById(R.id.tvShopName);
         fabAddShop = findViewById(R.id.fabAddShop);
         fabAddShop.setVisibility(View.GONE);
 
@@ -65,67 +60,75 @@ public class MainActivity extends AppCompatActivity {
         mBehavior.setPeekHeight(0, true);
 
         rvShops = findViewById(R.id.rvShops);
-        fabAddShop.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CircularShopActivity.class)));
-        rvShops.setLayoutManager(new GridLayoutManager(this,2));
+        fabAddShop.setOnClickListener(view -> {
+
+            startActivity(new Intent(MainActivity.this, CircularShopActivity.class));
+        });
+        rvShops.setLayoutManager(new GridLayoutManager(this, 2));
         rvShops.setHasFixedSize(true);
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
         rvShops.setAdapter(shopItemAdapter);
 
-        shopItemAdapter.setOnItemClickListener(new ShopItemAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                startCountAnim(0, totalPrice(), 3000, tvPrice);
-                rvItems = findViewById(R.id.rvItems);
-                rvItems.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                rvItems.setHasFixedSize(true);
-                final GroceryItemAdapter groceryItemAdapter = new GroceryItemAdapter();
-                rvItems.setAdapter(groceryItemAdapter);
-                groceryItemViewModel = new ViewModelProvider(MainActivity.this).get(GroceryItemViewModel.class);
-                groceryItemViewModel.getGroceryItems(position).observe(MainActivity.this, groceryItems -> {
-                    setGroceryItems(groceryItems);
-                    Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
-                    groceryItemAdapter.setGroceryItemAdapter(MainActivity.this, groceryItems);
-                    groceryItemAdapter.notifyDataSetChanged();
-                });
+        shopItemAdapter.setOnItemClickListener(position -> {
+
+            startCountAnim(0, totalPrice(), 3000, tvPrice);
+            rvItems = findViewById(R.id.rvItems);
+            rvItems.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+            rvItems.setHasFixedSize(true);
+            final GroceryItemAdapter groceryItemAdapter = new GroceryItemAdapter();
+            rvItems.setAdapter(groceryItemAdapter);
+            groceryItemViewModel = new ViewModelProvider(MainActivity.this).get(GroceryItemViewModel.class);
+            groceryItemViewModel.getGroceryItems(position).observe(MainActivity.this, groceryItems -> {
+                Log.d(TAG, "onCreate: shop name: " + shops.size());
+
+                for (Shop shop : shops) {
+                    if (shop.getId() == shops.get(position).getId()) {
+                        shopViewModel.update(new Shop(shop.getId(), shop.getName(), shop.getImage(), shop.getSearchLink(), true));
+                        Log.d(TAG, "onCreate: shop name: " + shop.getName());
+                        tvShopName.setText(shop.getName());
+                    } else {
+                        shopViewModel.update(new Shop(shop.getId(), shop.getName(), shop.getImage(), shop.getSearchLink(), false));
+                    }
+                }
+                setGroceryItems(groceryItems);
+                Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
+                groceryItemAdapter.setGroceryItemAdapter(MainActivity.this, groceryItems);
+                groceryItemAdapter.notifyDataSetChanged();
+            });
 
 
-                groceryItemAdapter.setOnItemClickListener(new GroceryItemAdapter.OnItemClickListener() {
-                    @Override
-                    public void onAddQuantityClick(int position) {
-                        int prevPrice = totalPrice();
-                        GroceryItem item = groceryItems.get(position);
-                        item.setQuantity(item.getQuantity() + 1);
+            groceryItemAdapter.setOnItemClickListener(new GroceryItemAdapter.OnItemClickListener() {
+                @Override
+                public void onAddQuantityClick(int position) {
+                    int prevPrice = totalPrice();
+                    GroceryItem item = groceryItems.get(position);
+                    item.setQuantity(item.getQuantity() + 1);
+                    groceryItemViewModel.update(item);
+                    groceryItems.get(position).setQuantity(item.getQuantity());
+                    groceryItemAdapter.notifyItemChanged(position);
+                    startCountAnim(prevPrice, totalPrice(), 1000, tvPrice);
+                }
+
+                @Override
+                public void onSubQuantityClick(int position) {
+                    int prevPrice = totalPrice();
+                    GroceryItem item = groceryItems.get(position);
+                    if (item.getQuantity() > 1) {
+                        item.setQuantity(item.getQuantity() - 1);
                         groceryItemViewModel.update(item);
                         groceryItems.get(position).setQuantity(item.getQuantity());
                         groceryItemAdapter.notifyItemChanged(position);
                         startCountAnim(prevPrice, totalPrice(), 1000, tvPrice);
                     }
+                }
+            });
 
-                    @Override
-                    public void onSubQuantityClick(int position) {
-                        int prevPrice = totalPrice();
-                        GroceryItem item = groceryItems.get(position);
-                        if (item.getQuantity() > 1) {
-                            item.setQuantity(item.getQuantity() - 1);
-                            groceryItemViewModel.update(item);
-                            groceryItems.get(position).setQuantity(item.getQuantity());
-                            groceryItemAdapter.notifyItemChanged(position);
-                            startCountAnim(prevPrice, totalPrice(), 1000, tvPrice);
-                        }
-                    }
-                });
-
-                mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                fabAddShop.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onClearListClick(int position) {
-
-            }
+            mBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            fabAddShop.setVisibility(View.VISIBLE);
         });
         shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
         shopViewModel.getShops().observe(this, shops -> {
+            this.shops = shops;
             if (shops.size() > 0) {
                 Log.d(TAG, "onCreate: ibiziwe");
                 shopItemAdapter.setShopAdapter(MainActivity.this, shops);

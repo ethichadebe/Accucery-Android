@@ -29,7 +29,6 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
     public interface OnItemClickListener {
         void onItemClick(int position);
-        void onClearListClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

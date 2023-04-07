@@ -10,7 +10,7 @@
         android:id="@+id/root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/primary_green">
 
 
         <RelativeLayout
@@ -65,25 +65,27 @@
                                     android:src="@drawable/back_24" />
                             </androidx.cardview.widget.CardView>
                         </RelativeLayout>
+
                         <EditText
+                            android:id="@+id/etSearch"
                             android:layout_width="match_parent"
                             android:layout_height="?attr/actionBarSize"
-                            android:layout_toEndOf="@id/rlBack"
-                            android:hint="Search item"
                             android:layout_centerVertical="true"
+                            android:layout_toEndOf="@id/rlBack"
+                            android:backgroundTint="@color/primary_green"
                             android:fontFamily="@font/ubuntu_regular"
-                            android:backgroundTint="@color/primary_green"/>
+                            android:hint="Search item" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvShops"
-                android:layout_below="@+id/llHeader"
+                android:id="@+id/rvGroceryItemSearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/shop_item" />
+                android:layout_below="@+id/llHeader"
+                tools:listitem="@layout/grocery_item_search" />
 
         </RelativeLayout>
 

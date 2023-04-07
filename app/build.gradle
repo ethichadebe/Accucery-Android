@@ -60,6 +60,8 @@ dependencies {
     // Lottie dependency
     implementation "com.airbnb.android:lottie:3.4.0"
 
-    implementation group: 'net.sourceforge.htmlunit', name: 'htmlunit-android', version: '2.67.0'
+// jsoup HTML parser library @ https://jsoup.org/
+    implementation 'org.jsoup:jsoup:1.15.4'
+
 
 }

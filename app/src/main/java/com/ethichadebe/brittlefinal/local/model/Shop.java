@@ -11,45 +11,48 @@ public class Shop {
     private int id;                 //Shop id
     private String name;            //Shop name
     private String image;           //Shop logo URL
+
+    private String searchLink;           //Shop search link
     private boolean isActive;          //Shop is active or not
 
-    public Shop(int id, String name, String image, boolean isActive) {
+    public Shop(int id, String name, String image, String searchLink, boolean isActive) {
         this.id = id;
         this.name = name;
         this.image = image;
+        this.searchLink = searchLink;
         this.isActive = isActive;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public void setsId(int id) {
-        this.id = id;
     }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getImage() {
         return image;
     }
 
-    public int getsId() {
-        return id;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getSearchLink() {
+        return searchLink;
+    }
+
+    public void setSearchLink(String searchLink) {
+        this.searchLink = searchLink;
     }
 
     public boolean isActive() {

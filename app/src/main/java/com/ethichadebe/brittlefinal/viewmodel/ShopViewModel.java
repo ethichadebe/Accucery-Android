@@ -16,6 +16,7 @@ public class ShopViewModel extends AndroidViewModel {
     private static final String TAG = "ShopViewModel";
     private PriceCheckRepo repository;
     private LiveData<List<Shop>> shops;
+    private LiveData<Shop> shop;
 
 
     public ShopViewModel(@NonNull Application application) {
@@ -41,5 +42,10 @@ public class ShopViewModel extends AndroidViewModel {
 
     public LiveData<List<Shop>> getShops(){
         return shops;
+    }
+
+    public LiveData<Shop> getShop(int sID) {
+        shop = repository.getShop(sID);
+        return shop;
     }
 }

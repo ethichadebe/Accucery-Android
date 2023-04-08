@@ -39,7 +39,6 @@ public class PriceCheckRepo {
     public void setGroceryItems(int sID) {
         groceryItemDao = db.groceryItemDao();
         groceryItems = groceryItemDao.getShopItems(sID);
-
     }
 
     public void insertGroceryItem(GroceryItem groceryItem) {
@@ -57,11 +56,6 @@ public class PriceCheckRepo {
     public void deleteAllGroceryItems(int sId) {
         new DeleteAllGroceryItemAsyncTask(groceryItemDao, sId).execute();
     }
-
-    public LiveData<List<GroceryItem>> getShopGroceryItems() {
-        return groceryItems;
-    }
-
 
     public void insertShop(Shop shop) {
         new InsertShopAsyncTask(shopDao).execute(shop);
@@ -82,9 +76,18 @@ public class PriceCheckRepo {
     public LiveData<List<Shop>> getShops() {
         return shops;
     }
+    public LiveData<Shop> getShop(int sID) {
+        return shopDao.getShop(sID);
+    }
 
     public LiveData<List<GroceryItem>> getItems() {
         return groceryItems;
+    }
+    public int countAllItems() {
+        return groceryItemDao.countAllItems();
+    }
+    public int countShopItems(int sID) {
+        return groceryItemDao.countShopItems(sID);
     }
 
 }

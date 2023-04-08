@@ -1,6 +1,7 @@
 package com.ethichadebe.brittlefinal;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,12 +15,14 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ethichadebe.brittlefinal.adapters.GroceryItemSearchAdapter;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
+import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -37,12 +40,14 @@ import java.util.concurrent.TimeUnit;
 public class CircularShopActivity extends AppCompatActivity {
     private static final String TAG = "CircularShopActivity";
 
+    private GroceryItemViewModel groceryItemViewModel;
     private FrameLayout root_layout;
 
     private List<Shop> shops = new ArrayList<>();
     private GroceryItemSearchAdapter groceryItemAdapter;
     private RecyclerView rvGroceryItemSearch;
 
+    private ArrayList<GroceryItem> items;
     private EditText etSearch;
 
     @Override
@@ -54,6 +59,7 @@ public class CircularShopActivity extends AppCompatActivity {
         root_layout = findViewById(R.id.root_layout);
         etSearch = findViewById(R.id.etSearch);
         rvGroceryItemSearch = findViewById(R.id.rvGroceryItemSearch);
+        groceryItemViewModel = new ViewModelProvider(CircularShopActivity.this).get(GroceryItemViewModel.class);
 
         setupAnimation(savedInstanceState);
 
@@ -62,12 +68,13 @@ public class CircularShopActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
+
             private Timer timer = new Timer();
-            private final long DELAY = 1000; // Milliseconds
+            private final long DELAY = 2000; // Milliseconds
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length()>3){
+                if (charSequence.length() > 3) {
                     setupShops();
 
                     timer.cancel();
@@ -77,8 +84,8 @@ public class CircularShopActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Scraper scraper = new Scraper();
-                                    scraper.execute("https://www.shoprite.co.za/search/all?q="+ charSequence);
-                                    Log.d(TAG, "onTextChanged: " +charSequence);
+                                    scraper.execute("https://www.shoprite.co.za/search/all?q=" + charSequence);
+                                    Log.d(TAG, "onTextChanged: " + charSequence);
                                     // TODO: Do what you need here (refresh list).
                                     // You will probably need to use
                                     // runOnUiThread(Runnable action) for some
@@ -147,7 +154,10 @@ public class CircularShopActivity extends AppCompatActivity {
         groceryItemAdapter.setOnItemClickListener(new GroceryItemSearchAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                GroceryItem item = items.get(position);
+                groceryItemViewModel.setGroceryItems(1);
+                groceryItemViewModel.insert(new GroceryItem(item.getName(), item.getPrice(), item.getImage(), 1));
+                startActivity(new Intent(CircularShopActivity.this,MainActivity.class));
             }
         });
     }
@@ -180,26 +190,26 @@ public class CircularShopActivity extends AppCompatActivity {
         protected Void doInBackground(String... url) {
             try {
                 Log.d(TAG, "doInBackground: trying....: " + url[0]);
-                ArrayList<GroceryItem> items = new ArrayList<>();
+                items = new ArrayList<>();
                 Document document = Jsoup.connect(url[0]).get();
                 Elements data = document.select("figure.item-product__content");
 
-                Log.d(TAG, "doInBackground: size " +data);
+                Log.d(TAG, "doInBackground: size " + data);
                 int size = data.size();
                 for (int i = 0; i < size; i++) {
                     String image = data.select("figure.item-product__content").select("img").eq(i).attr("src");
                     String name = data.select("h3.item-product__name").select("a").eq(i).text();
                     String price = data.select("div.special-price__price").select("span").eq(i).text();
 
-                    Log.d(TAG, "doInBackground: Item: " + i+1 +"------------------------------------------------------------------");
+                    Log.d(TAG, "doInBackground: Item: " + i + 1 + "------------------------------------------------------------------");
                     Log.d(TAG, "doInBackground: name: " + name);
                     Log.d(TAG, "doInBackground: price: " + price);
                     Log.d(TAG, "doInBackground: image: " + image);
-                    items.add(new GroceryItem(name, Double.parseDouble(price.replace("R","")), image, 0, 1));
+                    items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")), image, 1));
                     groceryItemAdapter.setGroceryItemSearchAdapter(CircularShopActivity.this, items);
                 }
             } catch (IOException e) {
-                Log.e(TAG, "doInBackground: error "+e.getMessage());
+                Log.e(TAG, "doInBackground: error " + e.getMessage());
                 throw new RuntimeException(e);
             }
 

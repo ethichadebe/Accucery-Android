@@ -33,6 +33,14 @@ public interface GroceryItemDao {
 
     @Query("SELECT * FROM GroceryItemsTable WHERE shopId = :shopId")
     LiveData<List<GroceryItem>> getShopItems(int shopId);
+    @Query("SELECT * FROM GroceryItemsTable")
+    LiveData<List<GroceryItem>> getAllItems();
+
+    @Query("SELECT COUNT(*) FROM GroceryItemsTable WHERE shopId = :shopId")
+    int countShopItems(int shopId);
+
+    @Query("SELECT COUNT(*) FROM GroceryItemsTable")
+    int countAllItems();
 
     @Query("DELETE FROM GroceryItemsTable WHERE shopId = :shopId")
     void deleteAllGroceryItems(int shopId);

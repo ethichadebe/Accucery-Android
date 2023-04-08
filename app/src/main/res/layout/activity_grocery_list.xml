@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GroceryListActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/rlHead2"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:id="@+id/tvShopName"
+                style="@style/HeadingText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Shoprite" />
+
+            <RelativeLayout
+                android:id="@+id/rlBack"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true">
+
+                <androidx.cardview.widget.CardView
+                    style="@style/ShopCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5sdp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:id="@+id/ivBack"
+                        style="@style/ShopCardBackground"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/logo"
+                        android:onClick="back"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/back_24" />
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlClearList"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true">
+
+                <androidx.cardview.widget.CardView
+                    style="@style/ShopCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5sdp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp">
+
+                    <ImageView
+                        android:id="@+id/ivClearList"
+                        style="@style/ShopCardBackgroundRed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/logo"
+                        android:onClick="back"
+                        android:padding="@dimen/_8sdp"
+                        android:src="@drawable/delete_24" />
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvItems"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rlHead2"
+            android:paddingBottom="@dimen/_10sdp"
+            tools:listitem="@layout/check_item" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlHead2"
+            android:background="@drawable/white_gradient">
+
+            <androidx.cardview.widget.CardView
+                style="@style/ShopCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:id="@+id/rlCard"
+                    style="@style/ShopCardBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_15sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvnChecked"
+                                style="@style/BoldText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0" />
+
+                            <TextView
+                                style="@style/Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/checked" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvPrice"
+                                style="@style/BoldText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R0.0"
+                                android:textSize="@dimen/_14ssp" />
+
+                            <TextView
+                                style="@style/Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Price to pay"
+                                android:textSize="@dimen/_14ssp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvnUnchecked"
+                                style="@style/BoldText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0" />
+
+                            <TextView
+                                style="@style/Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/unchecked" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabAddShop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/_10sdp"
+        android:text="Add shop"
+        android:textColor="@color/white"
+        app:icon="@drawable/add_24" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

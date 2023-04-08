@@ -12,15 +12,15 @@ public class GroceryItem {
     private String name;            //Grocery item name
     private double price;           //Grocery item price
     private String image;           //Grocery item image URL
-    private int checked = 0;             //Grocery item shopID
+    private boolean checked = false;             //Grocery item shopID
+    private boolean isActive = true;             //Grocery item shopID
     private int quantity;
     private int shopId;             //Grocery item shopID
 
-    public GroceryItem(String name, double price, String image, int checked, int shopId) {
+    public GroceryItem(String name, double price, String image, int shopId) {
         this.name = name;
         this.price = price;
         this.image = image;
-        this.checked = checked;
         this.quantity = 1;
         this.shopId = shopId;
     }
@@ -57,11 +57,19 @@ public class GroceryItem {
         this.image = image;
     }
 
-    public int getChecked() {
+    public boolean isChecked() {
         return checked;
     }
 
-    public void setChecked(int checked) {
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public void setChecked(boolean checked) {
         this.checked = checked;
     }
 

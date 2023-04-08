@@ -82,11 +82,11 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
         Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivPreview);
         holder.tvShopName.setText(item.getName());
 
-        if (!item.isActive() ){
+        /*if (!item.isActive() ){
             holder.rlCard.setForeground(context.getResources().getDrawable(R.color.opacity));
         }else {
             holder.rlCard.setForeground(null);
-        }
+        }*/
 
         Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
 

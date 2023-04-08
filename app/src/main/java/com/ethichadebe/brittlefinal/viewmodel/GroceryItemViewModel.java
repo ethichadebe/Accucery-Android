@@ -41,8 +41,16 @@ public class GroceryItemViewModel extends AndroidViewModel {
         repository.deleteAllShops();
     }
 
-    public LiveData<List<GroceryItem>> getGroceryItems(int sID){
+    public void setGroceryItems(int sID){
         repository.setGroceryItems(sID);
-        return repository.getShopGroceryItems();
+    }
+    public LiveData<List<GroceryItem>> getGroceryItems(){
+        return repository.getItems();
+    }
+    public int countShopItems(int sID){
+        return repository.countShopItems(sID);
+    }
+    public int countAllItems(){
+        return repository.countAllItems();
     }
 }

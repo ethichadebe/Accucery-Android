@@ -10,222 +10,108 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_90sdp" />
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp">
+        android:layout_height="@dimen/_80sdp">
 
-        <LinearLayout
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lavCheckBox"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:lottie_rawRes="@raw/success"
+            app:lottie_speed="3" />
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="@dimen/_56sdp"
+            android:layout_height="@dimen/_56sdp"
+            android:layout_toEndOf="@+id/lavCheckBox"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:contentDescription="@string/item_image"
+            android:src="@color/primary_green" />
+
+        <TextView
+            android:id="@+id/tvItemName"
+            style="@style/ItemName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_toStartOf="@+id/rlQuantity"
+            android:layout_toEndOf="@id/ivImage"
+            android:text="Maize Brown Bread Loaf 600g" />
+
+        <TextView
+            android:id="@+id/tvItemQuantity"
+            style="@style/ItemQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvItemName"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_toEndOf="@id/tvItemPrice"
+            android:text="x5"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvItemPrice"
+            style="@style/ItemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvItemName"
+            android:layout_toEndOf="@id/ivImage"
+            android:text="R9.99"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_alignParentBottom="true"
+            android:background="#9FF0FF" />
+
+        <LinearLayout
+            android:id="@+id/rlQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvAdd"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_6sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_6sdp"
+                android:text="+"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_16ssp" />
 
-                <RelativeLayout
-                    android:id="@+id/rlBody"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true">
-
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/lavCheckBox"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_15sdp"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        app:lottie_rawRes="@raw/success"
-                        app:lottie_speed="3" />
-
-                    <ImageView
-                        android:id="@+id/ivItem"
-                        android:layout_width="@dimen/_42sdp"
-                        android:layout_height="@dimen/_42sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:layout_toEndOf="@id/lavCheckBox"
-                        android:contentDescription="@string/item_image"
-                        android:src="@mipmap/ic_launcher" />
-
-                    <TextView
-                        android:id="@+id/tvName"
-                        style="@style/Text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_marginBottom="@dimen/_3sdp"
-                        android:layout_toEndOf="@id/ivItem"
-                        android:minLines="3"
-                        android:text="Banana" />
-
-
-                    <LinearLayout
-                        android:id="@+id/llQuantity"
-                        android:layout_width="@dimen/_90sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvName"
-                        android:layout_toEndOf="@id/ivItem"
-                        android:orientation="horizontal">
-
-                        <androidx.cardview.widget.CardView
-                            style="@style/ShopCard"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/_5sdp"
-                            android:layout_weight="4"
-                            app:cardCornerRadius="20dp"
-                            app:cardElevation="5dp">
-
-                            <ImageView
-                                android:id="@+id/ivUp"
-                                style="@style/ShopCardBackground"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_32sdp"
-                                android:contentDescription="@string/increase_item_quantity"
-                                android:src="@drawable/arrow_up_icon" />
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            android:id="@+id/tvQuantity"
-                            style="@style/Text"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="2"
-                            android:gravity="center"
-                            android:text="1" />
-
-                        <androidx.cardview.widget.CardView
-                            style="@style/ShopCard"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tvTotal"
-                            android:layout_alignParentEnd="true"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/_5sdp"
-                            android:layout_weight="4"
-                            app:cardCornerRadius="20dp"
-                            app:cardElevation="5dp">
-
-                            <ImageView
-                                android:id="@+id/ivDown"
-                                style="@style/ShopCardBackgroundRed"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_32sdp"
-                                android:contentDescription="@string/increase_item_quantity"
-                                android:src="@drawable/arrow_down_icon" />
-                        </androidx.cardview.widget.CardView>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/llPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/tvName"
-                        android:layout_alignParentEnd="true"
-                        android:layout_toEndOf="@id/llQuantity"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvPrice"
-                            style="@style/BoldText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/r30_99"
-                            android:textSize="@dimen/_14ssp" />
-
-                        <TextView
-                            android:id="@+id/tvTotal"
-                            style="@style/Text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="x10 = R309.9" />
-
-                    </LinearLayout>
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <!--<com.google.android.gms.ads.formats.UnifiedNativeAdView
-                android:id="@+id/native_ad_layout"
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
-                    android:id="@+id/rlAdBody"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/ShopItem"
-                    android:padding="@dimen/_10sdp">
-
-                    <ImageView
-                        android:id="@+id/ad_icon"
-                        android:layout_width="@dimen/_60sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:contentDescription="@string/item_image" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_toEndOf="@id/ad_icon"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/ad_headline"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="@string/headline"
-                            android:textSize="@dimen/_10ssp" />
-
-                        <TextView
-                            android:id="@+id/ad_advertiser"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="@string/advertiser"
-                            android:textSize="@dimen/_8ssp" />
-
-                        <TextView
-                            android:id="@+id/ad_body"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/ad_body"
-                            android:textSize="@dimen/_12ssp" />
-
-                        <TextView
-                            android:id="@+id/ad_action"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/ShopItem"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:gravity="center"
-                            android:layout_gravity="end"
-                            android:padding="@dimen/_10sdp"
-                            android:text="@string/visit_site"
-                            android:textColor="@color/primary_green" />
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-            </com.google.android.gms.ads.formats.UnifiedNativeAdView>-->
+            <TextView
+                android:id="@+id/tvSubtract"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_6sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_6sdp"
+                android:text="-"
+                android:textColor="@color/Red"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
 </LinearLayout>

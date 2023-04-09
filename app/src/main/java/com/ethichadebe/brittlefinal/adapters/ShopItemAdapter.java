@@ -37,7 +37,7 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
     public static class ShopItemViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivPreview;
-        public TextView tvShopName, tvnItems,tvPrice;
+        public TextView tvShopName,tvComingSoon;
         public RelativeLayout rlCard;
 
         public ShopItemViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
@@ -45,9 +45,8 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
             ivPreview = itemView.findViewById(R.id.ivPreview);
             tvShopName = itemView.findViewById(R.id.tvShopName);
-            tvnItems = itemView.findViewById(R.id.tvnItems);
-            tvPrice = itemView.findViewById(R.id.tvPrice);
             rlCard = itemView.findViewById(R.id.rlCard);
+            tvComingSoon = itemView.findViewById(R.id.tvComingSoon);
 
             itemView.setOnClickListener(view -> {
                 if (listener != null) {
@@ -79,14 +78,24 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
     public void onBindViewHolder(@NonNull ShopItemViewHolder holder, int position) {
         Shop item = shops.get(position);
 
-        Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivPreview);
         holder.tvShopName.setText(item.getName());
 
-        /*if (!item.isActive() ){
+        if (!item.isActive() ){
+            holder.tvComingSoon.setVisibility(View.VISIBLE);
+            switch (item.getName().toLowerCase()){
+                case "game":
+                    holder.ivPreview.setImageDrawable(context.getDrawable(R.drawable.gamebw));
+                    break;
+                case "woolworths":
+                    holder.ivPreview.setImageDrawable(context.getDrawable(R.drawable.woolworthsbw));
+                    break;
+            }
             holder.rlCard.setForeground(context.getResources().getDrawable(R.color.opacity));
+            holder.tvShopName.setTextColor(context.getResources().getColor(R.color.textGrey));
         }else {
+            Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivPreview);
             holder.rlCard.setForeground(null);
-        }*/
+        }
 
         Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
 

@@ -12,13 +12,14 @@ import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.repository.PriceCheckRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroceryItemViewModel extends AndroidViewModel {
     private static final String TAG = "GroceryItemViewModel";
     private PriceCheckRepo repository;
-    private LiveData<List<GroceryItem>> groceryItems;
 
+    private ArrayList<GroceryItem> groceryItems;
 
     public GroceryItemViewModel(@NonNull Application application) {
         super(application);
@@ -26,6 +27,7 @@ public class GroceryItemViewModel extends AndroidViewModel {
     }
 
     public void insert(GroceryItem groceryItem){
+        repository.setGroceryItems();
         repository.insertGroceryItem(groceryItem);
     }
 
@@ -41,11 +43,9 @@ public class GroceryItemViewModel extends AndroidViewModel {
         repository.deleteAllShops();
     }
 
-    public void setGroceryItems(int sID){
-        repository.setGroceryItems(sID);
-    }
-    public LiveData<List<GroceryItem>> getGroceryItems(){
-        return repository.getItems();
+    public LiveData<List<GroceryItem>> getGroceryItems(int sID){
+        repository.setGroceryItems();
+        return repository.getItems(sID);
     }
     public int countShopItems(int sID){
         return repository.countShopItems(sID);

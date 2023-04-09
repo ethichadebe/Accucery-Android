@@ -48,7 +48,16 @@ public class MainActivity extends AppCompatActivity {
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
         rvShops.setAdapter(shopItemAdapter);
 
-        shopItemAdapter.setOnItemClickListener(position -> startActivity(new Intent(MainActivity.this,GroceryListActivity.class)));
+        shopItemAdapter.setOnItemClickListener(position -> {
+            if (shops.get(position).isActive()){
+                Intent intent = new Intent(MainActivity.this,GroceryListActivity.class);
+                intent.putExtra("sID",shops.get(position).getId());
+                intent.putExtra("sName",shops.get(position).getName());
+                intent.putExtra("sSearchLink",shops.get(position).getSearchLink());
+                intent.putExtra("sImageLink",shops.get(position).getImage());
+                startActivity(intent);
+            }
+        });
         shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
         shopViewModel.getShops().observe(this, shops -> {
             this.shops = shops;
@@ -62,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        finishAffinity();
     }
 
 }

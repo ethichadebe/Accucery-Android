@@ -23,7 +23,6 @@ import java.util.List;
 public class PriceCheckRepo {
     private static final String TAG = "PriceCheckRepo";
     private GroceryItemDao groceryItemDao;
-    private LiveData<List<GroceryItem>> groceryItems;
 
     private ShopDao shopDao;
     private LiveData<List<Shop>> shops;
@@ -36,9 +35,8 @@ public class PriceCheckRepo {
         shops = shopDao.getShops();
     }
 
-    public void setGroceryItems(int sID) {
+    public void setGroceryItems() {
         groceryItemDao = db.groceryItemDao();
-        groceryItems = groceryItemDao.getShopItems(sID);
     }
 
     public void insertGroceryItem(GroceryItem groceryItem) {
@@ -80,8 +78,8 @@ public class PriceCheckRepo {
         return shopDao.getShop(sID);
     }
 
-    public LiveData<List<GroceryItem>> getItems() {
-        return groceryItems;
+    public LiveData<List<GroceryItem>> getItems(int sID) {
+        return groceryItemDao.getShopItems(sID);
     }
     public int countAllItems() {
         return groceryItemDao.countAllItems();

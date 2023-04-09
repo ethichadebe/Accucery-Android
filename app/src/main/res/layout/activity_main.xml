@@ -17,23 +17,27 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
 
-            <ImageView
-                android:id="@+id/ivLogo"
-                style="@style/TitleBarImage"
-                android:contentDescription="@string/logo" />
+            <LinearLayout
+                android:id="@+id/rlHeader"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:gravity="center">
 
-            <TextView
-                style="@style/rittleColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="@dimen/_1sdp"
-                android:layout_marginBottom="@dimen/_2sdp"
-                android:layout_toEndOf="@id/ivLogo"
-                android:fontFamily="@font/ubuntu_bold"
-                android:text="@string/rittle"
-                android:textSize="@dimen/_20sdp"
-                android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:src="@drawable/accucery_logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/coiny_regular"
+                    android:text="@string/accucery"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:textColor="@color/primary_green"
+                    android:textSize="@dimen/_16ssp" />
+            </LinearLayout>
+
         </RelativeLayout>
 
         <RelativeLayout

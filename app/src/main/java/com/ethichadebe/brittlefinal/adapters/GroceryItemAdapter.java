@@ -33,6 +33,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
         void onAddQuantityClick(int position);
 
         void onSubQuantityClick(int position);
+        void onItemClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -41,23 +42,22 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
 
     public static class GroceryItemViewHolder extends RecyclerView.ViewHolder {
         public LottieAnimationView lavCheckBox;
-        public ImageView ivItem, ivUp, ivDown;
-        public TextView tvSpace, tvName, tvTotal, tvPrice, tvQuantity;
+        public ImageView ivImage;
+        public TextView tvAdd, tvSubtract, tvItemName, tvItemPrice,tvSpace,tvItemQuantity;
 
         public GroceryItemViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
 
             lavCheckBox = itemView.findViewById(R.id.lavCheckBox);
-            ivItem = itemView.findViewById(R.id.ivItem);
-            ivUp = itemView.findViewById(R.id.ivUp);
+            ivImage = itemView.findViewById(R.id.ivImage);
+            tvAdd = itemView.findViewById(R.id.tvAdd);
+            tvSubtract = itemView.findViewById(R.id.tvSubtract);
+            tvItemName = itemView.findViewById(R.id.tvItemName);
+            tvItemPrice = itemView.findViewById(R.id.tvItemPrice);
             tvSpace = itemView.findViewById(R.id.tvSpace);
-            tvPrice = itemView.findViewById(R.id.tvPrice);
-            ivDown = itemView.findViewById(R.id.ivDown);
-            tvName = itemView.findViewById(R.id.tvName);
-            tvTotal = itemView.findViewById(R.id.tvTotal);
-            tvQuantity = itemView.findViewById(R.id.tvQuantity);
+            tvItemQuantity = itemView.findViewById(R.id.tvItemQuantity);
 
-            ivUp.setOnClickListener(view -> {
+            tvAdd.setOnClickListener(view -> {
                 if (listener != null) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
@@ -66,7 +66,16 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
                 }
             });
 
-            ivDown.setOnClickListener(view -> {
+            itemView.setOnClickListener(view -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(position);
+                    }
+                }
+            });
+
+            tvSubtract.setOnClickListener(view -> {
                 if (listener != null) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
@@ -96,11 +105,18 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
     public void onBindViewHolder(@NonNull GroceryItemViewHolder holder, int position) {
         GroceryItem item = groceryItems.get(position);
 
-        //holder.lavCheckBox.setColorFilter();
-        Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivItem);
-        holder.tvName.setText(item.getName());
-        holder.tvPrice.setText("R" + item.getPrice());
-        holder.tvTotal.setText("x" + item.getQuantity() + " = " + item.getPrice()*item.getQuantity());
+        if (item.isChecked()){
+            holder.lavCheckBox.setSpeed(-1);
+            holder.lavCheckBox.playAnimation();
+        }else {
+            holder.lavCheckBox.setSpeed(1);
+            holder.lavCheckBox.playAnimation();
+        }
+
+        Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivImage);
+        holder.tvItemName.setText(item.getName());
+        holder.tvItemPrice.setText("R" + item.getPrice());
+        holder.tvItemQuantity.setText(" x" + item.getQuantity() + " = " + item.getPrice()*item.getQuantity());
 
         if (position == 0) {
             holder.tvSpace.setVisibility(View.VISIBLE);
@@ -110,7 +126,7 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
             holder.tvSpace.setVisibility(View.GONE);
         }
 
-        holder.tvQuantity.setText("" + item.getQuantity());
+        //holder.tvQuantity.setText("" + item.getQuantity());
 
     /* if (!item.isActive()) {
             holder.rlCard.setForeground(context.getResources().getDrawable(R.color.opacity));

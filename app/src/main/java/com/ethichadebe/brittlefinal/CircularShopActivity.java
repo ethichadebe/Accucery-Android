@@ -42,8 +42,6 @@ public class CircularShopActivity extends AppCompatActivity {
 
     private GroceryItemViewModel groceryItemViewModel;
     private FrameLayout root_layout;
-
-    private List<Shop> shops = new ArrayList<>();
     private GroceryItemSearchAdapter groceryItemAdapter;
     private RecyclerView rvGroceryItemSearch;
 
@@ -56,6 +54,7 @@ public class CircularShopActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.do_not_move, R.anim.do_not_move);
         setContentView(R.layout.activity_circular_shop);
 
+        items = new ArrayList<>();
         root_layout = findViewById(R.id.root_layout);
         etSearch = findViewById(R.id.etSearch);
         rvGroceryItemSearch = findViewById(R.id.rvGroceryItemSearch);
@@ -84,7 +83,7 @@ public class CircularShopActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     Scraper scraper = new Scraper();
-                                    scraper.execute("https://www.shoprite.co.za/search/all?q=" + charSequence);
+                                    scraper.execute(getIntent().getStringExtra("sSearchLink") + charSequence);
                                     Log.d(TAG, "onTextChanged: " + charSequence);
                                     // TODO: Do what you need here (refresh list).
                                     // You will probably need to use
@@ -151,14 +150,20 @@ public class CircularShopActivity extends AppCompatActivity {
         groceryItemAdapter = new GroceryItemSearchAdapter();
         rvGroceryItemSearch.setAdapter(groceryItemAdapter);
 
-        groceryItemAdapter.setOnItemClickListener(new GroceryItemSearchAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                GroceryItem item = items.get(position);
-                groceryItemViewModel.setGroceryItems(1);
-                groceryItemViewModel.insert(new GroceryItem(item.getName(), item.getPrice(), item.getImage(), 1));
-                startActivity(new Intent(CircularShopActivity.this,MainActivity.class));
-            }
+        groceryItemAdapter.setOnItemClickListener(position -> {
+            GroceryItem item = items.get(position);
+            groceryItemViewModel.insert(new GroceryItem(item.getName(), item.getPrice(), item.getImage(), getIntent().getIntExtra("sID", 0)));
+            etSearch.setText("");
+            items = null;
+
+            Intent intent = new Intent(CircularShopActivity.this, GroceryListActivity.class);
+
+            intent.putExtra("sID",getIntent().getIntExtra("sID",0));
+            intent.putExtra("sSearchLink",getIntent().getStringExtra("sSearchLink"));
+            intent.putExtra("sImageLink",getIntent().getStringExtra("sImageLink"));
+            intent.putExtra("sName",getIntent().getStringExtra("sName"));
+
+            startActivity(intent);
         });
     }
 
@@ -191,22 +196,115 @@ public class CircularShopActivity extends AppCompatActivity {
             try {
                 Log.d(TAG, "doInBackground: trying....: " + url[0]);
                 items = new ArrayList<>();
-                Document document = Jsoup.connect(url[0]).get();
-                Elements data = document.select("figure.item-product__content");
+                if (url[0].contains("https://www.pnp.co.za/pnpstorefront/pnp/en/search/?text=")) {
+                    Document document = Jsoup.connect(url[0]).get();
+                    Elements data = document.select("div.productCarouselItem");
 
-                Log.d(TAG, "doInBackground: size " + data);
-                int size = data.size();
-                for (int i = 0; i < size; i++) {
-                    String image = data.select("figure.item-product__content").select("img").eq(i).attr("src");
-                    String name = data.select("h3.item-product__name").select("a").eq(i).text();
-                    String price = data.select("div.special-price__price").select("span").eq(i).text();
+                    Log.d(TAG, "doInBackground: size " + data);
+                    int size = data.size();
+                    for (int i = 0; i < size; i++) {
+                        String image = data.select("div.thumb").select("img").eq(i).attr("src");
+                        String name = data.select("div.item-name").eq(i).text();
+                        String price = data.select("div.product-price").select("div.currentPrice").eq(i).text();
 
-                    Log.d(TAG, "doInBackground: Item: " + i + 1 + "------------------------------------------------------------------");
-                    Log.d(TAG, "doInBackground: name: " + name);
-                    Log.d(TAG, "doInBackground: price: " + price);
-                    Log.d(TAG, "doInBackground: image: " + image);
-                    items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")), image, 1));
-                    groceryItemAdapter.setGroceryItemSearchAdapter(CircularShopActivity.this, items);
+                        if (price.isEmpty()){
+                            price="0.0";
+                        }
+                        Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
+                        Log.d(TAG, "doInBackground: name: " + name);
+                        Log.d(TAG, "doInBackground: price: " + price);
+                        Log.d(TAG, "doInBackground: image: " + image);
+                        items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
+                                image, getIntent().getIntExtra("sID", 0)));
+                        groceryItemAdapter.setGroceryItemSearchAdapter(CircularShopActivity.this, items);
+                    }
+                } else if (url[0].contains("https://www.woolworths.co.za/cat?Ntt=")) {
+                    Log.d(TAG, "doInBackground: it does contain");
+                    Document document = Jsoup.connect(url[0] + "&Dy=1").get();
+                    Elements data = document.select("div.product-list__item");
+
+                    Log.d(TAG, "doInBackground: size " + document);
+                    int size = data.size();
+                    for (int i = 0; i < size; i++) {
+                        String image = data.select("div.product--image").select("img").eq(i).attr("src");
+                        String name = data.select("div.product-card__name").select("a").eq(i).text();
+                        String price = data.select("div.product__price").select("strong.price").eq(i).text();
+
+                        Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
+                        Log.d(TAG, "doInBackground: name: " + name);
+                        Log.d(TAG, "doInBackground: price: " + price);
+                        Log.d(TAG, "doInBackground: image: " + image);
+                        items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
+                                image, getIntent().getIntExtra("sID", 0)));
+                        groceryItemAdapter.setGroceryItemSearchAdapter(CircularShopActivity.this, items);
+                    }
+
+                } else if (url[0].contains("https://www.makro.co.za/search/?text=")) {
+                    Log.d(TAG, "doInBackground: it does contain");
+                    Document document = Jsoup.connect(url[0] + "&Dy=1").get();
+                    Elements data = document.select("div.mak-product-tiles-container__product-tile");
+
+                    Log.d(TAG, "doInBackground: size " + document);
+                    int size = data.size();
+                    for (int i = 0; i < size; i++) {
+                        String image = data.select("a.product-tile-inner__img").select("img").eq(i).attr("src");
+                        String name = data.select("a.product-tile-inner__productTitle").select("span").eq(i).text();
+                        String price = data.select("p.price").select("span.mak-save-price").eq(i).text() + "." +
+                                data.select("p.price").select("span.mak-product__cents").eq(i).text();
+
+                        Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
+                        Log.d(TAG, "doInBackground: name: " + name);
+                        Log.d(TAG, "doInBackground: price: " + price);
+                        Log.d(TAG, "doInBackground: image: " + image);
+                        items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
+                                image, getIntent().getIntExtra("sID", 0)));
+                        groceryItemAdapter.setGroceryItemSearchAdapter(CircularShopActivity.this, items);
+                    }
+
+                } else if (url[0].contains("https://www.game.co.za/l/search/?t=")) {
+                    Log.d(TAG, "doInBackground: it does contain");
+                    Document document = Jsoup.connect(url[0] + "&q=" + url[0].replace("https://www.game.co.za/l/search/?t=", "")
+                            + "%3Arelevance").get();
+                    Elements data = document.select("div.r-14lw9ot");
+
+                    Log.d(TAG, "doInBackground: size " + document);
+                    int size = data.size();
+                    for (int i = 0; i < size; i++) {
+                        String image = data.select("div.r-1p0dtai").select("img").eq(i).attr("src");
+                        String name = data.select("a.css-4rbku5").select("div").eq(i).text();
+                        String price = data.select("div.css-901oao").eq(i).text().replace(",", ".");
+
+                        Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
+                        Log.d(TAG, "doInBackground: name: " + name);
+                        Log.d(TAG, "doInBackground: price: " + price);
+                        Log.d(TAG, "doInBackground: image: " + image);
+                        items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
+                                image, getIntent().getIntExtra("sID", 0)));
+                        groceryItemAdapter.setGroceryItemSearchAdapter(CircularShopActivity.this, items);
+                    }
+
+                } else {
+                    Log.d(TAG, "doInBackground: it does contain");
+                    Document document = Jsoup.connect(url[0]).get();
+                    Elements data = document.select("figure.item-product__content");
+
+                    Log.d(TAG, "doInBackground: size " + data);
+                    int size = data.size();
+                    for (int i = 0; i < size; i++) {
+                        String image = data.select("figure.item-product__content").select("img").eq(i).attr("src");
+                        String name = data.select("h3.item-product__name").select("a").eq(i).text();
+                        String price = data.select("div.special-price__price").select("span").eq(i).text();
+
+                        Log.d(TAG, "doInBackground: Item: " + i + 1 + "------------------------------------------------------------------");
+                        Log.d(TAG, "doInBackground: name: " + name);
+                        Log.d(TAG, "doInBackground: price: " + price);
+                        Log.d(TAG, "doInBackground: image: " + image);
+                        Log.d(TAG, "doInBackground: full image " + getIntent().getStringExtra("sImageLink") + image);
+                        items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
+                                "https://www.shoprite.co.za/" + image, 1));
+                        groceryItemAdapter.setGroceryItemSearchAdapter(CircularShopActivity.this, items);
+                    }
+
                 }
             } catch (IOException e) {
                 Log.e(TAG, "doInBackground: error " + e.getMessage());

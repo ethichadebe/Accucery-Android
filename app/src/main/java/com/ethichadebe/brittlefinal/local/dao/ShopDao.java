@@ -34,7 +34,7 @@ public interface ShopDao {
     @Query("DELETE FROM ShopsTable")
     void deleteAllShops();
 
-    @Query("SELECT * FROM ShopsTable")
+    @Query("SELECT * FROM ShopsTable ORDER BY isActive DESC")
     LiveData<List<Shop>> getShops();
 
     @Query("SELECT * FROM ShopsTable WHERE id = :sID")

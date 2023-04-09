@@ -1,12 +1,17 @@
 package com.ethichadebe.brittlefinal;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,16 +23,23 @@ import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
 public class GroceryListActivity extends AppCompatActivity {
     private static final String TAG = "GroceryListActivity";
-    private ExtendedFloatingActionButton fabAddShop;
+    private FloatingActionButton fabAddShop;
     private TextView tvPrice, tvShopName;
     private RecyclerView rvItems;
     private RelativeLayout rlBack;
+    private GroceryItemAdapter groceryItemAdapter;
+
     private GroceryItemViewModel groceryItemViewModel;
     private List<GroceryItem> groceryItems = new ArrayList<>();
     private ValueAnimator animator;
@@ -37,18 +49,25 @@ public class GroceryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery_list);
 
+        groceryItemAdapter = new GroceryItemAdapter();
         tvPrice = findViewById(R.id.tvPrice);
         tvShopName = findViewById(R.id.tvShopName);
         fabAddShop = findViewById(R.id.fabAddShop);
         rlBack = findViewById(R.id.rlBack);
 
+        tvShopName.setText(getIntent().getStringExtra("sName"));
         fabAddShop.setOnClickListener(view -> {
-            startActivity(new Intent(GroceryListActivity.this, CircularShopActivity.class));
+            Intent intent = new Intent(GroceryListActivity.this, CircularShopActivity.class);
+            intent.putExtra("sID",getIntent().getIntExtra("sID",0));
+            intent.putExtra("sSearchLink",getIntent().getStringExtra("sSearchLink"));
+            intent.putExtra("sImageLink",getIntent().getStringExtra("sImageLink"));
+            intent.putExtra("sName",getIntent().getStringExtra("sName"));
+            startActivity(intent);
         });
 
         groceryItemViewModel = new ViewModelProvider(GroceryListActivity.this).get(GroceryItemViewModel.class);
         rlBack.setOnClickListener(view -> startActivity(new Intent(GroceryListActivity.this, MainActivity.class)));
-
+        setupGroceryList(getIntent().getIntExtra("sID",0));
     }
 
     private void setupGroceryList(int position) {
@@ -56,16 +75,16 @@ public class GroceryListActivity extends AppCompatActivity {
         rvItems = findViewById(R.id.rvItems);
         rvItems.setLayoutManager(new LinearLayoutManager(GroceryListActivity.this));
         rvItems.setHasFixedSize(true);
-        final GroceryItemAdapter groceryItemAdapter = new GroceryItemAdapter();
         rvItems.setAdapter(groceryItemAdapter);
-        groceryItemViewModel.setGroceryItems(position);
-        groceryItemViewModel.getGroceryItems().observe(GroceryListActivity.this, groceryItems -> {
+        groceryItemViewModel.getGroceryItems(position).observe(GroceryListActivity.this, groceryItems -> {
             this.groceryItems = groceryItems;
             Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
             groceryItemAdapter.setGroceryItemAdapter(GroceryListActivity.this, groceryItems);
             groceryItemAdapter.notifyDataSetChanged();
         });
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(rvItems);
 
         groceryItemAdapter.setOnItemClickListener(new GroceryItemAdapter.OnItemClickListener() {
             @Override
@@ -91,6 +110,23 @@ public class GroceryListActivity extends AppCompatActivity {
                     startCountAnim(prevPrice, totalPrice(), 1000, tvPrice);
                 }
             }
+
+            @Override
+            public void onItemClick(int position) {
+                GroceryItem item = groceryItems.get(position);
+                GroceryItem newItem = new GroceryItem(item.getName(),item.getPrice(),item.getImage(), item.getShopId(),!item.isChecked());
+                groceryItemViewModel.update(newItem);
+
+                if (item.isChecked()){
+                    groceryItems.remove(position);
+                    groceryItems.add(newItem);
+                }else {
+                    groceryItems.remove(position);
+                    groceryItems.add(0,newItem);
+                }
+
+                groceryItemAdapter.notifyItemChanged(position);
+            }
         });
     }
 
@@ -112,5 +148,43 @@ public class GroceryListActivity extends AppCompatActivity {
     public void back(View view) {
         startActivity(new Intent(GroceryListActivity.this, MainActivity.class));
     }
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            Log.d(TAG, "onSwiped: swiping...");
+            int position = viewHolder.getBindingAdapterPosition();
+            if (direction == ItemTouchHelper.LEFT) {
+                GroceryItem deletedItem = groceryItems.get(position);
+                groceryItems.remove(position);
+                groceryItemAdapter.notifyItemRemoved(position);
+
+                Snackbar.make(rvItems, deletedItem.getName() + " has been removed.",
+                                BaseTransientBottomBar.LENGTH_LONG).setAction("Undo", view -> {
+                    groceryItems.add(position, deletedItem);
+                    groceryItemAdapter.notifyItemInserted(position);
+                })
+                        .setBackgroundTint(Color.WHITE)
+                        .setTextColor(Color.BLACK)
+                        .setActionTextColor(getResources().getColor(R.color.primary_green))
+                        .show();
+            }
+        }
+
+        @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addBackgroundColor(ContextCompat.getColor(GroceryListActivity.this, R.color.Red))
+                    .addActionIcon(R.drawable.delete_24)
+                    .create()
+                    .decorate();
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
+    };
 
 }

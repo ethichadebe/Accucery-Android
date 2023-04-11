@@ -143,7 +143,6 @@ public class GroceryListActivity extends AppCompatActivity {
             }
         });
     }
-
     private int totalPrice() {
         int total = 0;
 

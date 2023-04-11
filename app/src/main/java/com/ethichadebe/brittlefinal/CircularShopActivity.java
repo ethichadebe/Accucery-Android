@@ -164,14 +164,19 @@ public class CircularShopActivity extends AppCompatActivity {
             intent.putExtra("sName",getIntent().getStringExtra("sName"));
 
             startActivity(intent);
+            finish();
         });
     }
 
 
     public void back(View view) {
-        finish();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+    }
 
     class Scraper extends AsyncTask<String, Void, Void> {
 

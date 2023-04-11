@@ -39,8 +39,8 @@ public class GroceryItemViewModel extends AndroidViewModel {
     public void delete(GroceryItem groceryItem){
         repository.deleteGroceryItem(groceryItem);
     }
-    public void deleteAllItems(){
-        repository.deleteAllShops();
+    public void deleteAllItems(int sID){
+        repository.deleteAllGroceryItems(sID);
     }
 
     public LiveData<List<GroceryItem>> getGroceryItems(int sID){

@@ -49,13 +49,15 @@ public class MainActivity extends AppCompatActivity {
         rvShops.setAdapter(shopItemAdapter);
 
         shopItemAdapter.setOnItemClickListener(position -> {
-            if (shops.get(position).isActive()){
-                Intent intent = new Intent(MainActivity.this,GroceryListActivity.class);
-                intent.putExtra("sID",shops.get(position).getId());
-                intent.putExtra("sName",shops.get(position).getName());
-                intent.putExtra("sSearchLink",shops.get(position).getSearchLink());
-                intent.putExtra("sImageLink",shops.get(position).getImage());
+            if (shops.get(position).isActive()) {
+                Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
+                intent.putExtra("sID", shops.get(position).getId());
+                intent.putExtra("sName", shops.get(position).getName());
+                intent.putExtra("sSearchLink", shops.get(position).getSearchLink());
+                intent.putExtra("sImageLink", shops.get(position).getImage());
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
+// document say if we don't want animation we can put 0. However, if we put 0 instead of R.anim.no_animation, the exist activity will become black when animate
             }
         });
         shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);

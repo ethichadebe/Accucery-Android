@@ -72,8 +72,8 @@
                         style="@style/ShopCardBackgroundRed"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/Red"
                         android:contentDescription="@string/logo"
-                        android:onClick="back"
                         android:padding="@dimen/_8sdp"
                         android:src="@drawable/delete_24" />
                 </androidx.cardview.widget.CardView>

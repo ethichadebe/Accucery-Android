@@ -1,13 +1,5 @@
 package com.ethichadebe.brittlefinal;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -18,11 +10,17 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -37,7 +35,7 @@ public class GroceryListActivity extends AppCompatActivity {
     private FloatingActionButton fabAddShop;
     private TextView tvPrice, tvShopName;
     private RecyclerView rvItems;
-    private RelativeLayout rlBack;
+    private RelativeLayout rlClearList;
     private GroceryItemAdapter groceryItemAdapter;
 
     private GroceryItemViewModel groceryItemViewModel;
@@ -53,21 +51,30 @@ public class GroceryListActivity extends AppCompatActivity {
         tvPrice = findViewById(R.id.tvPrice);
         tvShopName = findViewById(R.id.tvShopName);
         fabAddShop = findViewById(R.id.fabAddShop);
-        rlBack = findViewById(R.id.rlBack);
+        rlClearList = findViewById(R.id.rlClearList);
+
 
         tvShopName.setText(getIntent().getStringExtra("sName"));
         fabAddShop.setOnClickListener(view -> {
             Intent intent = new Intent(GroceryListActivity.this, CircularShopActivity.class);
-            intent.putExtra("sID",getIntent().getIntExtra("sID",0));
-            intent.putExtra("sSearchLink",getIntent().getStringExtra("sSearchLink"));
-            intent.putExtra("sImageLink",getIntent().getStringExtra("sImageLink"));
-            intent.putExtra("sName",getIntent().getStringExtra("sName"));
+            intent.putExtra("sID", getIntent().getIntExtra("sID", 0));
+            intent.putExtra("sSearchLink", getIntent().getStringExtra("sSearchLink"));
+            intent.putExtra("sImageLink", getIntent().getStringExtra("sImageLink"));
+            intent.putExtra("sName", getIntent().getStringExtra("sName"));
             startActivity(intent);
         });
 
+        rlClearList.setOnClickListener(view -> {
+            if (groceryItems.size() > 0) {
+                int sID = groceryItems.get(0).getShopId();
+                groceryItems.clear();
+                groceryItemViewModel.deleteAllItems(sID);
+                groceryItemAdapter.notifyDataSetChanged();
+            }
+        });
+
         groceryItemViewModel = new ViewModelProvider(GroceryListActivity.this).get(GroceryItemViewModel.class);
-        rlBack.setOnClickListener(view -> startActivity(new Intent(GroceryListActivity.this, MainActivity.class)));
-        setupGroceryList(getIntent().getIntExtra("sID",0));
+        setupGroceryList(getIntent().getIntExtra("sID", 0));
     }
 
     private void setupGroceryList(int position) {
@@ -77,7 +84,8 @@ public class GroceryListActivity extends AppCompatActivity {
         rvItems.setHasFixedSize(true);
         rvItems.setAdapter(groceryItemAdapter);
         groceryItemViewModel.getGroceryItems(position).observe(GroceryListActivity.this, groceryItems -> {
-            this.groceryItems = groceryItems;
+            this.groceryItems.add(new GroceryItem("",0.0,"",0));
+            this.groceryItems.addAll(groceryItems);
             Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
             groceryItemAdapter.setGroceryItemAdapter(GroceryListActivity.this, groceryItems);
             groceryItemAdapter.notifyDataSetChanged();
@@ -114,18 +122,24 @@ public class GroceryListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 GroceryItem item = groceryItems.get(position);
-                GroceryItem newItem = new GroceryItem(item.getName(),item.getPrice(),item.getImage(), item.getShopId(),!item.isChecked());
+                GroceryItem newItem = new GroceryItem(item.getName(), item.getPrice(), item.getImage(), item.getShopId(), !item.isChecked());
                 groceryItemViewModel.update(newItem);
 
-                if (item.isChecked()){
+                if (item.isChecked()) {
                     groceryItems.remove(position);
+                    groceryItemAdapter.notifyItemRemoved(position);
+                    Log.d(TAG, "onItemClick: item name" + newItem.getName() +" "+ item.getName());
+                    groceryItems.add(1, newItem);
+                    groceryItemAdapter.notifyItemInserted(1);
+                    rvItems.smoothScrollToPosition(0);
+                } else {
+                    groceryItems.remove(position);
+                    groceryItemAdapter.notifyItemRemoved(position);
                     groceryItems.add(newItem);
-                }else {
-                    groceryItems.remove(position);
-                    groceryItems.add(0,newItem);
+                    groceryItemAdapter.notifyItemInserted(groceryItems.size() - 1);
+                    rvItems.smoothScrollToPosition(groceryItems.size());
                 }
 
-                groceryItemAdapter.notifyItemChanged(position);
             }
         });
     }
@@ -139,13 +153,20 @@ public class GroceryListActivity extends AppCompatActivity {
 
         return total;
     }
+
     private void startCountAnim(int from, int to, int duration, TextView textView) {
         animator = ValueAnimator.ofFloat(from, to);
         animator.setDuration(duration);
         animator.addUpdateListener(valueAnimator -> textView.setText(animator.getAnimatedValue().toString()));
         animator.start();
     }
+
     public void back(View view) {
+        startActivity(new Intent(GroceryListActivity.this, MainActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
         startActivity(new Intent(GroceryListActivity.this, MainActivity.class));
     }
 
@@ -162,16 +183,18 @@ public class GroceryListActivity extends AppCompatActivity {
             if (direction == ItemTouchHelper.LEFT) {
                 GroceryItem deletedItem = groceryItems.get(position);
                 groceryItems.remove(position);
+                groceryItemViewModel.delete(deletedItem);
                 groceryItemAdapter.notifyItemRemoved(position);
 
                 Snackbar.make(rvItems, deletedItem.getName() + " has been removed.",
                                 BaseTransientBottomBar.LENGTH_LONG).setAction("Undo", view -> {
-                    groceryItems.add(position, deletedItem);
-                    groceryItemAdapter.notifyItemInserted(position);
-                })
-                        .setBackgroundTint(Color.WHITE)
-                        .setTextColor(Color.BLACK)
-                        .setActionTextColor(getResources().getColor(R.color.primary_green))
+                            groceryItems.add(position, deletedItem);
+                            groceryItemViewModel.insert(deletedItem);
+                            groceryItemAdapter.notifyItemInserted(position);
+                        })
+                        .setBackgroundTint(getResources().getColor(R.color.Red))
+                        .setTextColor(Color.WHITE)
+                        .setActionTextColor(getResources().getColor(R.color.white))
                         .show();
             }
         }
@@ -183,6 +206,7 @@ public class GroceryListActivity extends AppCompatActivity {
                     .addActionIcon(R.drawable.delete_24)
                     .create()
                     .decorate();
+
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
     };

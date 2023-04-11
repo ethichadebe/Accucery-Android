@@ -5,30 +5,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvSpace"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_90sdp" />
-
     <RelativeLayout
+        android:id="@+id/rlItem"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80sdp">
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lavCheckBox"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:lottie_rawRes="@raw/success"
-            app:lottie_speed="3" />
 
         <ImageView
             android:id="@+id/ivImage"
             android:layout_width="@dimen/_56sdp"
             android:layout_height="@dimen/_56sdp"
-            android:layout_toEndOf="@+id/lavCheckBox"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_centerVertical="true"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"

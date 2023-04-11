@@ -78,7 +78,6 @@ public class GroceryItemSearchAdapter extends RecyclerView.Adapter<GroceryItemSe
     public void onBindViewHolder(@NonNull GroceryItemSearchViewHolder holder, int position) {
         GroceryItem item = groceryItems.get(position);
 
-        //holder.lavCheckBox.setColorFilter();
         Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivItem);
         holder.tvName.setText(item.getName());
         holder.tvPrice.setText("R" + item.getPrice());

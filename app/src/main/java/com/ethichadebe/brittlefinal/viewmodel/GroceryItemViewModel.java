@@ -7,19 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.ethichadebe.brittlefinal.local.dao.GroceryItemDao;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
-import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.repository.PriceCheckRepo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GroceryItemViewModel extends AndroidViewModel {
     private static final String TAG = "GroceryItemViewModel";
-    private PriceCheckRepo repository;
-
-    private ArrayList<GroceryItem> groceryItems;
+    private final PriceCheckRepo repository;
 
     public GroceryItemViewModel(@NonNull Application application) {
         super(application);

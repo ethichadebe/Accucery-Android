@@ -21,25 +21,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class GroceryListActivity extends AppCompatActivity {
+    public static final int UNCHECKED = 0;
+    public static final int CHECKED = 1;
+    public static final int WHOLE_LIST = 2;
     private static final String TAG = "GroceryListActivity";
-    private FloatingActionButton fabAddShop;
-    private TextView tvPrice, tvShopName;
+    private TextView tvUnchecked;
+    private TextView tvChecked;
+    private TextView tvTotal;
     private RecyclerView rvItems;
-    private RelativeLayout rlClearList;
     private GroceryItemAdapter groceryItemAdapter;
 
     private GroceryItemViewModel groceryItemViewModel;
-    private List<GroceryItem> groceryItems = new ArrayList<>();
+    private final List<GroceryItem> groceryItems = new ArrayList<>();
     private ValueAnimator animator;
 
     @Override
@@ -47,11 +52,15 @@ public class GroceryListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grocery_list);
 
+        MobileAds.initialize(this);
+
         groceryItemAdapter = new GroceryItemAdapter();
-        tvPrice = findViewById(R.id.tvPrice);
-        tvShopName = findViewById(R.id.tvShopName);
-        fabAddShop = findViewById(R.id.fabAddShop);
-        rlClearList = findViewById(R.id.rlClearList);
+        tvUnchecked = findViewById(R.id.tvUnchecked);
+        tvChecked = findViewById(R.id.tvChecked);
+        tvTotal = findViewById(R.id.tvTotal);
+        TextView tvShopName = findViewById(R.id.tvShopName);
+        FloatingActionButton fabAddShop = findViewById(R.id.fabAddShop);
+        RelativeLayout rlClearList = findViewById(R.id.rlClearList);
 
 
         tvShopName.setText(getIntent().getStringExtra("sName"));
@@ -66,8 +75,8 @@ public class GroceryListActivity extends AppCompatActivity {
 
         rlClearList.setOnClickListener(view -> {
             if (groceryItems.size() > 0) {
-                int sID = groceryItems.get(0).getShopId();
                 groceryItems.clear();
+                int sID = groceryItems.get(0).getShopId();
                 groceryItemViewModel.deleteAllItems(sID);
                 groceryItemAdapter.notifyDataSetChanged();
             }
@@ -78,13 +87,15 @@ public class GroceryListActivity extends AppCompatActivity {
     }
 
     private void setupGroceryList(int position) {
-        startCountAnim(0, totalPrice(), 3000, tvPrice);
+        startCountAnim(0, totalPrice(UNCHECKED), 3000, tvUnchecked);
+        startCountAnim(0, totalPrice(CHECKED), 3000, tvChecked);
+        startCountAnim(0, totalPrice(WHOLE_LIST), 3000, tvTotal);
         rvItems = findViewById(R.id.rvItems);
         rvItems.setLayoutManager(new LinearLayoutManager(GroceryListActivity.this));
         rvItems.setHasFixedSize(true);
         rvItems.setAdapter(groceryItemAdapter);
         groceryItemViewModel.getGroceryItems(position).observe(GroceryListActivity.this, groceryItems -> {
-            this.groceryItems.add(new GroceryItem("",0.0,"",0));
+            this.groceryItems.add(new GroceryItem("", 0.0, "", 0));
             this.groceryItems.addAll(groceryItems);
             Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
             groceryItemAdapter.setGroceryItemAdapter(GroceryListActivity.this, groceryItems);
@@ -97,66 +108,104 @@ public class GroceryListActivity extends AppCompatActivity {
         groceryItemAdapter.setOnItemClickListener(new GroceryItemAdapter.OnItemClickListener() {
             @Override
             public void onAddQuantityClick(int position) {
-                int prevPrice = totalPrice();
+                int checked = totalPrice(UNCHECKED);
+                int unchecked = totalPrice(UNCHECKED);
+                int total = totalPrice(WHOLE_LIST);
                 GroceryItem item = groceryItems.get(position);
                 item.setQuantity(item.getQuantity() + 1);
                 groceryItemViewModel.update(item);
                 groceryItems.get(position).setQuantity(item.getQuantity());
                 groceryItemAdapter.notifyItemChanged(position);
-                startCountAnim(prevPrice, totalPrice(), 1000, tvPrice);
+                startCountAnim(unchecked, totalPrice(UNCHECKED), 3000, tvUnchecked);
+                startCountAnim(checked, totalPrice(CHECKED), 3000, tvChecked);
+                startCountAnim(total, totalPrice(WHOLE_LIST), 3000, tvTotal);
             }
 
             @Override
             public void onSubQuantityClick(int position) {
-                int prevPrice = totalPrice();
+                int checked = totalPrice(UNCHECKED);
+                int unchecked = totalPrice(UNCHECKED);
+                int total = totalPrice(WHOLE_LIST);
                 GroceryItem item = groceryItems.get(position);
                 if (item.getQuantity() > 1) {
                     item.setQuantity(item.getQuantity() - 1);
                     groceryItemViewModel.update(item);
                     groceryItems.get(position).setQuantity(item.getQuantity());
                     groceryItemAdapter.notifyItemChanged(position);
-                    startCountAnim(prevPrice, totalPrice(), 1000, tvPrice);
+                    startCountAnim(unchecked, totalPrice(UNCHECKED), 3000, tvUnchecked);
+                    startCountAnim(checked, totalPrice(CHECKED), 3000, tvChecked);
+                    startCountAnim(total, totalPrice(WHOLE_LIST), 3000, tvTotal);
                 }
             }
 
             @Override
             public void onItemClick(int position) {
+                int checked = totalPrice(UNCHECKED);
+                int unchecked = totalPrice(UNCHECKED);
+                int total = totalPrice(WHOLE_LIST);
                 GroceryItem item = groceryItems.get(position);
-                GroceryItem newItem = new GroceryItem(item.getName(), item.getPrice(), item.getImage(), item.getShopId(), !item.isChecked());
-                groceryItemViewModel.update(newItem);
 
                 if (item.isChecked()) {
                     groceryItems.remove(position);
                     groceryItemAdapter.notifyItemRemoved(position);
-                    Log.d(TAG, "onItemClick: item name" + newItem.getName() +" "+ item.getName());
-                    groceryItems.add(1, newItem);
-                    groceryItemAdapter.notifyItemInserted(1);
-                    rvItems.smoothScrollToPosition(0);
+                    for (GroceryItem item1 : groceryItems) {
+                        Log.d(TAG, "onItemClick: item name" + item1.getName() + "\n");
+                    }
+                    groceryItems.add(2, new GroceryItem(item.getName(), item.getPrice(), item.getImage(), item.getShopId(), !item.isChecked()));
+                    groceryItemAdapter.notifyItemInserted(2);
                 } else {
                     groceryItems.remove(position);
                     groceryItemAdapter.notifyItemRemoved(position);
-                    groceryItems.add(newItem);
+                    groceryItems.add(new GroceryItem(item.getName(), item.getPrice(), item.getImage(), item.getShopId(), !item.isChecked()));
                     groceryItemAdapter.notifyItemInserted(groceryItems.size() - 1);
-                    rvItems.smoothScrollToPosition(groceryItems.size());
                 }
 
+                groceryItemViewModel.update(new GroceryItem(item.getName(), item.getPrice(), item.getImage(), item.getShopId(), !item.isChecked()));
+
+                startCountAnim(unchecked, totalPrice(UNCHECKED), 3000, tvUnchecked);
+                startCountAnim(checked, totalPrice(CHECKED), 3000, tvChecked);
+                startCountAnim(total, totalPrice(WHOLE_LIST), 3000, tvTotal);
             }
         });
     }
-    private int totalPrice() {
-        int total = 0;
+
+    private int totalPrice(int type) {
+        ArrayList<Integer> total = new ArrayList<>();
+        int uncheckedTotal = 0, checkedTotal = 0, wholeTotal = 0;
 
         for (GroceryItem item : groceryItems) {
-            total += (item.getPrice() * item.getQuantity());
+            switch (type) {
+                case UNCHECKED:
+                    if (!item.isChecked()) {
+                        uncheckedTotal += item.getPrice() * item.getQuantity();
+                    }
+                    break;
+                case CHECKED:
+                    if (item.isChecked()) {
+                        checkedTotal += (item.getPrice() * item.getQuantity());
+                    }
+                    break;
+                case WHOLE_LIST:
+                    wholeTotal += (item.getPrice() * item.getQuantity());
+                    break;
+            }
         }
 
-        return total;
+        total.add(uncheckedTotal);
+        total.add(checkedTotal);
+        total.add(wholeTotal);
+
+        Log.d(TAG, "totalPrice: UNCHECKED " + uncheckedTotal);
+        Log.d(TAG, "totalPrice: CHECKED " + checkedTotal);
+        Log.d(TAG, "totalPrice: TOTAL " + wholeTotal);
+        return total.get(type);
     }
 
     private void startCountAnim(int from, int to, int duration, TextView textView) {
+        DecimalFormat decim = new DecimalFormat("#,###");
         animator = ValueAnimator.ofFloat(from, to);
         animator.setDuration(duration);
-        animator.addUpdateListener(valueAnimator -> textView.setText(animator.getAnimatedValue().toString()));
+        animator.addUpdateListener(valueAnimator -> textView.setText(decim.format(animator.getAnimatedValue())));
         animator.start();
     }
 
@@ -191,15 +240,16 @@ public class GroceryListActivity extends AppCompatActivity {
                             groceryItemViewModel.insert(deletedItem);
                             groceryItemAdapter.notifyItemInserted(position);
                         })
-                        .setBackgroundTint(getResources().getColor(R.color.Red))
+                        .setBackgroundTint(ContextCompat.getColor(getApplicationContext(), R.color.Red))
                         .setTextColor(Color.WHITE)
-                        .setActionTextColor(getResources().getColor(R.color.white))
+                        .setActionTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white))
                         .show();
             }
         }
 
         @Override
-        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
+                                float dX, float dY, int actionState, boolean isCurrentlyActive) {
             new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                     .addBackgroundColor(ContextCompat.getColor(GroceryListActivity.this, R.color.Red))
                     .addActionIcon(R.drawable.delete_24)

@@ -21,13 +21,12 @@ import com.ethichadebe.brittlefinal.local.scyncTasks.UpdateShopAsyncTask;
 import java.util.List;
 
 public class PriceCheckRepo {
-    private static final String TAG = "PriceCheckRepo";
     private GroceryItemDao groceryItemDao;
 
-    private ShopDao shopDao;
-    private LiveData<List<Shop>> shops;
+    private final ShopDao shopDao;
+    private final LiveData<List<Shop>> shops;
 
-    private PriceCheckDB db;
+    private final PriceCheckDB db;
 
     public PriceCheckRepo(Application application) {
         db = PriceCheckDB.getInstance(application);

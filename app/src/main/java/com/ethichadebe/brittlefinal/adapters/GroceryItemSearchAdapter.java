@@ -5,25 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.ethichadebe.brittlefinal.R;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
-import com.ethichadebe.brittlefinal.local.model.Shop;
-import com.google.android.material.transition.Hold;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GroceryItemSearchAdapter extends RecyclerView.Adapter<GroceryItemSearchAdapter.GroceryItemSearchViewHolder> {
-    private static final String TAG = "GroceryItemAdapter";
     private Context context;
 
     private List<GroceryItem> groceryItems = new ArrayList<>();
@@ -39,7 +33,7 @@ public class GroceryItemSearchAdapter extends RecyclerView.Adapter<GroceryItemSe
 
     public static class GroceryItemSearchViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivItem;
-        public TextView  tvName, tvPrice;
+        public TextView tvName, tvPrice;
 
         public GroceryItemSearchViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -50,7 +44,7 @@ public class GroceryItemSearchAdapter extends RecyclerView.Adapter<GroceryItemSe
 
             itemView.setOnClickListener(view -> {
                 if (listener != null) {
-                    int position = getAdapterPosition();
+                    int position = getBindingAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(position);
                     }
@@ -69,9 +63,7 @@ public class GroceryItemSearchAdapter extends RecyclerView.Adapter<GroceryItemSe
     public GroceryItemSearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.grocery_item_search, parent, false);
 
-        GroceryItemSearchViewHolder civh = new GroceryItemSearchViewHolder(v, listener);
-
-        return civh;
+        return new GroceryItemSearchViewHolder(v, listener);
     }
 
     @Override
@@ -80,7 +72,7 @@ public class GroceryItemSearchAdapter extends RecyclerView.Adapter<GroceryItemSe
 
         Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivItem);
         holder.tvName.setText(item.getName());
-        holder.tvPrice.setText("R" + item.getPrice());
+        holder.tvPrice.setText(context.getResources().getString(R.string.price_display, item.getPrice()));
 
     }
 

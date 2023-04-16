@@ -31,13 +31,13 @@
                     style="@style/ShopCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:cardCornerRadius="10dp"
                     app:cardElevation="5dp">
 
                     <RelativeLayout
                         android:id="@+id/rlCard"
                         style="@style/ShopCardBackground"
                         android:layout_width="match_parent"
+                        android:background="@color/primary_green"
                         android:layout_height="match_parent">
 
                         <RelativeLayout
@@ -72,7 +72,8 @@
                             android:layout_height="?attr/actionBarSize"
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@id/rlBack"
-                            android:backgroundTint="@color/primary_green"
+                            android:textColor="@color/white"
+                            android:backgroundTint="@color/white"
                             android:fontFamily="@font/ubuntu_regular"
                             android:hint="Search item" />
                     </RelativeLayout>

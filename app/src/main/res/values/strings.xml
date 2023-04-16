@@ -13,7 +13,6 @@
     <string name="quantity">Quantity:</string>
     <string name="increase_item_quantity">Increase item quantity</string>
     <string name="decrease_item_quantity">Decrease item quantity</string>
-    <string name="headline">Headline</string>
     <string name="advertiser">Advertiser</string>
     <string name="ad_body">Ad body</string>
     <string name="visit_site">Visit site</string>
@@ -31,6 +30,14 @@
     <string name="total">Total</string>
     <string name="accucery">Accucery</string>
     <string name="coming_soon">Coming Soon</string>
+    <string name="shop_name">Shop name</string>
+    <string name="item_name">Item name</string>
+    <string name="x1_r0_00">x1 = R0.00</string>
+    <string name="r0_0">R0.0</string>
+    <string name="price_to_pay">Price to pay</string>
+    <string name="add_new_grocery_item">Add new grocery item</string>
+    <string name="price_display">R %1$.2f</string>
+    <string name="quantity_and_total"> x %1$d = %2$.2f</string>
 
 
 </resources>

@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopItemViewHolder> {
-    private static final String TAG = "ShopItemAdapter";
     private Context context;
 
     private List<Shop> shops = new ArrayList<>();
@@ -37,7 +37,7 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
     public static class ShopItemViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivPreview;
-        public TextView tvShopName,tvComingSoon;
+        public TextView tvShopName, tvComingSoon;
         public RelativeLayout rlCard;
 
         public ShopItemViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
@@ -50,7 +50,7 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
             itemView.setOnClickListener(view -> {
                 if (listener != null) {
-                    int position = getAdapterPosition();
+                    int position = getBindingAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(position);
                     }
@@ -69,9 +69,7 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
     public ShopItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.shop_item, parent, false);
 
-        ShopItemViewHolder civh = new ShopItemViewHolder(v, listener);
-
-        return civh;
+        return new ShopItemViewHolder(v, listener);
     }
 
     @Override
@@ -80,19 +78,19 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
         holder.tvShopName.setText(item.getName());
 
-        if (!item.isActive() ){
+        if (!item.isActive()) {
             holder.tvComingSoon.setVisibility(View.VISIBLE);
-            switch (item.getName().toLowerCase()){
+            switch (item.getName().toLowerCase()) {
                 case "game":
-                    holder.ivPreview.setImageDrawable(context.getDrawable(R.drawable.gamebw));
+                    holder.ivPreview.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.gamebw));
                     break;
                 case "woolworths":
-                    holder.ivPreview.setImageDrawable(context.getDrawable(R.drawable.woolworthsbw));
+                    holder.ivPreview.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.woolworthsbw));
                     break;
             }
-            holder.rlCard.setForeground(context.getResources().getDrawable(R.color.opacity));
-            holder.tvShopName.setTextColor(context.getResources().getColor(R.color.textGrey));
-        }else {
+            holder.rlCard.setForeground(ContextCompat.getDrawable(context, R.color.opacity));
+            holder.tvShopName.setTextColor(ContextCompat.getColor(context, R.color.textGrey));
+        } else {
             Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivPreview);
             holder.rlCard.setForeground(null);
         }

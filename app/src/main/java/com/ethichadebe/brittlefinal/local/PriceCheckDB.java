@@ -15,9 +15,6 @@ import com.ethichadebe.brittlefinal.local.dao.ShopDao;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Database(entities = {Shop.class, GroceryItem.class}, version = 70)
 public abstract class PriceCheckDB extends RoomDatabase {
     private static final String TAG = "PriceCheckDB";
@@ -40,7 +37,7 @@ public abstract class PriceCheckDB extends RoomDatabase {
         return instance;
     }
 
-    private static Callback roomCallback = new Callback() {
+    private static final Callback roomCallback = new Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -49,13 +46,11 @@ public abstract class PriceCheckDB extends RoomDatabase {
     };
 
     private static class PopulateDBAsyncTask extends AsyncTask<Void, Void, Void> {
-        private ShopDao shopDao;
-        private GroceryItemDao groceryItemDao;
+        private final ShopDao shopDao;
 
         private PopulateDBAsyncTask(PriceCheckDB db) {
             Log.d(TAG, "doInBackground: done");
             shopDao = db.shopDao();
-           groceryItemDao = db.groceryItemDao();
         }
 
         @Override

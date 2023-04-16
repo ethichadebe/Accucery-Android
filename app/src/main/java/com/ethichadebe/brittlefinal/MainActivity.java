@@ -1,40 +1,29 @@
 package com.ethichadebe.brittlefinal;
 
-import androidx.annotation.NonNull;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.animation.ValueAnimator;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
 import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
-import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
-import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
 
     private List<Shop> shops = new ArrayList<>();
-
-    private ShopViewModel shopViewModel;
-
-    private RecyclerView rvShops;
 
 
     @Override
@@ -42,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rvShops = findViewById(R.id.rvShops);
+        RecyclerView rvShops = findViewById(R.id.rvShops);
         rvShops.setLayoutManager(new GridLayoutManager(this, 2));
         rvShops.setHasFixedSize(true);
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
@@ -60,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 // document say if we don't want animation we can put 0. However, if we put 0 instead of R.anim.no_animation, the exist activity will become black when animate
             }
         });
-        shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
+        ShopViewModel shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
         shopViewModel.getShops().observe(this, shops -> {
             this.shops = shops;
             shopItemAdapter.setShopAdapter(MainActivity.this, shops);
@@ -68,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        MobileAds.initialize(this, initializationStatus -> {
+        });
+
+        AdView mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
 

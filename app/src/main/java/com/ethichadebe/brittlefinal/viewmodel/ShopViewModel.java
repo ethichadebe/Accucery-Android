@@ -1,7 +1,6 @@
 package com.ethichadebe.brittlefinal.viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -13,10 +12,8 @@ import com.ethichadebe.brittlefinal.repository.PriceCheckRepo;
 import java.util.List;
 
 public class ShopViewModel extends AndroidViewModel {
-    private static final String TAG = "ShopViewModel";
-    private PriceCheckRepo repository;
-    private LiveData<List<Shop>> shops;
-    private LiveData<Shop> shop;
+    private final PriceCheckRepo repository;
+    private final LiveData<List<Shop>> shops;
 
 
     public ShopViewModel(@NonNull Application application) {
@@ -45,7 +42,6 @@ public class ShopViewModel extends AndroidViewModel {
     }
 
     public LiveData<Shop> getShop(int sID) {
-        shop = repository.getShop(sID);
-        return shop;
+        return repository.getShop(sID);
     }
 }

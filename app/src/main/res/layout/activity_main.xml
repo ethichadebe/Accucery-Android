@@ -11,58 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/rlHead"
+        <TextView
             style="@style/BackgroundColor"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/coiny_regular"
+            android:gravity="center"
+            android:text="@string/accucery"
+            android:id="@+id/tvHead"
+            android:textColor="@color/primary_green"
+            android:textSize="@dimen/_16ssp"
+            app:drawableLeftCompat="@drawable/custom_logo" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvShops"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="match_parent"
+            android:layout_above="@id/adView"
+            android:layout_below="@+id/tvHead"
+            tools:listitem="@layout/shop_item" />
 
-            <LinearLayout
-                android:id="@+id/rlHeader"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:gravity="center">
 
-                <ImageView
-                    android:layout_width="@dimen/_32sdp"
-                    android:layout_height="@dimen/_32sdp"
-                    android:src="@drawable/accucery_logo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/coiny_regular"
-                    android:text="@string/accucery"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:textColor="@color/primary_green"
-                    android:textSize="@dimen/_16ssp" />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rlHead"
-            android:layout_alignParentBottom="true">
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvShops"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/shop_item" />
-
-        </RelativeLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/BannerAds" />
     </RelativeLayout>
-
-
-    <!--<com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/adView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true"
-    ads:adSize="SMART_BANNER"
-    ads:adUnitId="@string/BannerAds" />-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

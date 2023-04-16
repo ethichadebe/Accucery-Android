@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -9,125 +8,45 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/rlBody"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:id="@+id/rlBody"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivItem"
+                android:layout_width="@dimen/_42sdp"
+                android:layout_height="@dimen/_42sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:contentDescription="@string/item_image" />
 
-                    <ImageView
-                        android:id="@+id/ivItem"
-                        android:layout_width="@dimen/_42sdp"
-                        android:layout_height="@dimen/_42sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        android:contentDescription="@string/item_image"
-                        android:src="@mipmap/ic_launcher" />
-
-                    <TextView
-                        android:id="@+id/tvName"
-                        style="@style/Text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:layout_marginBottom="@dimen/_3sdp"
-                        android:layout_toStartOf="@id/tvPrice"
-                        android:layout_toEndOf="@id/ivItem"
-                        android:text="Banana" />
-
-                    <TextView
-                        android:id="@+id/tvPrice"
-                        style="@style/BoldText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:text="@string/r30_99"
-                        android:textSize="@dimen/_14ssp" />
-
-                </RelativeLayout>
-
-            <!--<com.google.android.gms.ads.formats.UnifiedNativeAdView
-                android:id="@+id/native_ad_layout"
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/Text"
                 android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_toStartOf="@id/tvPrice"
+                android:layout_toEndOf="@id/ivItem"/>
 
-                <RelativeLayout
-                    android:id="@+id/rlAdBody"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/ShopItem"
-                    android:padding="@dimen/_10sdp">
+            <TextView
+                android:id="@+id/tvPrice"
+                style="@style/BoldText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:text="@string/r30_99"
+                android:textSize="@dimen/_14ssp" />
 
-                    <ImageView
-                        android:id="@+id/ad_icon"
-                        android:layout_width="@dimen/_60sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:contentDescription="@string/item_image" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_toEndOf="@id/ad_icon"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/ad_headline"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="@string/headline"
-                            android:textSize="@dimen/_10ssp" />
-
-                        <TextView
-                            android:id="@+id/ad_advertiser"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_bold"
-                            android:text="@string/advertiser"
-                            android:textSize="@dimen/_8ssp" />
-
-                        <TextView
-                            android:id="@+id/ad_body"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/ad_body"
-                            android:textSize="@dimen/_12ssp" />
-
-                        <TextView
-                            android:id="@+id/ad_action"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/ShopItem"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:gravity="center"
-                            android:layout_gravity="end"
-                            android:padding="@dimen/_10sdp"
-                            android:text="@string/visit_site"
-                            android:textColor="@color/primary_green" />
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-            </com.google.android.gms.ads.formats.UnifiedNativeAdView>-->
-        </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

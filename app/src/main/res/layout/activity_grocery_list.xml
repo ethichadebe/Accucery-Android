@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Shoprite" />
+                android:text="@string/shop_name" />
 
             <RelativeLayout
                 android:id="@+id/rlBack"
@@ -112,6 +112,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_15sdp"
+                        android:baselineAligned="false"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -123,61 +124,61 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tvnChecked"
+                                android:id="@+id/tvUnchecked"
                                 style="@style/BoldText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0" />
-
-                            <TextView
-                                style="@style/Text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/checked" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="5"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvPrice"
-                                style="@style/BoldText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="R0.0"
-                                android:textSize="@dimen/_14ssp" />
-
-                            <TextView
-                                style="@style/Text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Price to pay"
-                                android:textSize="@dimen/_14ssp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="5"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvnUnchecked"
-                                style="@style/BoldText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0" />
+                                android:text="@string/r0_0" />
 
                             <TextView
                                 style="@style/Text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/unchecked" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvChecked"
+                                style="@style/BoldText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/r0_0"
+                                android:textSize="@dimen/_14ssp" />
+
+                            <TextView
+                                style="@style/Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/price_to_pay"
+                                android:textSize="@dimen/_14ssp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvTotal"
+                                style="@style/BoldText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/r0_0" />
+
+                            <TextView
+                                style="@style/Text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/total" />
                         </LinearLayout>
                     </LinearLayout>
                 </RelativeLayout>
@@ -192,9 +193,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         android:layout_margin="@dimen/_10sdp"
-        android:textColor="@color/white"
-        app:icon="@drawable/add_24" />
+        android:contentDescription="@string/add_new_grocery_item"
+        android:src="@drawable/add_24"
+
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

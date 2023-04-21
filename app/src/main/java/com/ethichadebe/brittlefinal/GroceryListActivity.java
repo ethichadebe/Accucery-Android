@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
@@ -39,12 +41,13 @@ public class GroceryListActivity extends AppCompatActivity {
     private static final String TAG = "GroceryListActivity";
     private TextView tvUnchecked;
     private TextView tvChecked;
+    private ImageView ivShopLogo;
     private TextView tvTotal;
     private RecyclerView rvItems;
     private GroceryItemAdapter groceryItemAdapter;
 
     private GroceryItemViewModel groceryItemViewModel;
-    private final List<GroceryItem> groceryItems = new ArrayList<>();
+    private List<GroceryItem> groceryItems = new ArrayList<>();
     private ValueAnimator animator;
 
     @Override
@@ -58,9 +61,11 @@ public class GroceryListActivity extends AppCompatActivity {
         tvUnchecked = findViewById(R.id.tvUnchecked);
         tvChecked = findViewById(R.id.tvChecked);
         tvTotal = findViewById(R.id.tvTotal);
+        ivShopLogo = findViewById(R.id.ivShopLogo);
         TextView tvShopName = findViewById(R.id.tvShopName);
         FloatingActionButton fabAddShop = findViewById(R.id.fabAddShop);
         RelativeLayout rlClearList = findViewById(R.id.rlClearList);
+        Glide.with(this).load(getIntent().getStringExtra("sImageLink")).placeholder(R.mipmap.ic_launcher).into(ivShopLogo);
 
 
         tvShopName.setText(getIntent().getStringExtra("sName"));
@@ -75,9 +80,9 @@ public class GroceryListActivity extends AppCompatActivity {
 
         rlClearList.setOnClickListener(view -> {
             if (groceryItems.size() > 0) {
-                groceryItems.clear();
                 int sID = groceryItems.get(0).getShopId();
                 groceryItemViewModel.deleteAllItems(sID);
+                groceryItems.clear();
                 groceryItemAdapter.notifyDataSetChanged();
             }
         });
@@ -87,16 +92,15 @@ public class GroceryListActivity extends AppCompatActivity {
     }
 
     private void setupGroceryList(int position) {
-        startCountAnim(0, totalPrice(UNCHECKED), 3000, tvUnchecked);
-        startCountAnim(0, totalPrice(CHECKED), 3000, tvChecked);
-        startCountAnim(0, totalPrice(WHOLE_LIST), 3000, tvTotal);
         rvItems = findViewById(R.id.rvItems);
         rvItems.setLayoutManager(new LinearLayoutManager(GroceryListActivity.this));
         rvItems.setHasFixedSize(true);
         rvItems.setAdapter(groceryItemAdapter);
         groceryItemViewModel.getGroceryItems(position).observe(GroceryListActivity.this, groceryItems -> {
-            this.groceryItems.add(new GroceryItem("", 0.0, "", 0));
-            this.groceryItems.addAll(groceryItems);
+            this.groceryItems = groceryItems;
+            startCountAnim(0, totalPrice(UNCHECKED), 3000, tvUnchecked);
+            startCountAnim(0, totalPrice(CHECKED), 3000, tvChecked);
+            startCountAnim(0, totalPrice(WHOLE_LIST), 3000, tvTotal);
             Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
             groceryItemAdapter.setGroceryItemAdapter(GroceryListActivity.this, groceryItems);
             groceryItemAdapter.notifyDataSetChanged();

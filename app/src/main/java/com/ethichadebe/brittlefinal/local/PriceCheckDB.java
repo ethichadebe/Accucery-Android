@@ -15,7 +15,7 @@ import com.ethichadebe.brittlefinal.local.dao.ShopDao;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 
-@Database(entities = {Shop.class, GroceryItem.class}, version = 70)
+@Database(entities = {Shop.class, GroceryItem.class}, version = 69)
 public abstract class PriceCheckDB extends RoomDatabase {
     private static final String TAG = "PriceCheckDB";
 
@@ -27,7 +27,7 @@ public abstract class PriceCheckDB extends RoomDatabase {
 
     public static synchronized PriceCheckDB getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(), PriceCheckDB.class, "PriceCheckDatabaseTest")
+            instance = Room.databaseBuilder(context.getApplicationContext(), PriceCheckDB.class, "AccuceryDatabaseTest")
                     .addCallback(roomCallback)
                     .fallbackToDestructiveMigration()
                     .enableMultiInstanceInvalidation()

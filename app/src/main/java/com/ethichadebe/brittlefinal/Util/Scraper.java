@@ -64,18 +64,10 @@ public class Scraper extends AsyncTask<String, Void, Void> {
                 for (int i = 0; i < size; i++) {
                     String image = data.select("div.thumb").select("img").eq(i).attr("src");
                     String name = data.select("div.item-name").eq(i).text();
-                    String price = data.select("div.product-price").select("div.currentPrice").eq(i).text();
+                    String price = data.select("div.product-price").select("div.currentPrice").eq(i).text().replaceAll("[^\\d.]", "");
 
-                    if (price.isEmpty()){
-                        price="0.0";
-                    }
-                    Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
-                    Log.d(TAG, "doInBackground: name: " + name);
-                    Log.d(TAG, "doInBackground: price: " + price);
-                    Log.d(TAG, "doInBackground: image: " + image);
-                    items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
-                            image, intent.getIntExtra("sID", 0)));
-                    groceryItemAdapter.setGroceryItemSearchAdapter(context, items);
+                    cleanItem(name, price, image, i);
+
                 }
             } else if (url[0].contains("https://www.woolworths.co.za/cat?Ntt=")) {
                 Log.d(TAG, "doInBackground: it does contain");
@@ -87,15 +79,9 @@ public class Scraper extends AsyncTask<String, Void, Void> {
                 for (int i = 0; i < size; i++) {
                     String image = data.select("div.product--image").select("img").eq(i).attr("src");
                     String name = data.select("div.product-card__name").select("a").eq(i).text();
-                    String price = data.select("div.product__price").select("strong.price").eq(i).text();
+                    String price = data.select("div.product__price").select("strong.price").eq(i).text().replaceAll("[^\\d.]", "");
 
-                    Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
-                    Log.d(TAG, "doInBackground: name: " + name);
-                    Log.d(TAG, "doInBackground: price: " + price);
-                    Log.d(TAG, "doInBackground: image: " + image);
-                    items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
-                            image,intent.getIntExtra("sID", 0)));
-                    groceryItemAdapter.setGroceryItemSearchAdapter(context, items);
+                    cleanItem(name, price, image, i);
                 }
 
             } else if (url[0].contains("https://www.makro.co.za/search/?text=")) {
@@ -109,15 +95,9 @@ public class Scraper extends AsyncTask<String, Void, Void> {
                     String image = data.select("a.product-tile-inner__img").select("img").eq(i).attr("src");
                     String name = data.select("a.product-tile-inner__productTitle").select("span").eq(i).text();
                     String price = data.select("p.price").select("span.mak-save-price").eq(i).text() + "." +
-                            data.select("p.price").select("span.mak-product__cents").eq(i).text();
+                            data.select("p.price").select("span.mak-product__cents").eq(i).text().replaceAll("[^\\d.]", "");
 
-                    Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
-                    Log.d(TAG, "doInBackground: name: " + name);
-                    Log.d(TAG, "doInBackground: price: " + price);
-                    Log.d(TAG, "doInBackground: image: " + image);
-                    items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
-                            image, intent.getIntExtra("sID", 0)));
-                    groceryItemAdapter.setGroceryItemSearchAdapter(context, items);
+                    cleanItem(name, price, image, i);
                 }
 
             } else if (url[0].contains("https://www.game.co.za/l/search/?t=")) {
@@ -131,15 +111,10 @@ public class Scraper extends AsyncTask<String, Void, Void> {
                 for (int i = 0; i < size; i++) {
                     String image = data.select("div.r-1p0dtai").select("img").eq(i).attr("src");
                     String name = data.select("a.css-4rbku5").select("div").eq(i).text();
-                    String price = data.select("div.css-901oao").eq(i).text().replace(",", ".");
+                    String price = data.select("div.css-901oao").eq(i).text().replace(",", ".")
+                            .replaceAll("[^\\d.]", "");
 
-                    Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
-                    Log.d(TAG, "doInBackground: name: " + name);
-                    Log.d(TAG, "doInBackground: price: " + price);
-                    Log.d(TAG, "doInBackground: image: " + image);
-                    items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
-                            image, intent.getIntExtra("sID", 0)));
-                    groceryItemAdapter.setGroceryItemSearchAdapter(context, items);
+                    cleanItem(name, price, image, i);
                 }
 
             } else {
@@ -152,16 +127,9 @@ public class Scraper extends AsyncTask<String, Void, Void> {
                 for (int i = 0; i < size; i++) {
                     String image = data.select("figure.item-product__content").select("img").eq(i).attr("src");
                     String name = data.select("h3.item-product__name").select("a").eq(i).text();
-                    String price = data.select("div.special-price__price").select("span").eq(i).text();
+                    String price = data.select("div.special-price__price").select("span").eq(i).text().replaceAll("[^\\d.]", "");
 
-                    Log.d(TAG, "doInBackground: Item: " + i + 1 + "------------------------------------------------------------------");
-                    Log.d(TAG, "doInBackground: name: " + name);
-                    Log.d(TAG, "doInBackground: price: " + price);
-                    Log.d(TAG, "doInBackground: image: " + image);
-                    Log.d(TAG, "doInBackground: full image " + intent.getStringExtra("sImageLink") + image);
-                    items.add(new GroceryItem(name, Double.parseDouble(price.replaceAll("[^\\d.]", "")),
-                            "https://www.shoprite.co.za/" + image, 1));
-                    groceryItemAdapter.setGroceryItemSearchAdapter(context, items);
+                    cleanItem(name, price, "https://www.shoprite.co.za/" + image, i);
                 }
 
             }
@@ -171,5 +139,19 @@ public class Scraper extends AsyncTask<String, Void, Void> {
         }
 
         return null;
+    }
+
+    private void cleanItem(String name, String price, String image, int i) {
+        if (price.isEmpty()) {
+            price = "0.0";
+        }
+        Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
+        Log.d(TAG, "doInBackground: name: " + name);
+        Log.d(TAG, "doInBackground: price: " + price);
+        Log.d(TAG, "doInBackground: image: " + image);
+        items.add(new GroceryItem(name, Double.parseDouble(price), image, intent.getIntExtra("sID", 0)));
+        groceryItemAdapter.setGroceryItemSearchAdapter(context, items);
+
+        Log.d(TAG, "cleanItem: ");
     }
 }

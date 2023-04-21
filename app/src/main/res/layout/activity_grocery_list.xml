@@ -80,15 +80,26 @@
             </RelativeLayout>
         </RelativeLayout>
 
+        <ImageView
+            android:id="@+id/ivShopLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/_15sdp"
+            android:layout_below="@id/rlHead2"
+            android:contentDescription="@string/shop_logo"
+            android:foreground="#CEFFFFFF" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvItems"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/rlHead2"
+            android:layout_below="@+id/llPriceSection"
             android:paddingBottom="@dimen/_10sdp"
             tools:listitem="@layout/check_item" />
 
         <LinearLayout
+            android:id="@+id/llPriceSection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rlHead2"
@@ -98,7 +109,10 @@
                 style="@style/ShopCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="5dp">
 

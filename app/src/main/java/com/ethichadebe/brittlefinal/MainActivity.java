@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("sName", shops.get(position).getName());
                 intent.putExtra("sSearchLink", shops.get(position).getSearchLink());
                 intent.putExtra("sImageLink", shops.get(position).getImage());
+                intent.putExtra("sImageLink", shops.get(position).getImage());
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
 // document say if we don't want animation we can put 0. However, if we put 0 instead of R.anim.no_animation, the exist activity will become black when animate

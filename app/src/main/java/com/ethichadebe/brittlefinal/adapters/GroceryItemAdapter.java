@@ -14,8 +14,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.ethichadebe.brittlefinal.R;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
+import com.ethichadebe.brittlefinal.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
@@ -54,9 +54,12 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
         public TextView tvAdd, tvSubtract, tvItemName, tvItemPrice, tvItemQuantity;
 
         //Ad
-        private ImageView ad_icon;
-        private TextView ad_headline, ad_advertiser, ad_body, ad_action;
-        private NativeAdView unifiedNativeAdView;
+        private final ImageView ad_icon;
+        private final TextView ad_headline;
+        private final TextView ad_advertiser;
+        private final TextView ad_body;
+        private final TextView ad_action;
+        private final NativeAdView unifiedNativeAdView;
 
         public GroceryItemViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -123,16 +126,10 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
     public void onBindViewHolder(@NonNull GroceryItemViewHolder holder, int position) {
         GroceryItem item = groceryItems.get(position);
 
-        Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivImage);
+        Glide.with(context).load(item.getImage()).placeholder(R.drawable.food).into(holder.ivImage);
         holder.tvItemName.setText(item.getName());
         holder.tvItemPrice.setText(context.getResources().getString(R.string.price_display, (float) item.getPrice()));
         holder.tvItemQuantity.setText(context.getResources().getString(R.string.quantity_and_total, item.getQuantity(), item.getPrice() * item.getQuantity()));
-
-        if (position == 0) {
-            holder.ivImage.setVisibility(View.GONE);
-            holder.tvItemQuantity.setVisibility(View.GONE);
-            holder.rlItem.setVisibility(View.GONE);
-        }
 
         if (item.isChecked()) {
             holder.rlItem.setForeground(ContextCompat.getDrawable(context, R.color.opacity));

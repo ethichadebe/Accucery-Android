@@ -41,7 +41,6 @@ public class GroceryListActivity extends AppCompatActivity {
     private static final String TAG = "GroceryListActivity";
     private TextView tvUnchecked;
     private TextView tvChecked;
-    private ImageView ivShopLogo;
     private TextView tvTotal;
     private RecyclerView rvItems;
     private GroceryItemAdapter groceryItemAdapter;
@@ -61,7 +60,7 @@ public class GroceryListActivity extends AppCompatActivity {
         tvUnchecked = findViewById(R.id.tvUnchecked);
         tvChecked = findViewById(R.id.tvChecked);
         tvTotal = findViewById(R.id.tvTotal);
-        ivShopLogo = findViewById(R.id.ivShopLogo);
+        ImageView ivShopLogo = findViewById(R.id.ivShopLogo);
         TextView tvShopName = findViewById(R.id.tvShopName);
         FloatingActionButton fabAddShop = findViewById(R.id.fabAddShop);
         RelativeLayout rlClearList = findViewById(R.id.rlClearList);
@@ -82,8 +81,8 @@ public class GroceryListActivity extends AppCompatActivity {
             if (groceryItems.size() > 0) {
                 int sID = groceryItems.get(0).getShopId();
                 groceryItemViewModel.deleteAllItems(sID);
+                groceryItemAdapter.notifyItemRangeRemoved(0, groceryItems.size()-1);
                 groceryItems.clear();
-                groceryItemAdapter.notifyDataSetChanged();
             }
         });
 
@@ -98,9 +97,9 @@ public class GroceryListActivity extends AppCompatActivity {
         rvItems.setAdapter(groceryItemAdapter);
         groceryItemViewModel.getGroceryItems(position).observe(GroceryListActivity.this, groceryItems -> {
             this.groceryItems = groceryItems;
-            startCountAnim(0, totalPrice(UNCHECKED), 3000, tvUnchecked);
-            startCountAnim(0, totalPrice(CHECKED), 3000, tvChecked);
-            startCountAnim(0, totalPrice(WHOLE_LIST), 3000, tvTotal);
+            startCountAnim(0, totalPrice(UNCHECKED), tvUnchecked);
+            startCountAnim(0, totalPrice(CHECKED), tvChecked);
+            startCountAnim(0, totalPrice(WHOLE_LIST), tvTotal);
             Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
             groceryItemAdapter.setGroceryItemAdapter(GroceryListActivity.this, groceryItems);
             groceryItemAdapter.notifyDataSetChanged();
@@ -120,9 +119,9 @@ public class GroceryListActivity extends AppCompatActivity {
                 groceryItemViewModel.update(item);
                 groceryItems.get(position).setQuantity(item.getQuantity());
                 groceryItemAdapter.notifyItemChanged(position);
-                startCountAnim(unchecked, totalPrice(UNCHECKED), 3000, tvUnchecked);
-                startCountAnim(checked, totalPrice(CHECKED), 3000, tvChecked);
-                startCountAnim(total, totalPrice(WHOLE_LIST), 3000, tvTotal);
+                startCountAnim(unchecked, totalPrice(UNCHECKED), tvUnchecked);
+                startCountAnim(checked, totalPrice(CHECKED), tvChecked);
+                startCountAnim(total, totalPrice(WHOLE_LIST), tvTotal);
             }
 
             @Override
@@ -136,9 +135,9 @@ public class GroceryListActivity extends AppCompatActivity {
                     groceryItemViewModel.update(item);
                     groceryItems.get(position).setQuantity(item.getQuantity());
                     groceryItemAdapter.notifyItemChanged(position);
-                    startCountAnim(unchecked, totalPrice(UNCHECKED), 3000, tvUnchecked);
-                    startCountAnim(checked, totalPrice(CHECKED), 3000, tvChecked);
-                    startCountAnim(total, totalPrice(WHOLE_LIST), 3000, tvTotal);
+                    startCountAnim(unchecked, totalPrice(UNCHECKED), tvUnchecked);
+                    startCountAnim(checked, totalPrice(CHECKED), tvChecked);
+                    startCountAnim(total, totalPrice(WHOLE_LIST), tvTotal);
                 }
             }
 
@@ -149,26 +148,27 @@ public class GroceryListActivity extends AppCompatActivity {
                 int total = totalPrice(WHOLE_LIST);
                 GroceryItem item = groceryItems.get(position);
 
+                Log.d(TAG, "onItemClick: Item ID = " +item.getItemId());
                 if (item.isChecked()) {
                     groceryItems.remove(position);
                     groceryItemAdapter.notifyItemRemoved(position);
-                    for (GroceryItem item1 : groceryItems) {
-                        Log.d(TAG, "onItemClick: item name" + item1.getName() + "\n");
-                    }
-                    groceryItems.add(2, new GroceryItem(item.getName(), item.getPrice(), item.getImage(), item.getShopId(), !item.isChecked()));
-                    groceryItemAdapter.notifyItemInserted(2);
+
+                    item.setChecked(!item.isChecked());
+                    groceryItems.add(0, item);
+                    groceryItemAdapter.notifyItemInserted(0);
                 } else {
+                    item.setChecked(!item.isChecked());
                     groceryItems.remove(position);
                     groceryItemAdapter.notifyItemRemoved(position);
-                    groceryItems.add(new GroceryItem(item.getName(), item.getPrice(), item.getImage(), item.getShopId(), !item.isChecked()));
+                    groceryItems.add(item);
                     groceryItemAdapter.notifyItemInserted(groceryItems.size() - 1);
                 }
 
-                groceryItemViewModel.update(new GroceryItem(item.getName(), item.getPrice(), item.getImage(), item.getShopId(), !item.isChecked()));
+                groceryItemViewModel.update(item);
 
-                startCountAnim(unchecked, totalPrice(UNCHECKED), 3000, tvUnchecked);
-                startCountAnim(checked, totalPrice(CHECKED), 3000, tvChecked);
-                startCountAnim(total, totalPrice(WHOLE_LIST), 3000, tvTotal);
+                startCountAnim(unchecked, totalPrice(UNCHECKED), tvUnchecked);
+                startCountAnim(checked, totalPrice(CHECKED), tvChecked);
+                startCountAnim(total, totalPrice(WHOLE_LIST), tvTotal);
             }
         });
     }
@@ -177,7 +177,9 @@ public class GroceryListActivity extends AppCompatActivity {
         ArrayList<Integer> total = new ArrayList<>();
         int uncheckedTotal = 0, checkedTotal = 0, wholeTotal = 0;
 
+        Log.d(TAG, "totalPrice: =----------------------------------------------------------------------------------------");
         for (GroceryItem item : groceryItems) {
+            Log.d(TAG, "totalPrice: item status " + item.isChecked());
             switch (type) {
                 case UNCHECKED:
                     if (!item.isChecked()) {
@@ -199,16 +201,17 @@ public class GroceryListActivity extends AppCompatActivity {
         total.add(checkedTotal);
         total.add(wholeTotal);
 
-        Log.d(TAG, "totalPrice: UNCHECKED " + uncheckedTotal);
-        Log.d(TAG, "totalPrice: CHECKED " + checkedTotal);
-        Log.d(TAG, "totalPrice: TOTAL " + wholeTotal);
+        Log.d(TAG, "totalPrice: UNCHECKED " + total.get(UNCHECKED));
+        Log.d(TAG, "totalPrice: CHECKED " + total.get(CHECKED));
+        Log.d(TAG, "totalPrice: TOTAL " + total.get(WHOLE_LIST));
         return total.get(type);
     }
 
-    private void startCountAnim(int from, int to, int duration, TextView textView) {
+    private void startCountAnim(int from, int to, TextView textView) {
+        Log.d(TAG, "startCountAnim: " +to);
         DecimalFormat decim = new DecimalFormat("#,###");
         animator = ValueAnimator.ofFloat(from, to);
-        animator.setDuration(duration);
+        animator.setDuration(3000);
         animator.addUpdateListener(valueAnimator -> textView.setText(decim.format(animator.getAnimatedValue())));
         animator.start();
     }

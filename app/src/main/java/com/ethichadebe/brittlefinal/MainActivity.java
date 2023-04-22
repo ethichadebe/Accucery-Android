@@ -10,13 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.Shop;
+import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,10 +49,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ShopViewModel shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
+        GroceryItemViewModel groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
         shopViewModel.getShops().observe(this, shops -> {
             this.shops = shops;
             shopItemAdapter.setShopAdapter(MainActivity.this, shops);
-            shopItemAdapter.notifyDataSetChanged();
+            shopItemAdapter.notifyItemRangeInserted(0, shops.size()-1);
 
         });
 

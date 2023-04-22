@@ -22,16 +22,20 @@ public interface GroceryItemDao {
     void insert(GroceryItem gi);
 
     /**
-     * Delete Grocery Item to local database
-     * @param gi Grocery Item to be deleted
+     * Update Grocery Item to local database
+     * @param gi Grocery Item to be updated
      */
     @Update
     void update(GroceryItem gi);
 
+    /**
+     * Delete Grocery Item to local database
+     * @param gi Grocery Item to be deleted
+     */
     @Delete
     void delete(GroceryItem gi);
 
-    @Query("SELECT * FROM GroceryItemsTable WHERE shopId = :shopId")
+    @Query("SELECT * FROM GroceryItemsTable WHERE shopId = :shopId ORDER BY checked")
     LiveData<List<GroceryItem>> getShopItems(int shopId);
     @Query("SELECT * FROM GroceryItemsTable")
     LiveData<List<GroceryItem>> getAllItems();

@@ -1,9 +1,13 @@
 package com.ethichadebe.brittlefinal.repository;
 
 import android.app.Application;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.View;
 
 import androidx.lifecycle.LiveData;
 
+import com.ethichadebe.brittlefinal.R;
 import com.ethichadebe.brittlefinal.local.PriceCheckDB;
 import com.ethichadebe.brittlefinal.local.dao.GroceryItemDao;
 import com.ethichadebe.brittlefinal.local.dao.ShopDao;
@@ -18,7 +22,10 @@ import com.ethichadebe.brittlefinal.local.scyncTasks.InsertShopAsyncTask;
 import com.ethichadebe.brittlefinal.local.scyncTasks.UpdateGroceryItemAsyncTask;
 import com.ethichadebe.brittlefinal.local.scyncTasks.UpdateShopAsyncTask;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class PriceCheckRepo {
     private GroceryItemDao groceryItemDao;
@@ -39,40 +46,55 @@ public class PriceCheckRepo {
     }
 
     public void insertGroceryItem(GroceryItem groceryItem) {
-        new InsertGroceryItemAsyncTask(groceryItemDao).execute(groceryItem);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> groceryItemDao.insert(groceryItem));
+
     }
 
     public void updateGroceryItem(GroceryItem groceryItem) {
-        new UpdateGroceryItemAsyncTask(groceryItemDao).execute(groceryItem);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> groceryItemDao.update(groceryItem));
     }
 
     public void deleteGroceryItem(GroceryItem groceryItem) {
-        new DeleteGroceryItemAsyncTask(groceryItemDao).execute(groceryItem);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> groceryItemDao.delete(groceryItem));
     }
 
     public void deleteAllGroceryItems(int sId) {
-        new DeleteAllGroceryItemAsyncTask(groceryItemDao, sId).execute();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> groceryItemDao.deleteAllGroceryItems(sId));
     }
 
     public void insertShop(Shop shop) {
-        new InsertShopAsyncTask(shopDao).execute(shop);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> shopDao.insert(shop));
     }
 
     public void updateShop(Shop shop) {
-        new UpdateShopAsyncTask(shopDao).execute(shop);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> shopDao.update(shop));
+    }
+
+    public void updateShop(ArrayList<Shop> shops) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> shopDao.update(shops));
     }
 
     public void deleteShop(Shop shop) {
-        new DeleteShopAsyncTask(shopDao).execute(shop);
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> shopDao.delete(shop));
     }
 
     public void deleteAllShops() {
-        new DeleteAllShopsAsyncTask(shopDao).execute();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(shopDao::deleteAllShops);
     }
 
     public LiveData<List<Shop>> getShops() {
         return shops;
     }
+
     public LiveData<Shop> getShop(int sID) {
         return shopDao.getShop(sID);
     }
@@ -80,9 +102,15 @@ public class PriceCheckRepo {
     public LiveData<List<GroceryItem>> getItems(int sID) {
         return groceryItemDao.getShopItems(sID);
     }
+
+    public LiveData<List<GroceryItem>> getAllItems() {
+        return groceryItemDao.getAllItems();
+    }
+
     public int countAllItems() {
         return groceryItemDao.countAllItems();
     }
+
     public int countShopItems(int sID) {
         return groceryItemDao.countShopItems(sID);
     }

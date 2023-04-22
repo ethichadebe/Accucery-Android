@@ -42,10 +42,16 @@ public class GroceryItemViewModel extends AndroidViewModel {
         repository.setGroceryItems();
         return repository.getItems(sID);
     }
+
+    public LiveData<List<GroceryItem>> getAllGroceryItems(){
+        repository.setGroceryItems();
+        return repository.getAllItems();
+    }
     public int countShopItems(int sID){
         return repository.countShopItems(sID);
     }
     public int countAllItems(){
+        repository.setGroceryItems();
         return repository.countAllItems();
     }
 }

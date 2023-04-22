@@ -88,12 +88,16 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
                     holder.ivPreview.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.woolworthsbw));
                     break;
             }
+
             holder.rlCard.setForeground(ContextCompat.getDrawable(context, R.color.opacity));
             holder.tvShopName.setTextColor(ContextCompat.getColor(context, R.color.textGrey));
-        } else {
+        } /*else {
+            if (!item.isOpen()) {
+                holder.rlCard.setForeground(ContextCompat.getDrawable(context, R.color.opacity));
+            }
             Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivPreview);
             holder.rlCard.setForeground(null);
-        }
+        }*/
 
         Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
 

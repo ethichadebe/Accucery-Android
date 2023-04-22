@@ -75,10 +75,11 @@
                             android:layout_toEndOf="@id/rlBack"
                             android:backgroundTint="@color/white"
                             android:fontFamily="@font/ubuntu_regular"
-                            android:hint="Search item"
+                            android:hint="@string/search_item"
                             android:inputType="text"
                             android:maxLines="1"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:importantForAutofill="no" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 

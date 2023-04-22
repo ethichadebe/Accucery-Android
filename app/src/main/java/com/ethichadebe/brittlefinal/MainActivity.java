@@ -2,6 +2,7 @@ package com.ethichadebe.brittlefinal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,8 +19,10 @@ import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private List<Shop> shops = new ArrayList<>();
 
@@ -50,10 +53,39 @@ public class MainActivity extends AppCompatActivity {
         });
         ShopViewModel shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
         GroceryItemViewModel groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
+
         shopViewModel.getShops().observe(this, shops -> {
+
             this.shops = shops;
+
+            groceryItemViewModel.getAllGroceryItems().observe(this, groceryItems -> {
+                if (groceryItems.size() > 0) {
+                    Shop shop = null;
+                    for (int i = 0; i < shops.size(); i++) {
+                        if (shops.get(i).getId() == groceryItems.get(0).getShopId()) {
+                            this.shops.get(i).setOpen(true);
+                            shop = shops.get(i);
+                        }else {
+                            this.shops.get(i).setOpen(false);
+                        }
+                    }
+
+                    if (!getIntent().getBooleanExtra("back", false)) {
+                        Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
+                        intent.putExtra("sID", shop.getId());
+                        intent.putExtra("sName", shop.getName());
+                        intent.putExtra("sSearchLink", shop.getSearchLink());
+                        intent.putExtra("sImageLink", shop.getImage());
+                        intent.putExtra("sImageLink", shop.getImage());
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
+                    }
+                }
+                //shopViewModel.update(this.shops);
+            });
+
             shopItemAdapter.setShopAdapter(MainActivity.this, shops);
-            shopItemAdapter.notifyItemRangeInserted(0, shops.size()-1);
+            shopItemAdapter.notifyItemRangeInserted(0, shops.size() - 1);
 
         });
 
@@ -71,4 +103,8 @@ public class MainActivity extends AppCompatActivity {
         finishAffinity();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }

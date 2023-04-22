@@ -89,10 +89,14 @@ public class CircularShopActivity extends AppCompatActivity {
 
                                     executor.execute(() -> {
                                         //Background work here
-                                        scrapeData(getIntent().getStringExtra("sSearchLink")+ charSequence);
+                                        scrapeData(getIntent().getStringExtra("sSearchLink") + charSequence);
                                         handler.post(() -> {
-                                            groceryItemAdapter.notifyItemRangeInserted(0, items.size()-1);
-                                            lavLoading.setVisibility(View.GONE);
+                                            groceryItemAdapter.notifyItemRangeInserted(0, items.size() - 1);
+                                            if (items.size() == 0) {
+                                                lavLoading.setAnimation(R.raw.not_found);
+                                            }else {
+                                                lavLoading.setVisibility(View.GONE);
+                                            }
                                             //UI Thread work here
                                         });
                                     });
@@ -170,7 +174,8 @@ public class CircularShopActivity extends AppCompatActivity {
             finish();
         });
     }
-    private void scrapeData(String url){
+
+    private void scrapeData(String url) {
         try {
             Log.d(TAG, "doInBackground: trying....: " + url);
             items = new ArrayList<>();
@@ -267,12 +272,11 @@ public class CircularShopActivity extends AppCompatActivity {
         Log.d(TAG, "doInBackground: name: " + name);
         Log.d(TAG, "doInBackground: price: " + price);
         Log.d(TAG, "doInBackground: image: " + image);
-        items.add(new GroceryItem(name, Double.parseDouble(price.replace("R ","")), image, getIntent().getIntExtra("sID", 0)));
+        items.add(new GroceryItem(name, Double.parseDouble(price.replace("R ", "")), image, getIntent().getIntExtra("sID", 0)));
         groceryItemAdapter.setGroceryItemSearchAdapter(this, items);
 
         Log.d(TAG, "cleanItem: ");
     }
-
 
 
     public void back(View view) {

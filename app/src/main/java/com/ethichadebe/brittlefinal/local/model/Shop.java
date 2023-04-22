@@ -14,12 +14,14 @@ public class Shop {
 
     private String searchLink;           //Shop search link
     private boolean isActive;          //Shop is active or not
+    private boolean isOpen;          //Shop Open for selection
 
-    public Shop(int id, String name, String image, String searchLink, boolean isActive) {
+    public Shop(int id, String name, String image, String searchLink, boolean isOpen, boolean isActive) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.searchLink = searchLink;
+        this.isOpen = isOpen;
         this.isActive = isActive;
     }
 
@@ -53,6 +55,14 @@ public class Shop {
 
     public void setSearchLink(String searchLink) {
         this.searchLink = searchLink;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
     }
 
     public boolean isActive() {

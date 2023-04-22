@@ -46,7 +46,6 @@
                 android:layout_below="@+id/tvItemName"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:layout_toEndOf="@id/tvItemPrice"
-                android:text="@string/x1_r0_00"
                 android:textStyle="bold" />
 
             <TextView

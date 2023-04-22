@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import com.ethichadebe.brittlefinal.local.model.Shop;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -27,6 +28,9 @@ public interface ShopDao {
      */
     @Update
     void update(Shop shop);
+
+    @Update
+    void update(ArrayList<Shop> shops);
 
     @Delete
     void delete(Shop shop);

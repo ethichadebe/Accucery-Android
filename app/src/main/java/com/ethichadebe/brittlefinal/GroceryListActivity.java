@@ -28,7 +28,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +46,6 @@ public class GroceryListActivity extends AppCompatActivity {
 
     private GroceryItemViewModel groceryItemViewModel;
     private List<GroceryItem> groceryItems = new ArrayList<>();
-    private ValueAnimator animator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,27 +79,27 @@ public class GroceryListActivity extends AppCompatActivity {
             if (groceryItems.size() > 0) {
                 int sID = groceryItems.get(0).getShopId();
                 groceryItemViewModel.deleteAllItems(sID);
-                groceryItemAdapter.notifyItemRangeRemoved(0, groceryItems.size()-1);
+                groceryItemAdapter.notifyItemRangeRemoved(0, groceryItems.size() - 1);
                 groceryItems.clear();
             }
         });
 
-        groceryItemViewModel = new ViewModelProvider(GroceryListActivity.this).get(GroceryItemViewModel.class);
+        groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
         setupGroceryList(getIntent().getIntExtra("sID", 0));
     }
 
     private void setupGroceryList(int position) {
         rvItems = findViewById(R.id.rvItems);
-        rvItems.setLayoutManager(new LinearLayoutManager(GroceryListActivity.this));
+        rvItems.setLayoutManager(new LinearLayoutManager(this));
         rvItems.setHasFixedSize(true);
         rvItems.setAdapter(groceryItemAdapter);
-        groceryItemViewModel.getGroceryItems(position).observe(GroceryListActivity.this, groceryItems -> {
+        groceryItemViewModel.getGroceryItems(position).observe(this, groceryItems -> {
             this.groceryItems = groceryItems;
             startCountAnim(0, totalPrice(UNCHECKED), tvUnchecked);
             startCountAnim(0, totalPrice(CHECKED), tvChecked);
             startCountAnim(0, totalPrice(WHOLE_LIST), tvTotal);
             Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
-            groceryItemAdapter.setGroceryItemAdapter(GroceryListActivity.this, groceryItems);
+            groceryItemAdapter.setGroceryItemAdapter(this, groceryItems);
             groceryItemAdapter.notifyDataSetChanged();
         });
 
@@ -148,7 +146,7 @@ public class GroceryListActivity extends AppCompatActivity {
                 int total = totalPrice(WHOLE_LIST);
                 GroceryItem item = groceryItems.get(position);
 
-                Log.d(TAG, "onItemClick: Item ID = " +item.getItemId());
+                Log.d(TAG, "onItemClick: Item ID = " + item.getItemId());
                 if (item.isChecked()) {
                     groceryItems.remove(position);
                     groceryItemAdapter.notifyItemRemoved(position);
@@ -166,6 +164,10 @@ public class GroceryListActivity extends AppCompatActivity {
 
                 groceryItemViewModel.update(item);
 
+                Log.d(TAG, "----------------------------------------------------------------------------------------------------------");
+                Log.d(TAG, "totalPrice: UNCHECKED " + totalPrice(UNCHECKED));
+                Log.d(TAG, "totalPrice: CHECKED " + totalPrice(CHECKED));
+                Log.d(TAG, "totalPrice: TOTAL " + totalPrice(WHOLE_LIST));
                 startCountAnim(unchecked, totalPrice(UNCHECKED), tvUnchecked);
                 startCountAnim(checked, totalPrice(CHECKED), tvChecked);
                 startCountAnim(total, totalPrice(WHOLE_LIST), tvTotal);
@@ -177,9 +179,7 @@ public class GroceryListActivity extends AppCompatActivity {
         ArrayList<Integer> total = new ArrayList<>();
         int uncheckedTotal = 0, checkedTotal = 0, wholeTotal = 0;
 
-        Log.d(TAG, "totalPrice: =----------------------------------------------------------------------------------------");
         for (GroceryItem item : groceryItems) {
-            Log.d(TAG, "totalPrice: item status " + item.isChecked());
             switch (type) {
                 case UNCHECKED:
                     if (!item.isChecked()) {
@@ -201,28 +201,28 @@ public class GroceryListActivity extends AppCompatActivity {
         total.add(checkedTotal);
         total.add(wholeTotal);
 
-        Log.d(TAG, "totalPrice: UNCHECKED " + total.get(UNCHECKED));
-        Log.d(TAG, "totalPrice: CHECKED " + total.get(CHECKED));
-        Log.d(TAG, "totalPrice: TOTAL " + total.get(WHOLE_LIST));
         return total.get(type);
     }
 
     private void startCountAnim(int from, int to, TextView textView) {
-        Log.d(TAG, "startCountAnim: " +to);
-        DecimalFormat decim = new DecimalFormat("#,###");
-        animator = ValueAnimator.ofFloat(from, to);
+        Log.d(TAG, "startCountAnim: " + to);
+        ValueAnimator animator = ValueAnimator.ofFloat(from, to);
         animator.setDuration(3000);
-        animator.addUpdateListener(valueAnimator -> textView.setText(decim.format(animator.getAnimatedValue())));
+        animator.addUpdateListener(valueAnimator -> textView.setText(this.getResources().getString(R.string.r0_0, animator.getAnimatedValue())));
         animator.start();
     }
 
     public void back(View view) {
-        startActivity(new Intent(GroceryListActivity.this, MainActivity.class));
+        Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
+        intent.putExtra("back", true);
+        startActivity(intent);
     }
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(GroceryListActivity.this, MainActivity.class));
+        Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
+        intent.putExtra("back", true);
+        startActivity(intent);
     }
 
     ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {

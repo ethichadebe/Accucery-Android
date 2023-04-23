@@ -1,26 +1,14 @@
 package com.ethichadebe.brittlefinal.repository;
 
 import android.app.Application;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.View;
 
 import androidx.lifecycle.LiveData;
 
-import com.ethichadebe.brittlefinal.R;
 import com.ethichadebe.brittlefinal.local.PriceCheckDB;
 import com.ethichadebe.brittlefinal.local.dao.GroceryItemDao;
 import com.ethichadebe.brittlefinal.local.dao.ShopDao;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
-import com.ethichadebe.brittlefinal.local.scyncTasks.DeleteAllGroceryItemAsyncTask;
-import com.ethichadebe.brittlefinal.local.scyncTasks.DeleteAllShopsAsyncTask;
-import com.ethichadebe.brittlefinal.local.scyncTasks.DeleteGroceryItemAsyncTask;
-import com.ethichadebe.brittlefinal.local.scyncTasks.DeleteShopAsyncTask;
-import com.ethichadebe.brittlefinal.local.scyncTasks.InsertGroceryItemAsyncTask;
-import com.ethichadebe.brittlefinal.local.scyncTasks.InsertShopAsyncTask;
-import com.ethichadebe.brittlefinal.local.scyncTasks.UpdateGroceryItemAsyncTask;
-import com.ethichadebe.brittlefinal.local.scyncTasks.UpdateShopAsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,19 +64,9 @@ public class PriceCheckRepo {
         executor.execute(() -> shopDao.update(shop));
     }
 
-    public void updateShop(ArrayList<Shop> shops) {
+    public void updateAllShop(List<Shop> shops) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> shopDao.update(shops));
-    }
-
-    public void deleteShop(Shop shop) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(() -> shopDao.delete(shop));
-    }
-
-    public void deleteAllShops() {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(shopDao::deleteAllShops);
     }
 
     public LiveData<List<Shop>> getShops() {

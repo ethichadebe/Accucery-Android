@@ -36,7 +36,9 @@
     <string name="price_to_pay">Price to pay</string>
     <string name="add_new_grocery_item">Add new grocery item</string>
     <string name="price_display">R%1$.2f</string>
-    <string name="quantity_and_total"> x R%1$d = R%2$.2f</string>
+    <string name="quantity_and_total"> x%1$d = R%2$.2f</string>
+    <string name="total_price">Total price</string>
+    <string name="items">Items</string>
 
 
 </resources>

@@ -94,7 +94,7 @@ public class CircularShopActivity extends AppCompatActivity {
                                             groceryItemAdapter.notifyItemRangeInserted(0, items.size() - 1);
                                             if (items.size() == 0) {
                                                 lavLoading.setAnimation(R.raw.not_found);
-                                            }else {
+                                            } else {
                                                 lavLoading.setVisibility(View.GONE);
                                             }
                                             //UI Thread work here
@@ -221,6 +221,7 @@ public class CircularShopActivity extends AppCompatActivity {
                     String price = data.select("p.price").select("span.mak-save-price").eq(i).text() + "." +
                             data.select("p.price").select("span.mak-product__cents").eq(i).text().replaceAll("[^\\d.]", "");
 
+                    Log.d(TAG, "scrapeData: price " + price);
                     cleanItem(name, price, image, i);
                 }
 
@@ -270,14 +271,12 @@ public class CircularShopActivity extends AppCompatActivity {
         }
         Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
         Log.d(TAG, "doInBackground: name: " + name);
-        Log.d(TAG, "doInBackground: price: " + price);
+        Log.d(TAG, "doInBackground: price: " + price.replaceAll("[^\\d.]", "")  );
         Log.d(TAG, "doInBackground: image: " + image);
-        items.add(new GroceryItem(name, Double.parseDouble(price.replace("R ", "")), image, getIntent().getIntExtra("sID", 0)));
+        items.add(new GroceryItem(name, Double.parseDouble(price.replace("R ", "").replaceAll("[^\\d.]", "")), image, getIntent().getIntExtra("sID", 0)));
         groceryItemAdapter.setGroceryItemSearchAdapter(this, items);
 
-        Log.d(TAG, "cleanItem: ");
     }
-
 
     public void back(View view) {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));

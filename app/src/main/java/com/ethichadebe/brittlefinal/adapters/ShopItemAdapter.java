@@ -1,6 +1,7 @@
 package com.ethichadebe.brittlefinal.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopItemViewHolder> {
+    private static final String TAG = "ShopItemAdapter";
     private Context context;
 
     private List<Shop> shops = new ArrayList<>();
@@ -91,13 +93,14 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
             holder.rlCard.setForeground(ContextCompat.getDrawable(context, R.color.opacity));
             holder.tvShopName.setTextColor(ContextCompat.getColor(context, R.color.textGrey));
-        } /*else {
+        } else {
+            holder.rlCard.setForeground(null);
             if (!item.isOpen()) {
+                Log.d(TAG, "onBindViewHolder: " + item.getName() + " is closed");
                 holder.rlCard.setForeground(ContextCompat.getDrawable(context, R.color.opacity));
             }
             Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivPreview);
-            holder.rlCard.setForeground(null);
-        }*/
+        }
 
         Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
 

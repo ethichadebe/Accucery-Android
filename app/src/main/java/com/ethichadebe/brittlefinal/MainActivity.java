@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 if (groceryItems.size() > 0) {
                     Shop shop = null;
                     for (int i = 0; i < shops.size(); i++) {
+                        Log.d(TAG, "onCreate: is open? " + shops.get(i).isOpen());
                         if (shops.get(i).getId() == groceryItems.get(0).getShopId()) {
                             this.shops.get(i).setOpen(true);
                             shop = shops.get(i);
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (!getIntent().getBooleanExtra("back", false)) {
                         Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
+                        assert shop != null;
                         intent.putExtra("sID", shop.getId());
                         intent.putExtra("sName", shop.getName());
                         intent.putExtra("sSearchLink", shop.getSearchLink());
@@ -81,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
                     }
                 }
-                //shopViewModel.update(this.shops);
             });
 
             shopItemAdapter.setShopAdapter(MainActivity.this, shops);

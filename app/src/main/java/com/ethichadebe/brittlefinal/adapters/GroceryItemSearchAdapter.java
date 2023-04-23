@@ -70,7 +70,7 @@ public class GroceryItemSearchAdapter extends RecyclerView.Adapter<GroceryItemSe
     public void onBindViewHolder(@NonNull GroceryItemSearchViewHolder holder, int position) {
         GroceryItem item = groceryItems.get(position);
 
-        Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivItem);
+        Glide.with(context).load(item.getImage()).placeholder(R.drawable.food).into(holder.ivItem);
         holder.tvName.setText(item.getName());
         holder.tvPrice.setText(context.getResources().getString(R.string.price_display, item.getPrice()));
 

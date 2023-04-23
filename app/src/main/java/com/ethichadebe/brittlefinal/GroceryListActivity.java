@@ -21,8 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
+import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
+import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
+import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -45,7 +48,9 @@ public class GroceryListActivity extends AppCompatActivity {
     private GroceryItemAdapter groceryItemAdapter;
 
     private GroceryItemViewModel groceryItemViewModel;
+    private ShopViewModel shopViewModel;
     private List<GroceryItem> groceryItems = new ArrayList<>();
+    private List<Shop> shops = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +86,15 @@ public class GroceryListActivity extends AppCompatActivity {
                 groceryItemViewModel.deleteAllItems(sID);
                 groceryItemAdapter.notifyItemRangeRemoved(0, groceryItems.size() - 1);
                 groceryItems.clear();
+                openCloseShop(true);
             }
         });
 
         groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
+        shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
+        shopViewModel.getShops().observe(this, shops1 -> {
+            shops = shops1;
+        });
         setupGroceryList(getIntent().getIntExtra("sID", 0));
     }
 
@@ -214,6 +224,11 @@ public class GroceryListActivity extends AppCompatActivity {
 
     public void back(View view) {
         Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
+        openCloseShop(false);
+        Log.d(TAG, "onBindViewHolder: size " + groceryItems.size()+"----------------------------------------------------------------------------------");
+        if (groceryItems.size() > 0) {
+            openCloseShop(false);
+        }
         intent.putExtra("back", true);
         startActivity(intent);
     }
@@ -221,6 +236,10 @@ public class GroceryListActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
+        Log.d(TAG, "onBindViewHolder: size " + groceryItems.size()+"----------------------------------------------------------------------------------");
+        if (groceryItems.size() > 0) {
+            openCloseShop(false);
+        }
         intent.putExtra("back", true);
         startActivity(intent);
     }
@@ -241,30 +260,36 @@ public class GroceryListActivity extends AppCompatActivity {
                 groceryItemViewModel.delete(deletedItem);
                 groceryItemAdapter.notifyItemRemoved(position);
 
-                Snackbar.make(rvItems, deletedItem.getName() + " has been removed.",
-                                BaseTransientBottomBar.LENGTH_LONG).setAction("Undo", view -> {
-                            groceryItems.add(position, deletedItem);
-                            groceryItemViewModel.insert(deletedItem);
-                            groceryItemAdapter.notifyItemInserted(position);
-                        })
-                        .setBackgroundTint(ContextCompat.getColor(getApplicationContext(), R.color.Red))
-                        .setTextColor(Color.WHITE)
-                        .setActionTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white))
-                        .show();
+                if (groceryItems.size() == 0) {
+                    openCloseShop(true);
+                }
+
+                Snackbar.make(rvItems, deletedItem.getName() + " has been removed.", BaseTransientBottomBar.LENGTH_LONG).setAction("Undo", view -> {
+                    groceryItems.add(position, deletedItem);
+                    groceryItemViewModel.insert(deletedItem);
+                    groceryItemAdapter.notifyItemInserted(position);
+                    openCloseShop(false);
+                }).setBackgroundTint(ContextCompat.getColor(getApplicationContext(), R.color.Red)).setTextColor(Color.WHITE).setActionTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white)).show();
             }
         }
 
         @Override
-        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder,
-                                float dX, float dY, int actionState, boolean isCurrentlyActive) {
-            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addBackgroundColor(ContextCompat.getColor(GroceryListActivity.this, R.color.Red))
-                    .addActionIcon(R.drawable.delete_24)
-                    .create()
-                    .decorate();
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive).addBackgroundColor(ContextCompat.getColor(GroceryListActivity.this, R.color.Red)).addActionIcon(R.drawable.delete_24).create().decorate();
 
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
     };
+
+    private void openCloseShop(boolean emptyList) {
+        for (int i = 0; i < shops.size(); i++) {
+            if (emptyList) {
+                shops.get(i).setOpen(true);
+            } else {
+                shops.get(i).setOpen(shops.get(i).getId() == getIntent().getIntExtra("sID", 0));
+            }
+            shopViewModel.update(shops.get(i));
+        }
+    }
 
 }

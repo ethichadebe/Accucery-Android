@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.repository.PriceCheckRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShopViewModel extends AndroidViewModel {
@@ -22,19 +23,8 @@ public class ShopViewModel extends AndroidViewModel {
         shops = repository.getShops();
     }
 
-    public void insert(Shop shop){
-        repository.insertShop(shop);
-    }
-
     public void update(Shop shop){
         repository.updateShop(shop);
-    }
-
-    public void delete(Shop shop){
-        repository.deleteShop(shop);
-    }
-    public void deleteAllItems(){
-        repository.deleteAllShops();
     }
 
     public LiveData<List<Shop>> getShops(){

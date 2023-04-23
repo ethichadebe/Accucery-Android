@@ -15,7 +15,7 @@ import com.ethichadebe.brittlefinal.local.dao.ShopDao;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 
-@Database(entities = {Shop.class, GroceryItem.class}, version = 67)
+@Database(entities = {Shop.class, GroceryItem.class}, version = 65)
 public abstract class PriceCheckDB extends RoomDatabase {
     private static final String TAG = "PriceCheckDB";
 

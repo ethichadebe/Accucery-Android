@@ -7,12 +7,14 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "ShopsTable")
 public class Shop {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;                 //Shop id
     private String name;            //Shop name
     private String image;           //Shop logo URL
 
     private String searchLink;           //Shop search link
+    private int itemsCount = 0;           //Shop search link
+    private double price = 0;           //Shop search link
     private boolean isActive;          //Shop is active or not
     private boolean isOpen;          //Shop Open for selection
 
@@ -55,6 +57,22 @@ public class Shop {
 
     public void setSearchLink(String searchLink) {
         this.searchLink = searchLink;
+    }
+
+    public int getItemsCount() {
+        return itemsCount;
+    }
+
+    public void setItemsCount(int itemsCount) {
+        this.itemsCount = itemsCount;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public boolean isOpen() {

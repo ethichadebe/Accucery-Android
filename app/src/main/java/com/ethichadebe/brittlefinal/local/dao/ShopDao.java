@@ -30,13 +30,7 @@ public interface ShopDao {
     void update(Shop shop);
 
     @Update
-    void update(ArrayList<Shop> shops);
-
-    @Delete
-    void delete(Shop shop);
-
-    @Query("DELETE FROM ShopsTable")
-    void deleteAllShops();
+    void update(List<Shop> shops);
 
     @Query("SELECT * FROM ShopsTable ORDER BY isActive DESC")
     LiveData<List<Shop>> getShops();

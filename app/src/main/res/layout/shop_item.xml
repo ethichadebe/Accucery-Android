@@ -71,7 +71,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvnItems"
+                    android:id="@+id/tvItemCount"
                     style="@style/BoldText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -91,7 +91,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvPrice"
+                    android:id="@+id/tvTotalPrice"
                     style="@style/BoldText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -107,7 +107,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tvComingSoon"
+        android:id="@+id/tvMessage"
         style="@style/ItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

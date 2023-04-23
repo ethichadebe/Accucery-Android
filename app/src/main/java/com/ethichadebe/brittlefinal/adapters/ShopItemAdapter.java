@@ -39,16 +39,18 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
 
     public static class ShopItemViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivPreview;
-        public TextView tvShopName, tvComingSoon;
+        public TextView tvShopName, tvMessage, tvItemCount, tvTotalPrice;
         public RelativeLayout rlCard;
 
         public ShopItemViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
 
+            tvItemCount = itemView.findViewById(R.id.tvItemCount);
+            tvTotalPrice = itemView.findViewById(R.id.tvTotalPrice);
             ivPreview = itemView.findViewById(R.id.ivPreview);
             tvShopName = itemView.findViewById(R.id.tvShopName);
             rlCard = itemView.findViewById(R.id.rlCard);
-            tvComingSoon = itemView.findViewById(R.id.tvComingSoon);
+            tvMessage = itemView.findViewById(R.id.tvMessage);
 
             itemView.setOnClickListener(view -> {
                 if (listener != null) {
@@ -79,9 +81,13 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
         Shop item = shops.get(position);
 
         holder.tvShopName.setText(item.getName());
+        holder.tvItemCount.setText(String.valueOf(item.getItemsCount()));
+        holder.tvTotalPrice.setText(context.getResources().getString(R.string.price_display, item.getPrice()));
+
 
         if (!item.isActive()) {
-            holder.tvComingSoon.setVisibility(View.VISIBLE);
+            holder.tvMessage.setVisibility(View.VISIBLE);
+            holder.tvMessage.setText(context.getResources().getString(R.string.coming_soon));
             switch (item.getName().toLowerCase()) {
                 case "game":
                     holder.ivPreview.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.gamebw));
@@ -96,7 +102,10 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
         } else {
             holder.rlCard.setForeground(null);
             if (!item.isOpen()) {
+                holder.tvMessage.setVisibility(View.VISIBLE);
+                holder.tvMessage.setText("Shop locked, click to unlock");
                 Log.d(TAG, "onBindViewHolder: " + item.getName() + " is closed");
+                holder.tvShopName.setTextColor(ContextCompat.getColor(context, R.color.textGrey));
                 holder.rlCard.setForeground(ContextCompat.getDrawable(context, R.color.opacity));
             }
             Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivPreview);

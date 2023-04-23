@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         GroceryItemViewModel groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
 
         shopViewModel.getShops().observe(this, shops -> {
-
             this.shops = shops;
 
             groceryItemViewModel.getAllGroceryItems().observe(this, groceryItems -> {

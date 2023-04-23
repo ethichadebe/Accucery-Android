@@ -279,11 +279,11 @@ public class CircularShopActivity extends AppCompatActivity {
     }
 
     public void back(View view) {
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
     }
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        finish();
     }
 }

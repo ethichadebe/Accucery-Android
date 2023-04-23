@@ -83,8 +83,8 @@ public class GroceryListActivity extends AppCompatActivity {
         rlClearList.setOnClickListener(view -> {
             if (groceryItems.size() > 0) {
                 int sID = groceryItems.get(0).getShopId();
-                groceryItemViewModel.deleteAllItems(sID);
                 groceryItemAdapter.notifyItemRangeRemoved(0, groceryItems.size() - 1);
+                //groceryItemViewModel.deleteAllItems(sID);
                 groceryItems.clear();
                 openCloseShop(true);
             }
@@ -94,20 +94,22 @@ public class GroceryListActivity extends AppCompatActivity {
         shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
         shopViewModel.getShops().observe(this, shops1 -> {
             shops = shops1;
+            Log.d(TAG, "setupGroceryList: total " + shops.size());
         });
         setupGroceryList(getIntent().getIntExtra("sID", 0));
     }
 
-    private void setupGroceryList(int position) {
+    private void setupGroceryList(int sID) {
         rvItems = findViewById(R.id.rvItems);
         rvItems.setLayoutManager(new LinearLayoutManager(this));
         rvItems.setHasFixedSize(true);
         rvItems.setAdapter(groceryItemAdapter);
-        groceryItemViewModel.getGroceryItems(position).observe(this, groceryItems -> {
+        groceryItemViewModel.getGroceryItems(sID).observe(this, groceryItems -> {
             this.groceryItems = groceryItems;
             startCountAnim(0, totalPrice(UNCHECKED), tvUnchecked);
             startCountAnim(0, totalPrice(CHECKED), tvChecked);
             startCountAnim(0, totalPrice(WHOLE_LIST), tvTotal);
+
             Log.d(TAG, "onCreate: grocery Items" + groceryItems.size());
             groceryItemAdapter.setGroceryItemAdapter(this, groceryItems);
             groceryItemAdapter.notifyDataSetChanged();
@@ -223,9 +225,21 @@ public class GroceryListActivity extends AppCompatActivity {
     }
 
     public void back(View view) {
+        for (Shop shop : shops) {
+            if (shop.getId() == getIntent().getIntExtra("sID", 0)) {
+                shop.setItemsCount(groceryItems.size());
+                double totalPrice = 0;
+                for (GroceryItem groceryItem : groceryItems) {
+                    totalPrice += totalPrice + (groceryItem.getPrice() * groceryItem.getQuantity());
+                }
+                shop.setPrice(totalPrice);
+                shopViewModel.update(shop);
+            }
+        }
+
         Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
         openCloseShop(false);
-        Log.d(TAG, "onBindViewHolder: size " + groceryItems.size()+"----------------------------------------------------------------------------------");
+        Log.d(TAG, "onBindViewHolder: size " + groceryItems.size() + "----------------------------------------------------------------------------------");
         if (groceryItems.size() > 0) {
             openCloseShop(false);
         }
@@ -235,8 +249,19 @@ public class GroceryListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        for (Shop shop : shops) {
+            if (shop.getId() == getIntent().getIntExtra("sID", 0)) {
+                shop.setItemsCount(groceryItems.size());
+                double totalPrice = 0;
+                for (GroceryItem groceryItem : groceryItems) {
+                    totalPrice += totalPrice + (groceryItem.getPrice() * groceryItem.getQuantity());
+                }
+                shop.setPrice(totalPrice);
+                shopViewModel.update(shop);
+            }
+        }
         Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
-        Log.d(TAG, "onBindViewHolder: size " + groceryItems.size()+"----------------------------------------------------------------------------------");
+        Log.d(TAG, "onBindViewHolder: size " + groceryItems.size() + "----------------------------------------------------------------------------------");
         if (groceryItems.size() > 0) {
             openCloseShop(false);
         }

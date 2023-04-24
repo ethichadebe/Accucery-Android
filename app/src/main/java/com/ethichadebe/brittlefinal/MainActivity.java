@@ -20,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.Shop;
+import com.ethichadebe.brittlefinal.local.model.User;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
+import com.ethichadebe.brittlefinal.viewmodel.UserViewModel;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -39,6 +41,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private ShopViewModel shopViewModel;
+    private GroceryItemViewModel groceryItemViewModel;
+    private UserViewModel userViewModel;
 
     private RewardedAd rewardedAd;
     private List<Shop> shops = new ArrayList<>();
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "The user earned the reward.");
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
+                    userViewModel.update(new User(0,"Mtho",5));
+                    Log.d(TAG, "popupAd: Reward amount -> " +rewardAmount+" Reward type -> " +rewardType);
                 });
             } else {
                 Log.d(TAG, "The rewarded ad wasn't ready yet.");
@@ -79,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
+        groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         RecyclerView rvShops = findViewById(R.id.rvShops);
         rvShops.setLayoutManager(new GridLayoutManager(this, 2));
         rvShops.setHasFixedSize(true);
@@ -103,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        ShopViewModel shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
-        GroceryItemViewModel groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
 
         shopViewModel.getShops().observe(this, shops -> {
             this.shops = shops;

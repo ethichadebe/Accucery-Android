@@ -7,8 +7,10 @@ import androidx.lifecycle.LiveData;
 import com.ethichadebe.brittlefinal.local.PriceCheckDB;
 import com.ethichadebe.brittlefinal.local.dao.GroceryItemDao;
 import com.ethichadebe.brittlefinal.local.dao.ShopDao;
+import com.ethichadebe.brittlefinal.local.dao.UserDao;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
+import com.ethichadebe.brittlefinal.local.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.concurrent.Executors;
 
 public class PriceCheckRepo {
     private GroceryItemDao groceryItemDao;
-
+    private UserDao userDao;
     private final ShopDao shopDao;
     private final LiveData<List<Shop>> shops;
 
@@ -26,6 +28,7 @@ public class PriceCheckRepo {
     public PriceCheckRepo(Application application) {
         db = PriceCheckDB.getInstance(application);
         shopDao = db.shopDao();
+        userDao = db.userDao();
         shops = shopDao.getShops();
     }
 
@@ -69,8 +72,16 @@ public class PriceCheckRepo {
         executor.execute(() -> shopDao.update(shops));
     }
 
+    public void updateUser(User user) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> userDao.update(user));
+    }
+
     public LiveData<List<Shop>> getShops() {
         return shops;
+    }
+    public LiveData<User> getUser() {
+        return userDao.getUser();
     }
 
     public LiveData<Shop> getShop(int sID) {

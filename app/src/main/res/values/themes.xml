@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowAnimationStyle">@style/popupAnimation</item>
 
     </style>
 
@@ -21,6 +22,11 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginStart">@dimen/_10sdp</item>
         <item name="android:src">@drawable/logo</item>
+    </style>
+    
+    <style name="popupAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
     <!--"rittle" color next to B logo-->

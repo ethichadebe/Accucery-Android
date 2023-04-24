@@ -39,6 +39,9 @@
     <string name="quantity_and_total"> x%1$d = R%2$.2f</string>
     <string name="total_price">Total price</string>
     <string name="items">Items</string>
+    <string name="or">Or</string>
+    <string name="buy_tokens">Buy tokens</string>
+    <string name="watch_ad">Watch Ad</string>
 
 
 </resources>

@@ -1,9 +1,13 @@
 package com.ethichadebe.brittlefinal;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -13,9 +17,14 @@ import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +33,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    private RewardedAd rewardedAd;
     private List<Shop> shops = new ArrayList<>();
+    Dialog dialog;
 
+    private void popupAd() {
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.coin_ad);
+        //dialog.getWindow().setBackgroundDrawable();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(true);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.popupAnimation;
+        dialog.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +60,20 @@ public class MainActivity extends AppCompatActivity {
 
         shopItemAdapter.setOnItemClickListener(position -> {
             if (shops.get(position).isActive()) {
-                Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
-                intent.putExtra("sID", shops.get(position).getId());
-                intent.putExtra("sName", shops.get(position).getName());
-                intent.putExtra("sSearchLink", shops.get(position).getSearchLink());
-                intent.putExtra("sImageLink", shops.get(position).getImage());
-                intent.putExtra("sImageLink", shops.get(position).getImage());
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
-// document say if we don't want animation we can put 0. However, if we put 0 instead of R.anim.no_animation, the exist activity will become black when animate
+                if (shops.get(position).isOpen()) {
+                    Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
+                    intent.putExtra("sID", shops.get(position).getId());
+                    intent.putExtra("sName", shops.get(position).getName());
+                    intent.putExtra("sSearchLink", shops.get(position).getSearchLink());
+                    intent.putExtra("sImageLink", shops.get(position).getImage());
+                    intent.putExtra("sImageLink", shops.get(position).getImage());
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
+                    // remember to put it after startActivity, if you put it to above, animation will not working
+                    // document say if we don't want animation we can put 0. However, if we put 0 instead of R.anim.no_animation, the exist activity will become black when animate
+                } else {
+                    popupAd();
+                }
             }
         });
         ShopViewModel shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
@@ -65,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         if (shops.get(i).getId() == groceryItems.get(0).getShopId()) {
                             this.shops.get(i).setOpen(true);
                             shop = shops.get(i);
-                        }else {
+                        } else {
                             this.shops.get(i).setOpen(false);
                         }
                     }
@@ -95,6 +120,23 @@ public class MainActivity extends AppCompatActivity {
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        RewardedAd.load(this, "ca-app-pub-3940256099942544/5224354917",
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+                        Log.d(TAG, loadAdError.toString());
+                        rewardedAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd ad) {
+                        rewardedAd = ad;
+                        Log.d(TAG, "Ad was loaded.");
+                    }
+                });
+
     }
 
 

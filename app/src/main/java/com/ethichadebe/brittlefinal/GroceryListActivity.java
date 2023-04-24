@@ -288,7 +288,7 @@ public class GroceryListActivity extends AppCompatActivity {
                 shop.setItemsCount(groceryItems.size());
                 double totalPrice = 0;
                 for (GroceryItem groceryItem : groceryItems) {
-                    totalPrice += totalPrice + (groceryItem.getPrice() * groceryItem.getQuantity());
+                    totalPrice += (groceryItem.getPrice() * groceryItem.getQuantity());
                 }
                 shop.setPrice(totalPrice);
                 shopViewModel.update(shop);

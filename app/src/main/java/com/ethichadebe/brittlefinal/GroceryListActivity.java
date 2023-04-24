@@ -115,10 +115,11 @@ public class GroceryListActivity extends AppCompatActivity {
         });
 
         rlClearList.setOnClickListener(view -> {
-            if (groceryItems.size() > 0) {
-                groceryItemAdapter.notifyItemRangeRemoved(0, groceryItems.size() - 1);
-                //groceryItemViewModel.deleteAllItems(sID);
+            int size = groceryItems.size();
+            if (size > 0) {
                 groceryItems.clear();
+                groceryItemAdapter.notifyItemRangeRemoved(0, groceryItems.size() - 1);
+                groceryItemViewModel.deleteAllItems(getIntent().getIntExtra("sID", 0));
                 openCloseShop(true);
             }
         });

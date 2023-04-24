@@ -1,6 +1,8 @@
 package com.ethichadebe.brittlefinal.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +16,12 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.ethichadebe.brittlefinal.CircularShopActivity;
+import com.ethichadebe.brittlefinal.GroceryListActivity;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.R;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
@@ -31,6 +37,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.GroceryItemViewHolder> {
     private static final String TAG = "GroceryItemAdapter";
     private Context context;
+    private View itemView;
 
     private List<GroceryItem> groceryItems = new ArrayList<>();
     private OnItemClickListener listener;
@@ -125,6 +132,8 @@ public class GroceryItemAdapter extends RecyclerView.Adapter<GroceryItemAdapter.
     @Override
     public void onBindViewHolder(@NonNull GroceryItemViewHolder holder, int position) {
         GroceryItem item = groceryItems.get(position);
+
+
 
         Glide.with(context).load(item.getImage()).placeholder(R.drawable.food).into(holder.ivImage);
         holder.tvItemName.setText(item.getName());

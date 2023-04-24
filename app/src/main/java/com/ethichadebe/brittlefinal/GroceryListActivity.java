@@ -72,7 +72,7 @@ public class GroceryListActivity extends AppCompatActivity {
         RelativeLayout rlClearList = findViewById(R.id.rlClearList);
         Glide.with(this).load(getIntent().getStringExtra("sImageLink")).placeholder(R.mipmap.ic_launcher).into(ivShopLogo);
 
-        TapTargetView.showFor(this,                 // `this` is an Activity
+      /*  TapTargetView.showFor(this,                 // `this` is an Activity
                 TapTarget.forView(findViewById(R.id.fabAddShop), "This is a target", "We have the best targets, believe me")
                         // All options below are optional
                         .outerCircleColor(R.color.primary_green)        // Specify a color for the outer circle
@@ -101,7 +101,7 @@ public class GroceryListActivity extends AppCompatActivity {
                         intent.putExtra("sName", getIntent().getStringExtra("sName"));
                         startActivity(intent);
                     }
-                });
+                });*/
 
 
         tvShopName.setText(getIntent().getStringExtra("sName"));
@@ -251,7 +251,7 @@ public class GroceryListActivity extends AppCompatActivity {
 
     private void startCountAnim(int from, int to, TextView textView) {
         Log.d(TAG, "startCountAnim: " + to);
-        ValueAnimator animator = ValueAnimator.ofFloat(from, to);
+        ValueAnimator animator = ValueAnimator.ofInt(from, to);
         animator.setDuration(3000);
         animator.addUpdateListener(valueAnimator -> textView.setText(this.getResources().getString(R.string.r0_0, animator.getAnimatedValue())));
         animator.start();

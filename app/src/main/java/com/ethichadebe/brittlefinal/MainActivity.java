@@ -1,11 +1,16 @@
 package com.ethichadebe.brittlefinal;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +28,8 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
@@ -40,9 +47,29 @@ public class MainActivity extends AppCompatActivity {
     private void popupAd() {
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.coin_ad);
+
+        TextView tvWatchAd = dialog.findViewById(R.id.tvWatchAd);
+        TextView tvBuyTokes = dialog.findViewById(R.id.tvBuyTokes);
+        TextView tvDismiss = dialog.findViewById(R.id.tvDismiss);
+
+        tvDismiss.setOnClickListener(view -> dialog.dismiss());
+        tvWatchAd.setOnClickListener(view -> {
+            if (rewardedAd != null) {
+                Activity activityContext = MainActivity.this;
+                rewardedAd.show(activityContext, rewardItem -> {
+                    // Handle the reward.
+                    Log.d(TAG, "The user earned the reward.");
+                    int rewardAmount = rewardItem.getAmount();
+                    String rewardType = rewardItem.getType();
+                });
+            } else {
+                Log.d(TAG, "The rewarded ad wasn't ready yet.");
+            }
+        });
         //dialog.getWindow().setBackgroundDrawable();
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().getAttributes().windowAnimations = R.style.popupAnimation;
         dialog.show();
     }
@@ -136,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Ad was loaded.");
                     }
                 });
+
 
     }
 

@@ -98,7 +98,7 @@
                     app:lottie_autoPlay="true"
                     android:visibility="gone"
                     app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/trolley_animation"
+                    app:lottie_rawRes="@raw/not_found"
                     app:lottie_speed="1" />
 
                 <TextView

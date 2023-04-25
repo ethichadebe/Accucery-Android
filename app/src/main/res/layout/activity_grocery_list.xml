@@ -211,7 +211,6 @@
         android:layout_margin="@dimen/_10sdp"
         android:contentDescription="@string/add_new_grocery_item"
         android:src="@drawable/add_24"
-
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

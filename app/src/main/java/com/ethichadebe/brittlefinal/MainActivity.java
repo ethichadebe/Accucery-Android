@@ -42,6 +42,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private ShopViewModel shopViewModel;
+    private User user;
     private GroceryItemViewModel groceryItemViewModel;
     private UserViewModel userViewModel;
 
@@ -66,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "The user earned the reward.");
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
-                    userViewModel.update(new User(0,"Mtho",5));
-                    Log.d(TAG, "popupAd: Reward amount -> " +rewardAmount+" Reward type -> " +rewardType);
+                    userViewModel.update(new User(0, "Mtho", 5));
+                    Log.d(TAG, "popupAd: Reward amount -> " + rewardAmount + " Reward type -> " + rewardType);
                 });
             } else {
                 Log.d(TAG, "The rewarded ad wasn't ready yet.");
@@ -97,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
         shopItemAdapter.setOnItemClickListener(position -> {
             if (shops.get(position).isActive()) {
-                if (shops.get(position).isOpen()) {
+                Log.d(TAG, "onCreate: coins " +user.getCoins());
+                if (shops.get(position).isOpen() && user.getCoins() > 0) {
                     Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
                     intent.putExtra("sID", shops.get(position).getId());
                     intent.putExtra("sName", shops.get(position).getName());
@@ -130,22 +132,28 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-                    if (!getIntent().getBooleanExtra("back", false)) {
-                        Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
-                        assert shop != null;
-                        intent.putExtra("sID", shop.getId());
-                        intent.putExtra("sName", shop.getName());
-                        intent.putExtra("sSearchLink", shop.getSearchLink());
-                        intent.putExtra("sImageLink", shop.getImage());
-                        intent.putExtra("sImageLink", shop.getImage());
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
-                    }
+                    Shop finalShop = shop;
+                    userViewModel.getUser().observe(this, user -> {
+                        Log.d(TAG, "onCreate: coins " + user.getCoins());
+                        if (!getIntent().getBooleanExtra("back", false) && user.getCoins() == 0) {
+                            Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
+                            assert finalShop != null;
+                            intent.putExtra("sID", finalShop.getId());
+                            intent.putExtra("sName", finalShop.getName());
+                            intent.putExtra("sSearchLink", finalShop.getSearchLink());
+                            intent.putExtra("sImageLink", finalShop.getImage());
+                            intent.putExtra("sImageLink", finalShop.getImage());
+                            startActivity(intent);
+                            overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
+                        }
+                    });
                 }
             });
-
-            shopItemAdapter.setShopAdapter(MainActivity.this, shops);
-            shopItemAdapter.notifyItemRangeInserted(0, shops.size() - 1);
+            userViewModel.getUser().observe(this, user -> {
+                this.user = user;
+                shopItemAdapter.setShopAdapter(MainActivity.this, shops, user.getCoins());
+                shopItemAdapter.notifyItemRangeInserted(0, shops.size() - 1);
+            });
 
         });
 

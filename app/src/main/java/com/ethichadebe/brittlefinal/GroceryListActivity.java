@@ -72,7 +72,7 @@ public class GroceryListActivity extends AppCompatActivity {
         RelativeLayout rlClearList = findViewById(R.id.rlClearList);
         Glide.with(this).load(getIntent().getStringExtra("sImageLink")).placeholder(R.mipmap.ic_launcher).into(ivShopLogo);
 
-      /*  TapTargetView.showFor(this,                 // `this` is an Activity
+        TapTargetView.showFor(this,                 // `this` is an Activity
                 TapTarget.forView(findViewById(R.id.fabAddShop), "This is a target", "We have the best targets, believe me")
                         // All options below are optional
                         .outerCircleColor(R.color.primary_green)        // Specify a color for the outer circle
@@ -101,7 +101,7 @@ public class GroceryListActivity extends AppCompatActivity {
                         intent.putExtra("sName", getIntent().getStringExtra("sName"));
                         startActivity(intent);
                     }
-                });*/
+                });
 
 
         tvShopName.setText(getIntent().getStringExtra("sName"));
@@ -264,7 +264,7 @@ public class GroceryListActivity extends AppCompatActivity {
                 shop.setItemsCount(groceryItems.size());
                 double totalPrice = 0;
                 for (GroceryItem groceryItem : groceryItems) {
-                    totalPrice += totalPrice + (groceryItem.getPrice() * groceryItem.getQuantity());
+                    totalPrice += (groceryItem.getPrice() * groceryItem.getQuantity());
                 }
                 shop.setPrice(totalPrice);
                 shopViewModel.update(shop);

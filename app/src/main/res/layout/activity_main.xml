@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/tvHead"
             style="@style/BackgroundColor"
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
@@ -19,7 +20,6 @@
             android:fontFamily="@font/coiny_regular"
             android:gravity="center"
             android:text="@string/accucery"
-            android:id="@+id/tvHead"
             android:textColor="@color/primary_green"
             android:textSize="@dimen/_16ssp"
             app:drawableLeftCompat="@drawable/custom_logo" />
@@ -27,7 +27,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvShops"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_above="@id/adView"
             android:layout_below="@+id/tvHead"
             tools:listitem="@layout/shop_item" />
@@ -42,4 +42,58 @@
             ads:adSize="SMART_BANNER"
             ads:adUnitId="@string/BannerAds" />
     </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="0dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <RelativeLayout
+            android:id="@+id/rlBottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvShopName"
+                style="@style/HeadingText"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:gravity="center"
+                android:text="@string/shop_name"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tvClose"
+                style="@style/HeadingText"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:text="x"
+                android:textColor="@color/white" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvShopName"
+                android:paddingBottom="@dimen/_10sdp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavLoading"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_centerInParent="true"
+                app:lottie_autoPlay="true"
+                android:layout_below="@id/rvItems"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/trolley_animation"
+                app:lottie_speed="1" />
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

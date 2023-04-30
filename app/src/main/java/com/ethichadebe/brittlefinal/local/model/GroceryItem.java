@@ -2,6 +2,7 @@ package com.ethichadebe.brittlefinal.local.model;
 
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "GroceryItemsTable")
@@ -24,7 +25,15 @@ public class GroceryItem {
         this.quantity = 1;
         this.shopId = shopId;
     }
-    
+    @Ignore
+    public GroceryItem(String name, double price, String image,int quantity, int shopId) {
+        this.name = name;
+        this.price = price;
+        this.image = image;
+        this.quantity = quantity;
+        this.shopId = shopId;
+    }
+
     public int getItemId() {
         return itemId;
     }

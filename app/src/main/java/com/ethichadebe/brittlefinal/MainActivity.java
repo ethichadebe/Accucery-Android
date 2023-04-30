@@ -14,12 +14,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ethichadebe.brittlefinal.adapters.GroceryItemSearchAdapter;
 import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
 import com.ethichadebe.brittlefinal.layout_manager.WrapContentGridLayoutManager;
+import com.ethichadebe.brittlefinal.layout_manager.WrapContentLinearLayoutManager;
+import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.local.model.User;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
@@ -35,14 +40,30 @@ import com.google.android.gms.ads.OnUserEarnedRewardListener;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
+    public static final int BACK = 10;
+    public static final int COMPARE = 20;
+
     private static final String TAG = "MainActivity";
+    private RecyclerView rvItems;
+    private BottomSheetBehavior bottomSheetBehavior;
     private ShopViewModel shopViewModel;
+    private GroceryItemSearchAdapter groceryItemAdapter;
+    private List<GroceryItem> newItems;
+    private TextView tvShopName;
     private User user;
     private GroceryItemViewModel groceryItemViewModel;
     private UserViewModel userViewModel;
@@ -97,10 +118,18 @@ public class MainActivity extends AppCompatActivity {
         groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         RecyclerView rvShops = findViewById(R.id.rvShops);
+        NestedScrollView nsvBottomSheet = findViewById(R.id.nsvBottomSheet);
+        TextView tvClose = findViewById(R.id.tvClose);
+        rvItems = findViewById(R.id.rvItems);
+        tvShopName = findViewById(R.id.tvShopName);
         rvShops.setLayoutManager(new WrapContentGridLayoutManager(this, 2));
         rvShops.setHasFixedSize(true);
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
         rvShops.setAdapter(shopItemAdapter);
+
+        bottomSheetBehavior = BottomSheetBehavior.from(nsvBottomSheet);
+
+        tvClose.setOnClickListener(view -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED));
 
         shopItemAdapter.setOnItemClickListener(position -> {
             if (shops.get(position).isActive()) {
@@ -139,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Shop finalShop = shop;
                         Log.d(TAG, "onCreate: coins " + user.getCoins());
-                        if (!getIntent().getBooleanExtra("back", false) && user.getCoins() == 0) {
+                        if (getIntent().getIntExtra("back", 0) == BACK && user.getCoins() == 0) {
                             Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
                             assert finalShop != null;
                             intent.putExtra("sID", finalShop.getId());
@@ -149,6 +178,14 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("sImageLink", finalShop.getImage());
                             startActivity(intent);
                             overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
+                        } else if ((getIntent().getIntExtra("back", 0) == COMPARE)) {
+                            tvShopName.setText(getIntent().getStringExtra("sName"));
+                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                            newItems = new ArrayList<>();
+                            Timer timer = new Timer();
+                            setupItems();
+
+                            scheduleItemSearch(timer, groceryItems);
                         }
                     }
                 });
@@ -184,6 +221,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void scheduleItemSearch(Timer timer, List<GroceryItem> groceryItems) {
+        timer.cancel();
+        timer = new Timer();
+        // Milliseconds
+        long DELAY = 2000;
+        timer.schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        new InsertShopAsyncTask(groceryItems).execute();
+                    }
+                },
+                DELAY
+        );
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -194,4 +247,124 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
     }
+
+    private void scrapeData(String url, int itemID) {
+        try {
+            Log.d(TAG, "doInBackground: trying....: " + url);
+            if (url.contains("https://www.pnp.co.za/pnpstorefront/pnp/en/search/?text=")) {
+                Document document = Jsoup.connect(url).get();
+                Elements data = document.select("div.productCarouselItem");
+
+                //Log.d(TAG, "doInBackground: size " + data);
+                for (int i = 0; i < data.size(); i++) {
+                    String image = data.select("div.thumb").select("img").eq(i).attr("src");
+                    String name = data.select("div.item-name").eq(i).text();
+                    String price = data.select("div.product-price").select("div.currentPrice").eq(i).text().replaceAll("[^\\d.]", "");
+
+                    cleanItem(name, price, itemID, image);
+                }
+
+            } else if (url.contains("https://www.woolworths.co.za/cat?Ntt=")) {
+                Log.d(TAG, "doInBackground: it does contain");
+                Document document = Jsoup.connect(url + "&Dy=1").get();
+                Elements data = document.select("div.product-list__item");
+
+                Log.d(TAG, "doInBackground: size " + document);
+                String image = data.select("div.product--image").select("img").eq(0).attr("src");
+                String name = data.select("div.product-card__name").select("a").eq(0).text();
+                String price = data.select("div.product__price").select("strong.price").eq(0).text().replaceAll("[^\\d.]", "");
+
+                cleanItem(name, price, itemID, image);
+
+            } else if (url.contains("https://www.makro.co.za/search/?text=")) {
+                Log.d(TAG, "doInBackground: it does contain");
+                Document document = Jsoup.connect(url + "&Dy=1").get();
+                Elements data = document.select("div.mak-product-tiles-container__product-tile");
+
+                Log.d(TAG, "doInBackground: size " + document);
+                String image = data.select("a.product-tile-inner__img").select("img").eq(0).attr("src");
+                String name = data.select("a.product-tile-inner__productTitle").select("span").eq(0).text();
+                String price = data.select("p.price").select("span.mak-save-price").eq(0).text() + "." +
+                        data.select("p.price").select("span.mak-product__cents").eq(0).text().replaceAll("[^\\d.]", "");
+
+                Log.d(TAG, "scrapeData: price " + price);
+                cleanItem(name, price, itemID, image);
+
+            } else if (url.contains("https://www.game.co.za/l/search/?t=")) {
+                Log.d(TAG, "doInBackground: it does contain");
+                Document document = Jsoup.connect(url + "&q=" + url.replace("https://www.game.co.za/l/search/?t=", "")
+                        + "%3Arelevance").get();
+                Elements data = document.select("div.r-14lw9ot");
+
+                Log.d(TAG, "doInBackground: size " + document);
+                String image = data.select("div.r-1p0dtai").select("img").eq(0).attr("src");
+                String name = data.select("a.css-4rbku5").select("div").eq(0).text();
+                String price = data.select("div.css-901oao").eq(0).text().replace(",", ".")
+                        .replaceAll("[^\\d.]", "");
+
+                cleanItem(name, price, itemID, image);
+
+            } else {
+                Log.d(TAG, "doInBackground: it does contain");
+                Document document = Jsoup.connect(url).get();
+                Elements data = document.select("figure.item-product__content");
+
+                //Log.d(TAG, "doInBackground: size " + data);
+                int size = data.size();
+                for (int i = 0; i < size; i++) {
+                    String image = data.select("figure.item-product__content").select("img").eq(i).attr("src");
+                    String name = data.select("h3.item-product__name").select("a").eq(i).text();
+                    String price = data.select("div.special-price__price").select("span").eq(i).text().replaceAll("[^\\d.]", "");
+
+                    cleanItem(name, price, itemID, "https://www.shoprite.co.za/" + image);
+                }
+                groceryItemAdapter.notifyItemInserted(newItems.size() - 1);
+
+
+            }
+        } catch (IOException e) {
+            Log.e(TAG, "doInBackground: error " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private void setupItems() {
+        rvItems.setLayoutManager(new WrapContentLinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvItems.setHasFixedSize(true);
+        groceryItemAdapter = new GroceryItemSearchAdapter();
+        rvItems.setAdapter(groceryItemAdapter);
+
+        groceryItemAdapter.setOnItemClickListener(position -> {
+            Log.d(TAG, "setupShops: position " + position + " size " + newItems.size());
+            GroceryItem item = newItems.get(position);
+            groceryItemViewModel.insert(new GroceryItem(item.getName(), item.getPrice(), item.getImage(), item.getQuantity(), getIntent().getIntExtra("sID", 0)));
+
+            for (int i = 0; i < newItems.size(); i++) {
+                Log.d(TAG, "setupShops: true");
+                if (newItems.get(i).getQuantity() == item.getQuantity()) {
+                    newItems.remove(newItems.get(i));
+                    groceryItemAdapter.notifyItemRangeRemoved(0, i);
+                }
+            }
+
+        });
+
+        groceryItemAdapter.setGroceryItemSearchAdapter(this, newItems);
+
+    }
+
+
+    private void cleanItem(String name, String price, int itemID, String image) {
+        if (price.isEmpty()) {
+            price = "0.0";
+        }
+        Log.d(TAG, "doInBackground: Item ID: " + itemID);
+        Log.d(TAG, "doInBackground: name: " + name);
+        Log.d(TAG, "doInBackground: price: " + price.replaceAll("[^\\d.]", ""));
+        Log.d(TAG, "doInBackground: image: " + image);
+        newItems.add(new GroceryItem(name, Double.parseDouble(price.replace("R ", "").replaceAll("[^\\d.]", "")),
+                image, itemID, getIntent().getIntExtra("sID", 0)));
+    }
+
 }

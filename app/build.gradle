@@ -71,4 +71,7 @@ dependencies {
 
 
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.3'
+
+    implementation 'com.github.clans:fab:1.6.4'
+
 }

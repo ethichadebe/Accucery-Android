@@ -29,8 +29,8 @@ import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -68,44 +68,12 @@ public class GroceryListActivity extends AppCompatActivity {
         tvTotal = findViewById(R.id.tvTotal);
         ImageView ivShopLogo = findViewById(R.id.ivShopLogo);
         TextView tvShopName = findViewById(R.id.tvShopName);
-        FloatingActionButton fabAddShop = findViewById(R.id.fabAddShop);
+        FloatingActionButton fabAddItem = findViewById(R.id.fabAddItem);
         RelativeLayout rlClearList = findViewById(R.id.rlClearList);
         Glide.with(this).load(getIntent().getStringExtra("sImageLink")).placeholder(R.mipmap.ic_launcher).into(ivShopLogo);
 
-        TapTargetView.showFor(this,                 // `this` is an Activity
-                TapTarget.forView(findViewById(R.id.fabAddShop), "This is a target", "We have the best targets, believe me")
-                        // All options below are optional
-                        .outerCircleColor(R.color.primary_green)        // Specify a color for the outer circle
-                        .outerCircleAlpha(0.96f)                        // Specify the alpha amount for the outer circle
-                        .targetCircleColor(R.color.met_baseColor)       // Specify a color for the target circle
-                        .titleTextSize(20)                          // Specify the size (in sp) of the title text
-                        .titleTextColor(R.color.white)                  // Specify the color of the title text
-                        .descriptionTextSize(10)                    // Specify the size (in sp) of the description text
-                        .descriptionTextColor(R.color.Red)              // Specify the color of the description text
-                        .textColor(R.color.black)                       // Specify a color for both the title and description text
-                        .textTypeface(Typeface.SANS_SERIF)              // Specify a typeface for the text
-                        .dimColor(R.color.black)                        // If set, will dim behind the view with 30% opacity of the given color
-                        .drawShadow(true)                               // Whether to draw a drop shadow or not
-                        .cancelable(true)                         // Whether tapping outside the outer circle dismisses the view
-                        .tintTarget(true)                               // Whether to tint the target view's color
-                        .transparentTarget(true)                        // Specify whether the target is transparent (displays the content underneath)
-                        .targetRadius(60),                              // Specify the target radius (in dp)
-                new TapTargetView.Listener() {                          // The listener can listen for regular clicks, long clicks or cancels
-                    @Override
-                    public void onTargetClick(TapTargetView view) {
-                        super.onTargetClick(view);                      // This call is optional
-                        Intent intent = new Intent(GroceryListActivity.this, CircularShopActivity.class);
-                        intent.putExtra("sID", getIntent().getIntExtra("sID", 0));
-                        intent.putExtra("sSearchLink", getIntent().getStringExtra("sSearchLink"));
-                        intent.putExtra("sImageLink", getIntent().getStringExtra("sImageLink"));
-                        intent.putExtra("sName", getIntent().getStringExtra("sName"));
-                        startActivity(intent);
-                    }
-                });
-
-
         tvShopName.setText(getIntent().getStringExtra("sName"));
-        fabAddShop.setOnClickListener(view -> {
+        fabAddItem.setOnClickListener(view -> {
             Intent intent = new Intent(GroceryListActivity.this, CircularShopActivity.class);
             intent.putExtra("sID", getIntent().getIntExtra("sID", 0));
             intent.putExtra("sSearchLink", getIntent().getStringExtra("sSearchLink"));

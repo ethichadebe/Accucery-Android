@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         shopItemAdapter.setOnItemClickListener(position -> {
             if (shops.get(position).isActive()) {
                 Log.d(TAG, "onCreate: coins " +user.getCoins());
-                if (shops.get(position).isOpen() && user.getCoins() > 0) {
+                if (shops.get(position).isOpen()) {
                     Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
                     intent.putExtra("sID", shops.get(position).getId());
                     intent.putExtra("sName", shops.get(position).getName());

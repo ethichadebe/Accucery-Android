@@ -25,7 +25,6 @@ import java.util.List;
 public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopItemViewHolder> {
     private static final String TAG = "ShopItemAdapter";
     private Context context;
-    private int coins;
 
     private List<Shop> shops = new ArrayList<>();
     private OnItemClickListener listener;
@@ -64,10 +63,9 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
         }
     }
 
-    public void setShopAdapter(Context context, List<Shop> shops, int coins) {
+    public void setShopAdapter(Context context, List<Shop> shops) {
         this.context = context;
         this.shops = shops;
-        this.coins = coins;
     }
 
     @NonNull
@@ -103,12 +101,16 @@ public class ShopItemAdapter extends RecyclerView.Adapter<ShopItemAdapter.ShopIt
             holder.tvShopName.setTextColor(ContextCompat.getColor(context, R.color.textGrey));
         } else {
             holder.rlCard.setForeground(null);
-            if (!item.isOpen() && (coins == 0)) {
+            if (!item.isOpen()) {
                 holder.tvMessage.setVisibility(View.VISIBLE);
                 holder.tvMessage.setText("Shop locked, click to unlock");
                 Log.d(TAG, "onBindViewHolder: " + item.getName() + " is closed");
                 holder.tvShopName.setTextColor(ContextCompat.getColor(context, R.color.textGrey));
                 holder.rlCard.setForeground(ContextCompat.getDrawable(context, R.color.accent_yellow_opacity));
+            }else {
+                holder.tvMessage.setVisibility(View.GONE);
+                holder.tvShopName.setTextColor(ContextCompat.getColor(context, R.color.black));
+                holder.rlCard.setForeground(null);
             }
             Glide.with(context).load(item.getImage()).placeholder(R.mipmap.ic_launcher).into(holder.ivPreview);
         }

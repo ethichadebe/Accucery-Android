@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
+import com.ethichadebe.brittlefinal.layout_manager.WrapContentGridLayoutManager;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.local.model.User;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
@@ -68,13 +69,18 @@ public class MainActivity extends AppCompatActivity {
                     int rewardAmount = rewardItem.getAmount();
                     String rewardType = rewardItem.getType();
                     userViewModel.update(new User(0, "Mtho", 5));
+                    for (int i = 0; i < shops.size(); i++) {
+                        shops.get(i).setOpen(true);
+                        shopViewModel.update(shops.get(i));
+                    }
+                    dialog.dismiss();
                     Log.d(TAG, "popupAd: Reward amount -> " + rewardAmount + " Reward type -> " + rewardType);
                 });
             } else {
                 Log.d(TAG, "The rewarded ad wasn't ready yet.");
             }
         });
-        //dialog.getWindow().setBackgroundDrawable();
+
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -91,14 +97,14 @@ public class MainActivity extends AppCompatActivity {
         groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         RecyclerView rvShops = findViewById(R.id.rvShops);
-        rvShops.setLayoutManager(new GridLayoutManager(this, 2));
+        rvShops.setLayoutManager(new WrapContentGridLayoutManager(this, 2));
         rvShops.setHasFixedSize(true);
         final ShopItemAdapter shopItemAdapter = new ShopItemAdapter();
         rvShops.setAdapter(shopItemAdapter);
 
         shopItemAdapter.setOnItemClickListener(position -> {
             if (shops.get(position).isActive()) {
-                Log.d(TAG, "onCreate: coins " +user.getCoins());
+                Log.d(TAG, "onCreate: coins " + user.getCoins());
                 if (shops.get(position).isOpen()) {
                     Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
                     intent.putExtra("sID", shops.get(position).getId());
@@ -119,21 +125,19 @@ public class MainActivity extends AppCompatActivity {
         shopViewModel.getShops().observe(this, shops -> {
             this.shops = shops;
 
-            groceryItemViewModel.getAllGroceryItems().observe(this, groceryItems -> {
-                if (groceryItems.size() > 0) {
-                    Shop shop = null;
-                    for (int i = 0; i < shops.size(); i++) {
-                        Log.d(TAG, "onCreate: is open? " + shops.get(i).isOpen());
-                        if (shops.get(i).getId() == groceryItems.get(0).getShopId()) {
-                            this.shops.get(i).setOpen(true);
-                            shop = shops.get(i);
-                        } else {
-                            this.shops.get(i).setOpen(false);
+            userViewModel.getUser().observe(this, user -> {
+                this.user = user;
+                groceryItemViewModel.getAllGroceryItems().observe(this, groceryItems -> {
+                    if (groceryItems.size() > 0) {
+                        Shop shop = null;
+                        for (int i = 0; i < shops.size(); i++) {
+                            if (shops.get(i).getId() == groceryItems.get(0).getShopId()) {
+                                this.shops.get(i).setOpen(true);
+                                shop = shops.get(i);
+                            }
                         }
-                    }
 
-                    Shop finalShop = shop;
-                    userViewModel.getUser().observe(this, user -> {
+                        Shop finalShop = shop;
                         Log.d(TAG, "onCreate: coins " + user.getCoins());
                         if (!getIntent().getBooleanExtra("back", false) && user.getCoins() == 0) {
                             Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
@@ -146,12 +150,9 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                             overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
                         }
-                    });
-                }
-            });
-            userViewModel.getUser().observe(this, user -> {
-                this.user = user;
-                shopItemAdapter.setShopAdapter(MainActivity.this, shops, user.getCoins());
+                    }
+                });
+                shopItemAdapter.setShopAdapter(MainActivity.this, shops);
                 shopItemAdapter.notifyItemRangeInserted(0, shops.size() - 1);
             });
 

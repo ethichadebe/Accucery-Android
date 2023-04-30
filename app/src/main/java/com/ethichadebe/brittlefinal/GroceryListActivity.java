@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,8 +26,10 @@ import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
 import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
+import com.ethichadebe.brittlefinal.local.model.User;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
+import com.ethichadebe.brittlefinal.viewmodel.UserViewModel;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.github.clans.fab.FloatingActionButton;
@@ -52,6 +55,7 @@ public class GroceryListActivity extends AppCompatActivity {
 
     private GroceryItemViewModel groceryItemViewModel;
     private ShopViewModel shopViewModel;
+    private UserViewModel userViewModel;
     private List<GroceryItem> groceryItems = new ArrayList<>();
     private List<Shop> shops = new ArrayList<>();
 
@@ -93,6 +97,7 @@ public class GroceryListActivity extends AppCompatActivity {
         });
 
         groceryItemViewModel = new ViewModelProvider(this).get(GroceryItemViewModel.class);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
         shopViewModel.getShops().observe(this, shops1 -> {
             shops = shops1;
@@ -240,7 +245,6 @@ public class GroceryListActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
-        openCloseShop(false);
         Log.d(TAG, "onBindViewHolder: size " + groceryItems.size() + "----------------------------------------------------------------------------------");
         if (groceryItems.size() > 0) {
             openCloseShop(false);
@@ -262,11 +266,14 @@ public class GroceryListActivity extends AppCompatActivity {
                 shopViewModel.update(shop);
             }
         }
+
         Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
         Log.d(TAG, "onBindViewHolder: size " + groceryItems.size() + "----------------------------------------------------------------------------------");
-        if (groceryItems.size() > 0) {
-            openCloseShop(false);
-        }
+        userViewModel.getUser().observe(this, user -> {
+            if (groceryItems.size() > 0 && user.getCoins() == 0) {
+                openCloseShop(false);
+            }
+        });
         intent.putExtra("back", true);
         startActivity(intent);
     }

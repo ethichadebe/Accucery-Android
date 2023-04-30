@@ -1,5 +1,8 @@
 package com.ethichadebe.brittlefinal;
 
+import static com.ethichadebe.brittlefinal.MainActivity.BACK;
+import static com.ethichadebe.brittlefinal.MainActivity.COMPARE;
+
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -73,9 +76,19 @@ public class GroceryListActivity extends AppCompatActivity {
         ImageView ivShopLogo = findViewById(R.id.ivShopLogo);
         TextView tvShopName = findViewById(R.id.tvShopName);
         FloatingActionButton fabAddItem = findViewById(R.id.fabAddItem);
+        FloatingActionButton fabCompareList = findViewById(R.id.fabCompareList);
         RelativeLayout rlClearList = findViewById(R.id.rlClearList);
         Glide.with(this).load(getIntent().getStringExtra("sImageLink")).placeholder(R.mipmap.ic_launcher).into(ivShopLogo);
 
+        fabCompareList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
+                intent.putExtra("back", COMPARE);
+                startActivity(intent);
+
+            }
+        });
         tvShopName.setText(getIntent().getStringExtra("sName"));
         fabAddItem.setOnClickListener(view -> {
             Intent intent = new Intent(GroceryListActivity.this, CircularShopActivity.class);
@@ -249,7 +262,7 @@ public class GroceryListActivity extends AppCompatActivity {
         if (groceryItems.size() > 0) {
             openCloseShop(false);
         }
-        intent.putExtra("back", true);
+        intent.putExtra("back", BACK);
         startActivity(intent);
     }
 
@@ -267,14 +280,14 @@ public class GroceryListActivity extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
         Log.d(TAG, "onBindViewHolder: size " + groceryItems.size() + "----------------------------------------------------------------------------------");
         userViewModel.getUser().observe(this, user -> {
             if (groceryItems.size() > 0 && user.getCoins() == 0) {
                 openCloseShop(false);
             }
         });
-        intent.putExtra("back", true);
+        Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
+        intent.putExtra("back", BACK);
         startActivity(intent);
     }
 

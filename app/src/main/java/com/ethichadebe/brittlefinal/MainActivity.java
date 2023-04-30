@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
             userViewModel.getUser().observe(this, user -> {
                 this.user = user;
+
                 groceryItemViewModel.getAllGroceryItems().observe(this, groceryItems -> {
                     if (groceryItems.size() > 0) {
                         Shop shop = null;
@@ -169,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Shop finalShop = shop;
                         Log.d(TAG, "onCreate: coins " + user.getCoins());
-                        if (getIntent().getIntExtra("back", 0) == BACK && user.getCoins() == 0) {
+                        if (getIntent().getIntExtra("back", 0) != BACK && user.getCoins() == 0) {
                             Intent intent = new Intent(MainActivity.this, GroceryListActivity.class);
                             assert finalShop != null;
                             intent.putExtra("sID", finalShop.getId());
@@ -271,11 +272,13 @@ public class MainActivity extends AppCompatActivity {
                 Elements data = document.select("div.product-list__item");
 
                 Log.d(TAG, "doInBackground: size " + document);
-                String image = data.select("div.product--image").select("img").eq(0).attr("src");
-                String name = data.select("div.product-card__name").select("a").eq(0).text();
-                String price = data.select("div.product__price").select("strong.price").eq(0).text().replaceAll("[^\\d.]", "");
+                for (int i = 0; i < data.size(); i++) {
+                    String image = data.select("div.product--image").select("img").eq(i).attr("src");
+                    String name = data.select("div.product-card__name").select("a").eq(i).text();
+                    String price = data.select("div.product__price").select("strong.price").eq(i).text().replaceAll("[^\\d.]", "");
 
-                cleanItem(name, price, itemID, image);
+                    cleanItem(name, price, itemID, image);
+                }
 
             } else if (url.contains("https://www.makro.co.za/search/?text=")) {
                 Log.d(TAG, "doInBackground: it does contain");
@@ -378,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Shop... shops) {
             if (groceryItems.size() > 0) {
-                scrapeData("https://www.shoprite.co.za/search/all?q=" + groceryItems.get(0).getName(), groceryItems.get(0).getItemId());
+                scrapeData("https://www.pnp.co.za/pnpstorefront/pnp/en/search/?text=" + groceryItems.get(0).getName(), groceryItems.get(0).getItemId());
             }
             return null;
         }

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -367,4 +368,28 @@ public class MainActivity extends AppCompatActivity {
                 image, itemID, getIntent().getIntExtra("sID", 0)));
     }
 
+    public class InsertShopAsyncTask extends AsyncTask<Shop, Void, Void> {
+        private final List<GroceryItem> groceryItems;
+
+        public InsertShopAsyncTask(List<GroceryItem> groceryItems) {
+            this.groceryItems = groceryItems;
+        }
+
+        @Override
+        protected Void doInBackground(Shop... shops) {
+            if (groceryItems.size() > 0) {
+                scrapeData("https://www.shoprite.co.za/search/all?q=" + groceryItems.get(0).getName(), groceryItems.get(0).getItemId());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            if (groceryItems.size() > 0) {
+                groceryItems.remove(0);
+                new InsertShopAsyncTask(groceryItems).execute();
+            }
+        }
+    }
 }

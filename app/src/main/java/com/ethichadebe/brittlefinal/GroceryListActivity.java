@@ -7,7 +7,6 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,15 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.ethichadebe.brittlefinal.adapters.GroceryItemAdapter;
-import com.ethichadebe.brittlefinal.adapters.ShopItemAdapter;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
-import com.ethichadebe.brittlefinal.local.model.User;
 import com.ethichadebe.brittlefinal.viewmodel.GroceryItemViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.ShopViewModel;
 import com.ethichadebe.brittlefinal.viewmodel.UserViewModel;
-import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetView;
 import com.github.clans.fab.FloatingActionButton;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -55,7 +49,6 @@ public class GroceryListActivity extends AppCompatActivity {
     private TextView tvTotal;
     private RecyclerView rvItems;
     private GroceryItemAdapter groceryItemAdapter;
-
     private GroceryItemViewModel groceryItemViewModel;
     private ShopViewModel shopViewModel;
     private UserViewModel userViewModel;
@@ -80,16 +73,15 @@ public class GroceryListActivity extends AppCompatActivity {
         RelativeLayout rlClearList = findViewById(R.id.rlClearList);
         Glide.with(this).load(getIntent().getStringExtra("sImageLink")).placeholder(R.mipmap.ic_launcher).into(ivShopLogo);
 
-        fabCompareList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
-                intent.putExtra("back", COMPARE);
-                startActivity(intent);
-
-            }
-        });
         tvShopName.setText(getIntent().getStringExtra("sName"));
+
+        fabCompareList.setOnClickListener(view -> {
+            Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
+            intent.putExtra("back", COMPARE);
+            startActivity(intent);
+
+        });
+
         fabAddItem.setOnClickListener(view -> {
             Intent intent = new Intent(GroceryListActivity.this, CircularShopActivity.class);
             intent.putExtra("sID", getIntent().getIntExtra("sID", 0));

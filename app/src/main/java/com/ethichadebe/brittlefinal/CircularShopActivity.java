@@ -74,7 +74,7 @@ public class CircularShopActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 lavLoading.setVisibility(View.VISIBLE);
                 if (charSequence.length() > 3) {
-                    setupShops();
+                    setupItems();
 
                     timer.cancel();
                     timer = new Timer();
@@ -151,7 +151,7 @@ public class CircularShopActivity extends AppCompatActivity {
         circularReveal.start();
     }
 
-    private void setupShops() {
+    private void setupItems() {
         rvGroceryItemSearch.setLayoutManager(new LinearLayoutManager(this));
         rvGroceryItemSearch.setHasFixedSize(true);
         groceryItemAdapter = new GroceryItemSearchAdapter();

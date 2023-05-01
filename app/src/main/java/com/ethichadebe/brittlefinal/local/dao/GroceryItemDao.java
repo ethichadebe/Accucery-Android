@@ -16,13 +16,19 @@ public interface GroceryItemDao {
 
     /**
      * Insert Grocery Item to local database
+     *
      * @param gi Grocery Item to be inserted
      */
     @Insert
     void insert(GroceryItem gi);
 
+    @Query("INSERT OR REPLACE INTO GroceryItemsTable (name, price, image, shopId) values (:name, :price, :image, :shopId);")
+    void insert(String name, double price, String image, int shopId);
+
+
     /**
      * Update Grocery Item to local database
+     *
      * @param gi Grocery Item to be updated
      */
     @Update
@@ -30,6 +36,7 @@ public interface GroceryItemDao {
 
     /**
      * Delete Grocery Item to local database
+     *
      * @param gi Grocery Item to be deleted
      */
     @Delete
@@ -37,6 +44,7 @@ public interface GroceryItemDao {
 
     @Query("SELECT * FROM GroceryItemsTable WHERE shopId = :shopId ORDER BY checked")
     LiveData<List<GroceryItem>> getShopItems(int shopId);
+
     @Query("SELECT * FROM GroceryItemsTable")
     LiveData<List<GroceryItem>> getAllItems();
 

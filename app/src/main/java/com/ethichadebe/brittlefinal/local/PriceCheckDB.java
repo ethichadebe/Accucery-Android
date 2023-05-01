@@ -17,7 +17,7 @@ import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.local.model.User;
 
-@Database(entities = {Shop.class, GroceryItem.class, User.class}, version = 63)
+@Database(entities = {Shop.class, GroceryItem.class, User.class}, version = 61)
 public abstract class PriceCheckDB extends RoomDatabase {
     private static final String TAG = "PriceCheckDB";
 

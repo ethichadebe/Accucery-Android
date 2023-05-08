@@ -77,6 +77,8 @@ public class GroceryListActivity extends AppCompatActivity {
 
         fabCompareList.setOnClickListener(view -> {
             Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
+            intent.putParcelableArrayListExtra("task_list", new ArrayList<>(groceryItems));
+            intent.putExtra("groceryItem", groceryItems.get(0));
             intent.putExtra("back", COMPARE);
             startActivity(intent);
 

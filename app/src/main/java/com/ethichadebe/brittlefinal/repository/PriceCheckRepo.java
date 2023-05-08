@@ -36,10 +36,14 @@ public class PriceCheckRepo {
         groceryItemDao = db.groceryItemDao();
     }
 
+    /*public void insertGroceryItem(String name, double price, String image,boolean checked, int shopId) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> groceryItemDao.insert(name,price,image,checked,shopId));
+
+    }*/
     public void insertGroceryItem(GroceryItem groceryItem) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> groceryItemDao.insert(groceryItem));
-
     }
 
     public void updateGroceryItem(GroceryItem groceryItem) {

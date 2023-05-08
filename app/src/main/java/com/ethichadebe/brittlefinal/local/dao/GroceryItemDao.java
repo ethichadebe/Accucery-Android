@@ -9,22 +9,17 @@ import androidx.room.Update;
 
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
 public interface GroceryItemDao {
 
-    /**
-     * Insert Grocery Item to local database
-     *
-     * @param gi Grocery Item to be inserted
-     */
+    /*@Query("INSERT OR REPLACE INTO GroceryItemsTable (name, price, image, checked,active, shopId) values (:name, :price, :image, :checked,:active, :shopId);")
+    void insert(String name, double price, String image, boolean checked, boolean active, int shopId);*/
+
     @Insert
-    void insert(GroceryItem gi);
-
-    @Query("INSERT OR REPLACE INTO GroceryItemsTable (name, price, image, shopId) values (:name, :price, :image, :shopId);")
-    void insert(String name, double price, String image, int shopId);
-
+    void insert(GroceryItem item);
 
     /**
      * Update Grocery Item to local database

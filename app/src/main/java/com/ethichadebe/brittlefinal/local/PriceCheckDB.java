@@ -17,7 +17,7 @@ import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.local.model.Shop;
 import com.ethichadebe.brittlefinal.local.model.User;
 
-@Database(entities = {Shop.class, GroceryItem.class, User.class}, version = 61)
+@Database(entities = {Shop.class, GroceryItem.class, User.class}, version = 56)
 public abstract class PriceCheckDB extends RoomDatabase {
     private static final String TAG = "PriceCheckDB";
 
@@ -61,6 +61,7 @@ public abstract class PriceCheckDB extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            Log.d(TAG, "doInBackground: working" );
             shopDao.insert(new Shop(1, "CHECKERS", "https://theflamingo.co.za/wp-content/uploads/2018/11/Checkers-1.png",
                     "https://www.checkers.co.za/search/all?q=",true,true));
             shopDao.insert(new Shop(2, "SHOPRITE", "https://pbs.twimg.com/profile_images/1136175013009211392/Rf69JN5r_400x400.jpg",

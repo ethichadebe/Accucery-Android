@@ -46,6 +46,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
     public static final int BACK = 10;
@@ -152,6 +154,18 @@ public class MainActivity extends AppCompatActivity {
                 this.user = user;
 
                 groceryItemViewModel.getAllGroceryItems().observe(this, groceryItems -> {
+
+                    for (GroceryItem item : groceryItems) {
+                        Log.d(TAG, "----------------------------------------------------------------------------------------------------------------------------------------");
+                        Log.d(TAG, "onCreate: item ID " + item.getItemId());
+                        Log.d(TAG, "onCreate: item name " + item.getName());
+                        Log.d(TAG, "onCreate: item quantity " + item.getQuantity());
+                        Log.d(TAG, "onCreate: item image " + item.getImage());
+                        Log.d(TAG, "onCreate: item price " + item.getPrice());
+                        Log.d(TAG, "onCreate: item shop ID " + item.getShopId());
+                    }
+
+                    Log.d(TAG, "onCreate: size " + groceryItems.size());
                     if (groceryItems.size() > 0) {
                         Shop shop = null;
                         for (int i = 0; i < shops.size(); i++) {
@@ -172,14 +186,22 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("sImageLink", finalShop.getImage());
                             intent.putExtra("sImageLink", finalShop.getImage());
                             startActivity(intent);
-                            overridePendingTransition(R.anim.slide_up, R.anim.no_animation); // remember to put it after startActivity, if you put it to above, animation will not working
+                            overridePendingTransition(R.anim.slide_up, R.anim.no_animation);
+                            // remember to put it after startActivity, if you put it to above, animation will not working
                         } else if ((getIntent().getIntExtra("back", 0) == COMPARE)) {
                             tvShopName.setText(getIntent().getStringExtra("sName"));
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                            newItems = new ArrayList<>();
                             Timer timer = new Timer();
                             List<Shop> shopsTemp = this.shops;
-                            scheduleItemSearch(shopsTemp, timer, groceryItems);
+
+                            List<GroceryItem> items = getIntent().getParcelableArrayListExtra("task_list");
+                            if (items.size() > 0) {
+                                Log.d(TAG, "onCreate: size: " + items.get(0).getName());
+                                setupItems(shops, items);
+                                scheduleItemSearch(shopsTemp, timer, items);
+                            } else {
+                                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                            }
                         }
                     }
                 });
@@ -215,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setupItems(List<GroceryItem> items) {
+    private void setupItems(List<Shop> shops, List<GroceryItem> comparedItems) {
         runOnUiThread(() -> {
             rvItems.setLayoutManager(new WrapContentLinearLayoutManager(getApplicationContext()));
             rvItems.setHasFixedSize(true);
@@ -223,13 +245,29 @@ public class MainActivity extends AppCompatActivity {
             rvItems.setAdapter(groceryItemAdapter);
 
             groceryItemAdapter.setOnItemClickListener(position -> {
-                groceryItemViewModel.insert(items.get(position));
+                groceryItemViewModel.insert(newItems.get(position));
+                //groceryItemViewModel.insert(newItems.get(position));
+
+                Log.d(TAG, "setupItems: name comparing: " + comparedItems.get(0).getName());
+                Log.d(TAG, "setupItems: name clicked: " + newItems.get(position).getName());
+                Log.d(TAG, "setupItems: position: " + position);
+                Log.d(TAG, "setupItems: size: " + comparedItems.size());
+
+                comparedItems.remove(0);
+                ExecutorService executor = Executors.newSingleThreadExecutor();
+                executor.execute(() -> {
+                    newItems = new ArrayList<>();
+                    if (comparedItems.size() > 0) {
+                        scrapeData(shops, comparedItems);
+                    }
+
+                });
+
             });
         });
     }
 
     private void scrapeData(List<Shop> shops, List<GroceryItem> items) {
-        setupItems(newItems);
 
         GroceryItem item = items.get(0);
 
@@ -238,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
             ImageView ivItem;
             TextView tvName, tvPrice;
 
+            Log.d(TAG, "scrapeData: name " + item.getName());
             ivItem = findViewById(R.id.ivItem);
             tvPrice = findViewById(R.id.tvPrice);
             tvName = findViewById(R.id.tvName);
@@ -261,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
                     String name = data.select("div.item-name").eq(i).text();
                     String price = data.select("div.product-price").select("div.currentPrice").eq(i).text().replaceAll("[^\\d.]", "");
 
-                    cleanItem(name, price, image, item.getItemId(), i);
+                    cleanItem(name, price, image, shops.get(SHOP).getId());
                 }
                 if (newItems.size() > 0) {
                     groceryItemAdapter.notifyItemRangeInserted(newItems.size() - 1 - data.size(), newItems.size() - 1);
@@ -278,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
                     String name = data.select("div.product-card__name").select("a").eq(i).text();
                     String price = data.select("div.product__price").select("strong.price").eq(i).text().replaceAll("[^\\d.]", "");
 
-                    cleanItem(name, price, image, item.getItemId(), i);
+                    cleanItem(name, price, image, shops.get(SHOP).getId());
                 }
 
                 if (newItems.size() > 0) {
@@ -297,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
                             data.select("p.price").select("span.mak-product__cents").eq(i).text().replaceAll("[^\\d.]", "");
 
                     Log.d(TAG, "scrapeData: price " + price);
-                    cleanItem(name, price, image, item.getItemId(), i);
+                    cleanItem(name, price, image, shops.get(SHOP).getId());
                 }
 
                 if (newItems.size() > 0) {
@@ -316,7 +355,7 @@ public class MainActivity extends AppCompatActivity {
                     String price = data.select("div.css-901oao").eq(i).text().replace(",", ".")
                             .replaceAll("[^\\d.]", "");
 
-                    cleanItem(name, price, image, item.getItemId(), i);
+                    cleanItem(name, price, image, shops.get(SHOP).getId());
                 }
 
                 if (newItems.size() > 0) {
@@ -334,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
                     String name = data.select("h3.item-product__name").select("a").eq(i).text();
                     String price = data.select("div.special-price__price").select("span").eq(i).text().replaceAll("[^\\d.]", "");
 
-                    cleanItem(name, price, "https://www.shoprite.co.za/" + image, item.getItemId(), i);
+                    cleanItem(name, price, "https://www.shoprite.co.za/" + image, shops.get(SHOP).getId());
                 }
                 if (newItems.size() > 0) {
                     groceryItemAdapter.notifyItemRangeInserted(newItems.size() - 1 - data.size(), newItems.size() - 1);
@@ -349,16 +388,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void cleanItem(String name, String price, String image, int itemID, int i) {
+    private void cleanItem(String name, String price, String image, int sID) {
         if (price.isEmpty()) {
             price = "0.0";
         }
-        Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
+        Log.d(TAG, "doInBackground: shop ID: " + sID + "------------------------------------------------------------------");
         Log.d(TAG, "doInBackground: name: " + name);
         Log.d(TAG, "doInBackground: price: " + price.replaceAll("[^\\d.]", ""));
         Log.d(TAG, "doInBackground: image: " + image);
-        newItems.add(new GroceryItem(name, Double.parseDouble(price.replace("R ", "").replaceAll("[^\\d.]", "")),
-                image, itemID, getIntent().getIntExtra("sID", 0)));
+        newItems.add(new GroceryItem(name, Double.parseDouble(price.replace("R ", "").replaceAll("[^\\d.]", "")), image, sID));
         groceryItemAdapter.setGroceryItemSearchAdapter(this, newItems);
     }
 
@@ -372,7 +410,14 @@ public class MainActivity extends AppCompatActivity {
                 new TimerTask() {
                     @Override
                     public void run() {
-                        new InsertShopAsyncTask(groceryItems, shops).execute();
+                        ExecutorService executor = Executors.newSingleThreadExecutor();
+                        executor.execute(() -> {
+                            newItems = new ArrayList<>();
+                            if (groceryItems.size() > 0) {
+                                scrapeData(shops, groceryItems);
+                            }
+
+                        });
                     }
                 },
                 DELAY
@@ -382,7 +427,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-     //   bottomSheetBehavior.
+        //   bottomSheetBehavior.
         finishAffinity();
     }
 
@@ -391,7 +436,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    public class InsertShopAsyncTask extends AsyncTask<Shop, Void, Void> {
+    /*public class InsertShopAsyncTask extends AsyncTask<Shop, Void, Void> {
         private final List<GroceryItem> groceryItems;
         private final List<Shop> shops;
 
@@ -402,19 +447,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Shop... shops) {
+            newItems = new ArrayList<>();
             if (groceryItems.size() > 0) {
                 scrapeData(this.shops, groceryItems);
             }
             return null;
         }
-
-        @Override
-        protected void onPostExecute(Void unused) {
-            super.onPostExecute(unused);
-            /*if (groceryItems.size() > 0) {
-                groceryItems.remove(0);
-                new InsertShopAsyncTask(groceryItems, shops).execute();
-            }*/
-        }
-    }
+    }*/
 }

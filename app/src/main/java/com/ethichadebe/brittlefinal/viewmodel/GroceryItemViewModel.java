@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData;
 import com.ethichadebe.brittlefinal.local.model.GroceryItem;
 import com.ethichadebe.brittlefinal.repository.PriceCheckRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroceryItemViewModel extends AndroidViewModel {
@@ -21,11 +22,15 @@ public class GroceryItemViewModel extends AndroidViewModel {
         repository = new PriceCheckRepo(application);
     }
 
-    public void insert(GroceryItem groceryItem){
+    /*public void insert(String name, double price, String image, boolean checked, int shopId){
         repository.setGroceryItems();
-        repository.insertGroceryItem(groceryItem);
-    }
+        repository.insertGroceryItem(name,price,image,checked,shopId);
+    }*/
 
+    public void insert(GroceryItem item){
+        repository.setGroceryItems();
+        repository.insertGroceryItem(item);
+    }
     public void update(GroceryItem groceryItem){
         Log.d(TAG, "update: Updated");
         repository.updateGroceryItem(groceryItem);

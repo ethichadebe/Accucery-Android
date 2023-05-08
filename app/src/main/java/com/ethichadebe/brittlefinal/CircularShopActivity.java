@@ -160,7 +160,8 @@ public class CircularShopActivity extends AppCompatActivity {
         groceryItemAdapter.setOnItemClickListener(position -> {
             Log.d(TAG, "setupShops: position " + position + " size " + items.size());
             GroceryItem item = items.get(position);
-            groceryItemViewModel.insert(new GroceryItem(item.getName(), item.getPrice(), item.getImage(), getIntent().getIntExtra("sID", 0)));
+            item.setShopId(getIntent().getIntExtra("sID", 0));
+            groceryItemViewModel.insert(item);
             etSearch.setText("");
 
             Intent intent = new Intent(CircularShopActivity.this, GroceryListActivity.class);

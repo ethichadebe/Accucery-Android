@@ -239,29 +239,13 @@ public class GroceryListActivity extends AppCompatActivity {
     }
 
     public void back(View view) {
-        for (Shop shop : shops) {
-            if (shop.getId() == getIntent().getIntExtra("sID", 0)) {
-                shop.setItemsCount(groceryItems.size());
-                double totalPrice = 0;
-                for (GroceryItem groceryItem : groceryItems) {
-                    totalPrice += (groceryItem.getPrice() * groceryItem.getQuantity());
-                }
-                shop.setPrice(totalPrice);
-                shopViewModel.update(shop);
-            }
-        }
-
+        back();
         Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
-        Log.d(TAG, "onBindViewHolder: size " + groceryItems.size() + "----------------------------------------------------------------------------------");
-        if (groceryItems.size() > 0) {
-            openCloseShop(false);
-        }
         intent.putExtra("back", BACK);
         startActivity(intent);
     }
 
-    @Override
-    public void onBackPressed() {
+    private void back(){
         for (Shop shop : shops) {
             if (shop.getId() == getIntent().getIntExtra("sID", 0)) {
                 shop.setItemsCount(groceryItems.size());
@@ -280,6 +264,11 @@ public class GroceryListActivity extends AppCompatActivity {
                 openCloseShop(false);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        back();
         Intent intent = new Intent(GroceryListActivity.this, MainActivity.class);
         intent.putExtra("back", BACK);
         startActivity(intent);

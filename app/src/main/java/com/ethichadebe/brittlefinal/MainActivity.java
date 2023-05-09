@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
                 groceryItemViewModel.getAllGroceryItems().observe(this, groceryItems -> {
 
-                    for (GroceryItem item : groceryItems) {
+                    /*for (GroceryItem item : groceryItems) {
                         Log.d(TAG, "----------------------------------------------------------------------------------------------------------------------------------------");
                         Log.d(TAG, "onCreate: item ID " + item.getItemId());
                         Log.d(TAG, "onCreate: item name " + item.getName());
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "onCreate: item image " + item.getImage());
                         Log.d(TAG, "onCreate: item price " + item.getPrice());
                         Log.d(TAG, "onCreate: item shop ID " + item.getShopId());
-                    }
+                    }*/
 
                     Log.d(TAG, "onCreate: size " + groceryItems.size());
                     if (groceryItems.size() > 0) {
@@ -246,7 +246,6 @@ public class MainActivity extends AppCompatActivity {
 
             groceryItemAdapter.setOnItemClickListener(position -> {
                 groceryItemViewModel.insert(newItems.get(position));
-                //groceryItemViewModel.insert(newItems.get(position));
 
                 Log.d(TAG, "setupItems: name comparing: " + comparedItems.get(0).getName());
                 Log.d(TAG, "setupItems: name clicked: " + newItems.get(position).getName());
@@ -257,10 +256,6 @@ public class MainActivity extends AppCompatActivity {
                 ExecutorService executor = Executors.newSingleThreadExecutor();
                 executor.execute(() -> {
                     newItems = new ArrayList<>();
-                    if (comparedItems.size() > 0) {
-                        scrapeData(shops, comparedItems);
-                    }
-
                 });
 
             });
@@ -392,10 +387,10 @@ public class MainActivity extends AppCompatActivity {
         if (price.isEmpty()) {
             price = "0.0";
         }
-        Log.d(TAG, "doInBackground: shop ID: " + sID + "------------------------------------------------------------------");
+        /*Log.d(TAG, "doInBackground: shop ID: " + sID + "------------------------------------------------------------------");
         Log.d(TAG, "doInBackground: name: " + name);
         Log.d(TAG, "doInBackground: price: " + price.replaceAll("[^\\d.]", ""));
-        Log.d(TAG, "doInBackground: image: " + image);
+        Log.d(TAG, "doInBackground: image: " + image);*/
         newItems.add(new GroceryItem(name, Double.parseDouble(price.replace("R ", "").replaceAll("[^\\d.]", "")), image, sID));
         groceryItemAdapter.setGroceryItemSearchAdapter(this, newItems);
     }

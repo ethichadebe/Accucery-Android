@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void scrapeData(List<Shop> shops, List<GroceryItem> items) {
+    private void scrapeData(List<Shop> shops, List<GroceryItem> items, int SHOP) {
 
         GroceryItem item = items.get(0);
 
@@ -282,7 +282,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         try {
-            int SHOP = 2;
             Log.d(TAG, "doInBackground: trying....: " + shops.get(SHOP).getSearchLink() + item.getName());
             if (shops.get(SHOP).getSearchLink().contains("https://www.pnp.co.za/pnpstorefront/pnp/en/search/?text=")) {
                 Document document = Jsoup.connect(shops.get(SHOP).getSearchLink() + item.getName()).get();
@@ -400,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
         timer.cancel();
         timer = new Timer();
         // Milliseconds
-        long DELAY = 2000;
+        long DELAY = 500;
         timer.schedule(
                 new TimerTask() {
                     @Override
@@ -409,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
                         executor.execute(() -> {
                             newItems = new ArrayList<>();
                             if (groceryItems.size() > 0) {
-                                scrapeData(shops, groceryItems);
+                                scrapeData(shops, groceryItems, 2);
                             }
 
                         });
@@ -430,23 +429,4 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
     }
-
-    /*public class InsertShopAsyncTask extends AsyncTask<Shop, Void, Void> {
-        private final List<GroceryItem> groceryItems;
-        private final List<Shop> shops;
-
-        public InsertShopAsyncTask(List<GroceryItem> groceryItems, List<Shop> shops) {
-            this.groceryItems = groceryItems;
-            this.shops = shops;
-        }
-
-        @Override
-        protected Void doInBackground(Shop... shops) {
-            newItems = new ArrayList<>();
-            if (groceryItems.size() > 0) {
-                scrapeData(this.shops, groceryItems);
-            }
-            return null;
-        }
-    }*/
 }

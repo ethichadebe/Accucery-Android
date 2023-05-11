@@ -1,0 +1,707 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+MERGED from [com.google.android.material:material:1.6.1] C:\Users\ethic\.gradle\caches\transforms-3\1f5b68807f74f1f76df3b67d19ddfdc5\transformed\material-1.6.1\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ethic\.gradle\caches\transforms-3\4b929ab10fd806b94f86bd527f89dd0a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\ethic\.gradle\caches\transforms-3\a7db14cdcc79f92c067468d5689f23e5\transformed\lottie-5.2.0\AndroidManifest.xml:2:1-11:12
+MERGED from [it.xabaras.android:recyclerview-swipedecorator:1.4] C:\Users\ethic\.gradle\caches\transforms-3\6fe12108bc2caf43fa6649f9ba361432\transformed\recyclerview-swipedecorator-1.4\AndroidManifest.xml:2:1-9:12
+MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] C:\Users\ethic\.gradle\caches\transforms-3\9b51dfeda91e27526f88b87016e7f76f\transformed\taptargetview-1.13.3\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.appcompat:appcompat-resources:1.5.1] C:\Users\ethic\.gradle\caches\transforms-3\3848a08fd02e94f3dd819ae5dfd4231b\transformed\appcompat-resources-1.5.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.5.1] C:\Users\ethic\.gradle\caches\transforms-3\2c6b57251dffc0c864c49803d7fb8849\transformed\appcompat-1.5.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\5746758fe4fe6d736fbc196377e5d59a\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.gms:play-services-ads:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\b85aa4975808512a64d3472a59b01130\transformed\play-services-ads-22.0.0\AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:17:1-80:12
+MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:17:1-145:12
+MERGED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:17:1-32:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1f624a3ec658e1a90eb17b72d8f4e5aa\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.intuit.sdp:sdp-android:1.0.6] C:\Users\ethic\.gradle\caches\transforms-3\f48c91444e7bb92856c25212ed0fcba8\transformed\sdp-android-1.0.6\AndroidManifest.xml:2:1-11:12
+MERGED from [com.intuit.ssp:ssp-android:1.0.6] C:\Users\ethic\.gradle\caches\transforms-3\70cade0e29784ebab98932d503fdb269\transformed\ssp-android-1.0.6\AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\e849069f7edfadb7efe2803d9ba22da4\transformed\glide-4.11.0\AndroidManifest.xml:2:1-12:12
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\ethic\.gradle\caches\transforms-3\b8dbe36bbc3bdfb10d83b486fc4098fd\transformed\fab-1.6.4\AndroidManifest.xml:2:1-14:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\066f493cb7d990cafa5df1ece5ebc364\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-ads-base:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\13d067ac7b90f0b5aa9c43743b7339e8\transformed\play-services-ads-base-22.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] C:\Users\ethic\.gradle\caches\transforms-3\f30521878fcfecb4a257335a46902f0f\transformed\user-messaging-platform-2.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1b39db6ef52d9381ba5b5c824e056e2d\transformed\play-services-ads-identifier-18.0.0\AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ethic\.gradle\caches\transforms-3\fe68d402c54a16f5eaba8a7888e3feb8\transformed\play-services-appset-16.0.1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc2b367f149bb3b019e76f79b6bc95b\transformed\play-services-base-18.0.0\AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\ethic\.gradle\caches\transforms-3\a2a97e397b6125163de0ff510f9b7531\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.android.gms:play-services-measurement-base:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\c05fbdc2da84f118c8dbf55fd49eb4de\transformed\play-services-measurement-base-20.1.2\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\732ce7e397b7f0acc6a87a515c0637c3\transformed\play-services-basement-18.0.0\AndroidManifest.xml:16:1-26:12
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\ethic\.gradle\caches\transforms-3\de00681d1b149848a0dab915e4ae741a\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.5.1] C:\Users\ethic\.gradle\caches\transforms-3\16e038647d04f4e0cfc2845e61fef512\transformed\activity-1.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\c49cd9f9e70a62c0cfb6a9c057db283b\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\bf2a6d46c92d2b1b015ce44f75d834ab\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\f4e7914e58ba093567760f9d22f3626d\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\ce8e9fef21b12750b78ea8e6de235acd\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\1c92f331f5dd426397f158863edbf1fa\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.8.0] C:\Users\ethic\.gradle\caches\transforms-3\dd91ea04091dd2fa0d2b0757339de812\transformed\core-ktx-1.8.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\7100f70982d85b96c46f0496b7becc56\transformed\emoji2-views-helper-1.2.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\7bc7a5b48c08c285c7816e5896abfab2\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\8255cf8f73e0ec2d884b3aa8102e6cd4\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\cf7ed2c7db25c1ed83dad3026c9a2688\transformed\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\5d6dbb7a2526cb46a310f1fa772a8328\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\c17573ade799759c56baf884a28f8de6\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] C:\Users\ethic\.gradle\caches\transforms-3\606b8924aff98f7d9ce52a03c79fa897\transformed\recyclerview-1.2.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.browser:browser:1.4.0] C:\Users\ethic\.gradle\caches\transforms-3\fa3f0ed0febe7c82afcf07656338649b\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\064f6efcf72e45025c96c41bb0313fb3\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\4432a2afdd19fc85814143f134bfa94c\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.8.0] C:\Users\ethic\.gradle\caches\transforms-3\f8ca33f57cc610a0b1ed31d0cc4084bb\transformed\core-1.8.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\2365384ad980976d11b4bd9d48d00571\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\0adedd3d747534f708d297f0012ca633\transformed\lifecycle-service-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\34be6e117e2e06ff01a6121271053230\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\7180b5a3b50cad88028eaa81f8b17fa7\transformed\savedstate-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc85102e7151d173892b0265fd52a81\transformed\lifecycle-livedata-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\66eb2c428070a7989cc3e53427124072\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\ethic\.gradle\caches\transforms-3\94c1e08774be1a91ac7aa4bf2cb72cb3\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.sqlite:sqlite-framework:2.3.0-alpha03] C:\Users\ethic\.gradle\caches\transforms-3\f34e8b44c9b4de08d68268911de091d1\transformed\sqlite-framework-2.3.0-alpha03\AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.sqlite:sqlite:2.3.0-alpha03] C:\Users\ethic\.gradle\caches\transforms-3\397c01a35e59f79250446fd1514dbaac\transformed\sqlite-2.3.0-alpha03\AndroidManifest.xml:17:1-23:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\5e3b9348329b5c0c4e5e36ce6c2728e3\transformed\gifdecoder-4.11.0\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\6435d5cdecbbbfdbd508d58dd4522a8e\transformed\exifinterface-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\e6dc352309f6d773a89fb4d56f13b49d\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\be6d87ce73c1cf72008410442969a421\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\4b621581b14be943fef7e9025808a5ef\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\fe726d578f90e61f945e51ad06a99ee0\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\dc95db927df936e003ea23f2b843af5c\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\4a128805ae54552b7183634231e39ff5\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\ae4109ec1e873f2074e4c3a60211a759\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\73f130ba62a38ea2b5c3476f7af43454\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+	package
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:1-38:12
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:5:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:5:22-64
+application
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:7:5-36:19
+MERGED from [com.google.android.material:material:1.6.1] C:\Users\ethic\.gradle\caches\transforms-3\1f5b68807f74f1f76df3b67d19ddfdc5\transformed\material-1.6.1\AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.material:material:1.6.1] C:\Users\ethic\.gradle\caches\transforms-3\1f5b68807f74f1f76df3b67d19ddfdc5\transformed\material-1.6.1\AndroidManifest.xml:24:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ethic\.gradle\caches\transforms-3\4b929ab10fd806b94f86bd527f89dd0a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ethic\.gradle\caches\transforms-3\4b929ab10fd806b94f86bd527f89dd0a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\ethic\.gradle\caches\transforms-3\a7db14cdcc79f92c067468d5689f23e5\transformed\lottie-5.2.0\AndroidManifest.xml:9:5-20
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\ethic\.gradle\caches\transforms-3\a7db14cdcc79f92c067468d5689f23e5\transformed\lottie-5.2.0\AndroidManifest.xml:9:5-20
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\5746758fe4fe6d736fbc196377e5d59a\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\5746758fe4fe6d736fbc196377e5d59a\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
+MERGED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:50:5-78:19
+MERGED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:50:5-78:19
+MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:30:5-143:19
+MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:30:5-143:19
+MERGED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:24:5-30:19
+MERGED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:24:5-30:19
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\e849069f7edfadb7efe2803d9ba22da4\transformed\glide-4.11.0\AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\e849069f7edfadb7efe2803d9ba22da4\transformed\glide-4.11.0\AndroidManifest.xml:10:5-20
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\ethic\.gradle\caches\transforms-3\b8dbe36bbc3bdfb10d83b486fc4098fd\transformed\fab-1.6.4\AndroidManifest.xml:12:5-20
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\ethic\.gradle\caches\transforms-3\b8dbe36bbc3bdfb10d83b486fc4098fd\transformed\fab-1.6.4\AndroidManifest.xml:12:5-20
+MERGED from [com.google.android.gms:play-services-ads-base:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\13d067ac7b90f0b5aa9c43743b7339e8\transformed\play-services-ads-base-22.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-base:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\13d067ac7b90f0b5aa9c43743b7339e8\transformed\play-services-ads-base-22.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1b39db6ef52d9381ba5b5c824e056e2d\transformed\play-services-ads-identifier-18.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1b39db6ef52d9381ba5b5c824e056e2d\transformed\play-services-ads-identifier-18.0.0\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ethic\.gradle\caches\transforms-3\fe68d402c54a16f5eaba8a7888e3feb8\transformed\play-services-appset-16.0.1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ethic\.gradle\caches\transforms-3\fe68d402c54a16f5eaba8a7888e3feb8\transformed\play-services-appset-16.0.1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc2b367f149bb3b019e76f79b6bc95b\transformed\play-services-base-18.0.0\AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc2b367f149bb3b019e76f79b6bc95b\transformed\play-services-base-18.0.0\AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\ethic\.gradle\caches\transforms-3\a2a97e397b6125163de0ff510f9b7531\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\ethic\.gradle\caches\transforms-3\a2a97e397b6125163de0ff510f9b7531\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-measurement-base:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\c05fbdc2da84f118c8dbf55fd49eb4de\transformed\play-services-measurement-base-20.1.2\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-base:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\c05fbdc2da84f118c8dbf55fd49eb4de\transformed\play-services-measurement-base-20.1.2\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\732ce7e397b7f0acc6a87a515c0637c3\transformed\play-services-basement-18.0.0\AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\732ce7e397b7f0acc6a87a515c0637c3\transformed\play-services-basement-18.0.0\AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.8.0] C:\Users\ethic\.gradle\caches\transforms-3\f8ca33f57cc610a0b1ed31d0cc4084bb\transformed\core-1.8.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.8.0] C:\Users\ethic\.gradle\caches\transforms-3\f8ca33f57cc610a0b1ed31d0cc4084bb\transformed\core-1.8.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\5e3b9348329b5c0c4e5e36ce6c2728e3\transformed\gifdecoder-4.11.0\AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\5e3b9348329b5c0c4e5e36ce6c2728e3\transformed\gifdecoder-4.11.0\AndroidManifest.xml:9:5-20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\e6dc352309f6d773a89fb4d56f13b49d\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\e6dc352309f6d773a89fb4d56f13b49d\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\4b621581b14be943fef7e9025808a5ef\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\4b621581b14be943fef7e9025808a5ef\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.8.0] C:\Users\ethic\.gradle\caches\transforms-3\f8ca33f57cc610a0b1ed31d0cc4084bb\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:14:9-35
+	android:label
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:12:9-41
+	android:fullBackupContent
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:10:9-54
+	android:roundIcon
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:13:9-54
+	tools:targetApi
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:16:9-29
+	android:icon
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:11:9-43
+	android:allowBackup
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:8:9-35
+	android:theme
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:15:9-46
+	android:dataExtractionRules
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:9:9-65
+activity#com.ethichadebe.brittlefinal.GroceryListActivity
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:17:9-19:40
+	android:exported
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:19:13-37
+	android:name
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:18:13-48
+activity#com.ethichadebe.brittlefinal.CircularShopActivity
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:20:9-23:56
+	android:launchMode
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:22:13-44
+	android:theme
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:23:13-53
+	android:name
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:21:13-49
+activity#com.ethichadebe.brittlefinal.MainActivity
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:24:9-32:20
+	android:exported
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:26:13-36
+	android:name
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:25:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:27:13-31:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:28:17-69
+	android:name
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:28:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:30:17-77
+	android:name
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:30:27-74
+meta-data#com.google.android.gms.ads.APPLICATION_ID
+ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:33:9-35:69
+	android:value
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:35:13-67
+	android:name
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml:34:13-69
+uses-sdk
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.6.1] C:\Users\ethic\.gradle\caches\transforms-3\1f5b68807f74f1f76df3b67d19ddfdc5\transformed\material-1.6.1\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.6.1] C:\Users\ethic\.gradle\caches\transforms-3\1f5b68807f74f1f76df3b67d19ddfdc5\transformed\material-1.6.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ethic\.gradle\caches\transforms-3\4b929ab10fd806b94f86bd527f89dd0a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ethic\.gradle\caches\transforms-3\4b929ab10fd806b94f86bd527f89dd0a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\ethic\.gradle\caches\transforms-3\a7db14cdcc79f92c067468d5689f23e5\transformed\lottie-5.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.airbnb.android:lottie:5.2.0] C:\Users\ethic\.gradle\caches\transforms-3\a7db14cdcc79f92c067468d5689f23e5\transformed\lottie-5.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [it.xabaras.android:recyclerview-swipedecorator:1.4] C:\Users\ethic\.gradle\caches\transforms-3\6fe12108bc2caf43fa6649f9ba361432\transformed\recyclerview-swipedecorator-1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [it.xabaras.android:recyclerview-swipedecorator:1.4] C:\Users\ethic\.gradle\caches\transforms-3\6fe12108bc2caf43fa6649f9ba361432\transformed\recyclerview-swipedecorator-1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] C:\Users\ethic\.gradle\caches\transforms-3\9b51dfeda91e27526f88b87016e7f76f\transformed\taptargetview-1.13.3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.getkeepsafe.taptargetview:taptargetview:1.13.3] C:\Users\ethic\.gradle\caches\transforms-3\9b51dfeda91e27526f88b87016e7f76f\transformed\taptargetview-1.13.3\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat-resources:1.5.1] C:\Users\ethic\.gradle\caches\transforms-3\3848a08fd02e94f3dd819ae5dfd4231b\transformed\appcompat-resources-1.5.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.5.1] C:\Users\ethic\.gradle\caches\transforms-3\3848a08fd02e94f3dd819ae5dfd4231b\transformed\appcompat-resources-1.5.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.5.1] C:\Users\ethic\.gradle\caches\transforms-3\2c6b57251dffc0c864c49803d7fb8849\transformed\appcompat-1.5.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.5.1] C:\Users\ethic\.gradle\caches\transforms-3\2c6b57251dffc0c864c49803d7fb8849\transformed\appcompat-1.5.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\5746758fe4fe6d736fbc196377e5d59a\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\5746758fe4fe6d736fbc196377e5d59a\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-ads:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\b85aa4975808512a64d3472a59b01130\transformed\play-services-ads-22.0.0\AndroidManifest.xml:21:5-23:52
+MERGED from [com.google.android.gms:play-services-ads:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\b85aa4975808512a64d3472a59b01130\transformed\play-services-ads-22.0.0\AndroidManifest.xml:21:5-23:52
+MERGED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:21:5-44
+MERGED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:21:5-22:38
+MERGED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:21:5-22:38
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1f624a3ec658e1a90eb17b72d8f4e5aa\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1f624a3ec658e1a90eb17b72d8f4e5aa\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.intuit.sdp:sdp-android:1.0.6] C:\Users\ethic\.gradle\caches\transforms-3\f48c91444e7bb92856c25212ed0fcba8\transformed\sdp-android-1.0.6\AndroidManifest.xml:7:5-9:41
+MERGED from [com.intuit.sdp:sdp-android:1.0.6] C:\Users\ethic\.gradle\caches\transforms-3\f48c91444e7bb92856c25212ed0fcba8\transformed\sdp-android-1.0.6\AndroidManifest.xml:7:5-9:41
+MERGED from [com.intuit.ssp:ssp-android:1.0.6] C:\Users\ethic\.gradle\caches\transforms-3\70cade0e29784ebab98932d503fdb269\transformed\ssp-android-1.0.6\AndroidManifest.xml:7:5-9:41
+MERGED from [com.intuit.ssp:ssp-android:1.0.6] C:\Users\ethic\.gradle\caches\transforms-3\70cade0e29784ebab98932d503fdb269\transformed\ssp-android-1.0.6\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\e849069f7edfadb7efe2803d9ba22da4\transformed\glide-4.11.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\e849069f7edfadb7efe2803d9ba22da4\transformed\glide-4.11.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\ethic\.gradle\caches\transforms-3\b8dbe36bbc3bdfb10d83b486fc4098fd\transformed\fab-1.6.4\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.clans:fab:1.6.4] C:\Users\ethic\.gradle\caches\transforms-3\b8dbe36bbc3bdfb10d83b486fc4098fd\transformed\fab-1.6.4\AndroidManifest.xml:8:5-10:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\066f493cb7d990cafa5df1ece5ebc364\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\066f493cb7d990cafa5df1ece5ebc364\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-ads-base:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\13d067ac7b90f0b5aa9c43743b7339e8\transformed\play-services-ads-base-22.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-base:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\13d067ac7b90f0b5aa9c43743b7339e8\transformed\play-services-ads-base-22.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] C:\Users\ethic\.gradle\caches\transforms-3\f30521878fcfecb4a257335a46902f0f\transformed\user-messaging-platform-2.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.ump:user-messaging-platform:2.0.0] C:\Users\ethic\.gradle\caches\transforms-3\f30521878fcfecb4a257335a46902f0f\transformed\user-messaging-platform-2.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1b39db6ef52d9381ba5b5c824e056e2d\transformed\play-services-ads-identifier-18.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1b39db6ef52d9381ba5b5c824e056e2d\transformed\play-services-ads-identifier-18.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ethic\.gradle\caches\transforms-3\fe68d402c54a16f5eaba8a7888e3feb8\transformed\play-services-appset-16.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-appset:16.0.1] C:\Users\ethic\.gradle\caches\transforms-3\fe68d402c54a16f5eaba8a7888e3feb8\transformed\play-services-appset-16.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc2b367f149bb3b019e76f79b6bc95b\transformed\play-services-base-18.0.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc2b367f149bb3b019e76f79b6bc95b\transformed\play-services-base-18.0.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\ethic\.gradle\caches\transforms-3\a2a97e397b6125163de0ff510f9b7531\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.1] C:\Users\ethic\.gradle\caches\transforms-3\a2a97e397b6125163de0ff510f9b7531\transformed\play-services-tasks-18.0.1\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\c05fbdc2da84f118c8dbf55fd49eb4de\transformed\play-services-measurement-base-20.1.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\c05fbdc2da84f118c8dbf55fd49eb4de\transformed\play-services-measurement-base-20.1.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\732ce7e397b7f0acc6a87a515c0637c3\transformed\play-services-basement-18.0.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\732ce7e397b7f0acc6a87a515c0637c3\transformed\play-services-basement-18.0.0\AndroidManifest.xml:18:5-43
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\ethic\.gradle\caches\transforms-3\de00681d1b149848a0dab915e4ae741a\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\ethic\.gradle\caches\transforms-3\de00681d1b149848a0dab915e4ae741a\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.5.1] C:\Users\ethic\.gradle\caches\transforms-3\16e038647d04f4e0cfc2845e61fef512\transformed\activity-1.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.5.1] C:\Users\ethic\.gradle\caches\transforms-3\16e038647d04f4e0cfc2845e61fef512\transformed\activity-1.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\c49cd9f9e70a62c0cfb6a9c057db283b\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\c49cd9f9e70a62c0cfb6a9c057db283b\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\bf2a6d46c92d2b1b015ce44f75d834ab\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\bf2a6d46c92d2b1b015ce44f75d834ab\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\f4e7914e58ba093567760f9d22f3626d\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\f4e7914e58ba093567760f9d22f3626d\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\ce8e9fef21b12750b78ea8e6de235acd\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\ce8e9fef21b12750b78ea8e6de235acd\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\1c92f331f5dd426397f158863edbf1fa\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\1c92f331f5dd426397f158863edbf1fa\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.8.0] C:\Users\ethic\.gradle\caches\transforms-3\dd91ea04091dd2fa0d2b0757339de812\transformed\core-ktx-1.8.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.8.0] C:\Users\ethic\.gradle\caches\transforms-3\dd91ea04091dd2fa0d2b0757339de812\transformed\core-ktx-1.8.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\7100f70982d85b96c46f0496b7becc56\transformed\emoji2-views-helper-1.2.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\7100f70982d85b96c46f0496b7becc56\transformed\emoji2-views-helper-1.2.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\7bc7a5b48c08c285c7816e5896abfab2\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\7bc7a5b48c08c285c7816e5896abfab2\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\8255cf8f73e0ec2d884b3aa8102e6cd4\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\8255cf8f73e0ec2d884b3aa8102e6cd4\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\cf7ed2c7db25c1ed83dad3026c9a2688\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\cf7ed2c7db25c1ed83dad3026c9a2688\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\5d6dbb7a2526cb46a310f1fa772a8328\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\5d6dbb7a2526cb46a310f1fa772a8328\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\c17573ade799759c56baf884a28f8de6\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\c17573ade799759c56baf884a28f8de6\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] C:\Users\ethic\.gradle\caches\transforms-3\606b8924aff98f7d9ce52a03c79fa897\transformed\recyclerview-1.2.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.1] C:\Users\ethic\.gradle\caches\transforms-3\606b8924aff98f7d9ce52a03c79fa897\transformed\recyclerview-1.2.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.4.0] C:\Users\ethic\.gradle\caches\transforms-3\fa3f0ed0febe7c82afcf07656338649b\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.4.0] C:\Users\ethic\.gradle\caches\transforms-3\fa3f0ed0febe7c82afcf07656338649b\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\064f6efcf72e45025c96c41bb0313fb3\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\064f6efcf72e45025c96c41bb0313fb3\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\4432a2afdd19fc85814143f134bfa94c\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\4432a2afdd19fc85814143f134bfa94c\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.8.0] C:\Users\ethic\.gradle\caches\transforms-3\f8ca33f57cc610a0b1ed31d0cc4084bb\transformed\core-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.8.0] C:\Users\ethic\.gradle\caches\transforms-3\f8ca33f57cc610a0b1ed31d0cc4084bb\transformed\core-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\2365384ad980976d11b4bd9d48d00571\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\2365384ad980976d11b4bd9d48d00571\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\0adedd3d747534f708d297f0012ca633\transformed\lifecycle-service-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-service:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\0adedd3d747534f708d297f0012ca633\transformed\lifecycle-service-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\34be6e117e2e06ff01a6121271053230\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\34be6e117e2e06ff01a6121271053230\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\7180b5a3b50cad88028eaa81f8b17fa7\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\7180b5a3b50cad88028eaa81f8b17fa7\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc85102e7151d173892b0265fd52a81\transformed\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.2.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc85102e7151d173892b0265fd52a81\transformed\lifecycle-livedata-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\66eb2c428070a7989cc3e53427124072\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\ethic\.gradle\caches\transforms-3\66eb2c428070a7989cc3e53427124072\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\ethic\.gradle\caches\transforms-3\94c1e08774be1a91ac7aa4bf2cb72cb3\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\ethic\.gradle\caches\transforms-3\94c1e08774be1a91ac7aa4bf2cb72cb3\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.3.0-alpha03] C:\Users\ethic\.gradle\caches\transforms-3\f34e8b44c9b4de08d68268911de091d1\transformed\sqlite-framework-2.3.0-alpha03\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.sqlite:sqlite-framework:2.3.0-alpha03] C:\Users\ethic\.gradle\caches\transforms-3\f34e8b44c9b4de08d68268911de091d1\transformed\sqlite-framework-2.3.0-alpha03\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.sqlite:sqlite:2.3.0-alpha03] C:\Users\ethic\.gradle\caches\transforms-3\397c01a35e59f79250446fd1514dbaac\transformed\sqlite-2.3.0-alpha03\AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.sqlite:sqlite:2.3.0-alpha03] C:\Users\ethic\.gradle\caches\transforms-3\397c01a35e59f79250446fd1514dbaac\transformed\sqlite-2.3.0-alpha03\AndroidManifest.xml:20:5-21:38
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\5e3b9348329b5c0c4e5e36ce6c2728e3\transformed\gifdecoder-4.11.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.11.0] C:\Users\ethic\.gradle\caches\transforms-3\5e3b9348329b5c0c4e5e36ce6c2728e3\transformed\gifdecoder-4.11.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\6435d5cdecbbbfdbd508d58dd4522a8e\transformed\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\6435d5cdecbbbfdbd508d58dd4522a8e\transformed\exifinterface-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\e6dc352309f6d773a89fb4d56f13b49d\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\e6dc352309f6d773a89fb4d56f13b49d\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\be6d87ce73c1cf72008410442969a421\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\be6d87ce73c1cf72008410442969a421\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\4b621581b14be943fef7e9025808a5ef\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\4b621581b14be943fef7e9025808a5ef\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\fe726d578f90e61f945e51ad06a99ee0\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\fe726d578f90e61f945e51ad06a99ee0\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\dc95db927df936e003ea23f2b843af5c\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\dc95db927df936e003ea23f2b843af5c\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\4a128805ae54552b7183634231e39ff5\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\4a128805ae54552b7183634231e39ff5\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\ae4109ec1e873f2074e4c3a60211a759\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\ethic\.gradle\caches\transforms-3\ae4109ec1e873f2074e4c3a60211a759\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\73f130ba62a38ea2b5c3476f7af43454\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\ethic\.gradle\caches\transforms-3\73f130ba62a38ea2b5c3476f7af43454\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.google.android.gms:play-services-ads:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\b85aa4975808512a64d3472a59b01130\transformed\play-services-ads-22.0.0\AndroidManifest.xml:23:9-49
+	android:targetSdkVersion
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\ethic\AndroidStudioProjects\Accucery-Android\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:25:5-79
+MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:26:5-79
+MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:26:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:25:22-76
+uses-permission#com.google.android.gms.permission.AD_ID
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:26:5-79
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1b39db6ef52d9381ba5b5c824e056e2d\transformed\play-services-ads-identifier-18.0.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1b39db6ef52d9381ba5b5c824e056e2d\transformed\play-services-ads-identifier-18.0.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:26:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:26:5-79
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:26:22-76
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:27:5-29:31
+REJECTED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:27:5-81
+	tools:node
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:29:9-28
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:28:9-65
+queries
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:32:5-48:15
+intent#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+data:scheme:https
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:35:9-41:18
+action#android.intent.action.VIEW
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:36:13-65
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:36:21-62
+category#android.intent.category.BROWSABLE
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:38:13-74
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:38:23-71
+data
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:40:13-44
+	android:scheme
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:40:19-41
+intent#action:name:android.support.customtabs.action.CustomTabsService
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:44:9-46:18
+action#android.support.customtabs.action.CustomTabsService
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:45:13-90
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:45:21-87
+activity#com.google.android.gms.ads.AdActivity
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:53:9-58:43
+	android:exported
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:56:13-37
+	tools:ignore
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:58:13-40
+	android:configChanges
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:55:13-122
+	android:theme
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:57:13-61
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:54:13-65
+provider#com.google.android.gms.ads.MobileAdsInitProvider
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:60:9-65:43
+	android:authorities
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:62:13-73
+	android:exported
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:63:13-37
+	tools:ignore
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:65:13-40
+	android:initOrder
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:64:13-36
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:61:13-76
+service#com.google.android.gms.ads.AdService
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:67:9-71:43
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:69:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:70:13-37
+	tools:ignore
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:71:13-40
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:68:13-64
+activity#com.google.android.gms.ads.OutOfContextTestingActivity
+ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:73:9-77:43
+	android:exported
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:76:13-37
+	tools:ignore
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:77:13-40
+	android:configChanges
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:75:13-122
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads-lite:22.0.0] C:\Users\ethic\.gradle\caches\transforms-3\147a44cd139ef010acd18c435b293a62\transformed\play-services-ads-lite-22.0.0\AndroidManifest.xml:74:13-82
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] C:\Users\ethic\.gradle\caches\transforms-3\263b69ff339d0026012a71adf9796216\transformed\play-services-measurement-sdk-api-20.1.2\AndroidManifest.xml:25:5-68
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:25:22-65
+uses-permission#android.permission.FOREGROUND_SERVICE
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:28:5-77
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:28:22-74
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:31:9-39:20
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\e6dc352309f6d773a89fb4d56f13b49d\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\ethic\.gradle\caches\transforms-3\e6dc352309f6d773a89fb4d56f13b49d\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:35:13-31
+	android:authorities
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:33:13-68
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:34:13-37
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:32:13-67
+meta-data#androidx.work.WorkManagerInitializer
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:36:13-38:52
+	android:value
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:38:17-49
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:37:17-68
+service#androidx.work.impl.background.systemalarm.SystemAlarmService
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:41:9-46:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:44:13-72
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:45:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:46:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:43:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:42:13-88
+service#androidx.work.impl.background.systemjob.SystemJobService
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:47:9-53:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:50:13-70
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:51:13-36
+	android:permission
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:52:13-69
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:53:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:49:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:48:13-84
+service#androidx.work.impl.foreground.SystemForegroundService
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:54:9-59:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:57:13-77
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:58:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:59:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:56:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:55:13-81
+receiver#androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:61:9-66:35
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:64:13-35
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:65:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:66:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:63:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:62:13-88
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:67:9-77:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:70:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:71:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:72:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:69:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:68:13-106
+intent-filter#action:name:android.intent.action.ACTION_POWER_CONNECTED+action:name:android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:73:13-76:29
+action#android.intent.action.ACTION_POWER_CONNECTED
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:74:17-87
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:74:25-84
+action#android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:75:17-90
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:75:25-87
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:78:9-88:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:81:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:82:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:83:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:80:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:79:13-104
+intent-filter#action:name:android.intent.action.BATTERY_LOW+action:name:android.intent.action.BATTERY_OKAY
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:84:13-87:29
+action#android.intent.action.BATTERY_OKAY
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:85:17-77
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:85:25-74
+action#android.intent.action.BATTERY_LOW
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:86:17-76
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:86:25-73
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:89:9-99:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:92:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:93:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:94:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:91:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:90:13-104
+intent-filter#action:name:android.intent.action.DEVICE_STORAGE_LOW+action:name:android.intent.action.DEVICE_STORAGE_OK
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:95:13-98:29
+action#android.intent.action.DEVICE_STORAGE_LOW
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:96:17-83
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:96:25-80
+action#android.intent.action.DEVICE_STORAGE_OK
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:97:17-82
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:97:25-79
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:100:9-109:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:103:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:104:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:105:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:102:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:101:13-103
+intent-filter#action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:106:13-108:29
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:107:17-79
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:107:25-76
+receiver#androidx.work.impl.background.systemalarm.RescheduleReceiver
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:110:9-121:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:113:13-36
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:114:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:115:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:112:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:111:13-88
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.TIMEZONE_CHANGED+action:name:android.intent.action.TIME_SET
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:116:13-120:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:117:17-79
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:117:25-76
+action#android.intent.action.TIME_SET
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:118:17-73
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:118:25-70
+action#android.intent.action.TIMEZONE_CHANGED
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:119:17-81
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:119:25-78
+receiver#androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:122:9-131:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:125:13-72
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:126:13-37
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:127:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:124:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:123:13-99
+intent-filter#action:name:androidx.work.impl.background.systemalarm.UpdateProxies
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:128:13-130:29
+action#androidx.work.impl.background.systemalarm.UpdateProxies
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:129:17-98
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:129:25-95
+receiver#androidx.work.impl.diagnostics.DiagnosticsReceiver
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:132:9-142:20
+	android:enabled
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:135:13-35
+	android:exported
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:136:13-36
+	android:permission
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:137:13-57
+	tools:targetApi
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:138:13-32
+	android:directBootAware
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:134:13-44
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:133:13-78
+intent-filter#action:name:androidx.work.diagnostics.REQUEST_DIAGNOSTICS
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:139:13-141:29
+action#androidx.work.diagnostics.REQUEST_DIAGNOSTICS
+ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:140:17-88
+	android:name
+		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\ethic\.gradle\caches\transforms-3\3676a8f5802c9e82342e2c03fb5e2e99\transformed\work-runtime-2.7.0\AndroidManifest.xml:140:25-85
+service#androidx.room.MultiInstanceInvalidationService
+ADDED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:25:9-29:63
+	android:exported
+		ADDED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:28:13-37
+	tools:ignore
+		ADDED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:29:13-60
+	android:directBootAware
+		ADDED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:27:13-43
+	android:name
+		ADDED from [androidx.room:room-runtime:2.5.0-alpha02] C:\Users\ethic\.gradle\caches\transforms-3\e6815b3b0a542701037716b0ad42d5a8\transformed\room-runtime-2.5.0-alpha02\AndroidManifest.xml:26:13-74
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc2b367f149bb3b019e76f79b6bc95b\transformed\play-services-base-18.0.0\AndroidManifest.xml:20:9-22:45
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc2b367f149bb3b019e76f79b6bc95b\transformed\play-services-base-18.0.0\AndroidManifest.xml:22:19-43
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc2b367f149bb3b019e76f79b6bc95b\transformed\play-services-base-18.0.0\AndroidManifest.xml:21:19-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\1cc2b367f149bb3b019e76f79b6bc95b\transformed\play-services-base-18.0.0\AndroidManifest.xml:20:19-85
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\732ce7e397b7f0acc6a87a515c0637c3\transformed\play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\732ce7e397b7f0acc6a87a515c0637c3\transformed\play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:18.0.0] C:\Users\ethic\.gradle\caches\transforms-3\732ce7e397b7f0acc6a87a515c0637c3\transformed\play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\ethic\.gradle\caches\transforms-3\791b39fe68826e8543c46f2d7f8b152e\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ethic\.gradle\caches\transforms-3\86041ab2b0d2128b301212662b855cec\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78

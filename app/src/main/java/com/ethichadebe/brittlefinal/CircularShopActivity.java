@@ -73,6 +73,7 @@ public class CircularShopActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 lavLoading.setVisibility(View.VISIBLE);
+                lavLoading.setAnimation(R.raw.trolley_animation);
                 if (charSequence.length() > 3) {
                     setupItems();
 

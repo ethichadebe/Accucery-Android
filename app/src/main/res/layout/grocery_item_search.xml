@@ -33,20 +33,34 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
-                android:layout_toStartOf="@id/tvPrice"
-                android:layout_toEndOf="@id/ivItem"/>
+                android:layout_toStartOf="@id/llPrice"
+                android:layout_toEndOf="@id/ivItem" />
 
-            <TextView
-                android:id="@+id/tvPrice"
-                style="@style/BoldText"
+            <LinearLayout
+                android:id="@+id/llPrice"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_15sdp"
-                android:text="@string/r30_99"
-                android:textSize="@dimen/_14ssp" />
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/tvPrice"
+                    style="@style/BoldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/r30_99"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/tvSavePrice"
+                    style="@style/BoldText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/r30_99"
+                    android:textSize="@dimen/_14ssp" />
+            </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

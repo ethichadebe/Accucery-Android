@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -33,13 +34,14 @@ public class GroceryItemSearchAdapter extends RecyclerView.Adapter<GroceryItemSe
 
     public static class GroceryItemSearchViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivItem;
-        public TextView tvName, tvPrice;
+        public TextView tvName, tvPrice, tvSavePrice;
 
         public GroceryItemSearchViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
 
             ivItem = itemView.findViewById(R.id.ivItem);
             tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvSavePrice = itemView.findViewById(R.id.tvSavePrice);
             tvName = itemView.findViewById(R.id.tvName);
 
             itemView.setOnClickListener(view -> {
@@ -73,6 +75,18 @@ public class GroceryItemSearchAdapter extends RecyclerView.Adapter<GroceryItemSe
         Glide.with(context).load(item.getImage()).placeholder(R.drawable.food).into(holder.ivItem);
         holder.tvName.setText(item.getName());
         holder.tvPrice.setText(context.getResources().getString(R.string.price_display, item.getPrice()));
+        switch (item.getShopId()) {
+            case 1:
+                holder.tvSavePrice.setTextColor(ContextCompat.getColor(context, R.color.checkersExtra));
+                break;
+            case 2:
+                holder.tvSavePrice.setTextColor(ContextCompat.getColor(context, R.color.shopriteExtra));
+                break;
+            case 3:
+                holder.tvSavePrice.setTextColor(ContextCompat.getColor(context, R.color.pnpSave));
+                break;
+        }
+        holder.tvSavePrice.setText(context.getResources().getString(R.string.price_display, item.getSavePrice()));
 
     }
 

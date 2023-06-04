@@ -15,6 +15,7 @@ public class GroceryItem implements Parcelable {
     private int itemId;                 //Grocery item id generated locally
     private String name;            //Grocery item name
     private double price;           //Grocery item price
+    private double savePrice = 0.0;           //Grocery item save price
     private String image;           //Grocery item image URL
     private boolean checked = false;             //Grocery item shopID
     private boolean isActive = true;             //Grocery item shopID
@@ -115,6 +116,14 @@ public class GroceryItem implements Parcelable {
         this.quantity = quantity;
     }
 
+    public double getSavePrice() {
+        return savePrice;
+    }
+
+    public void setSavePrice(double savePrice) {
+        this.savePrice = savePrice;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -128,4 +137,6 @@ public class GroceryItem implements Parcelable {
         parcel.writeString(image);
         parcel.writeInt(shopId);
     }
+
+
 }

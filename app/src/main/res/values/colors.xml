@@ -19,4 +19,8 @@
     <color name="opacity">#723C3C3C</color>
     <color name="Red">#d4212d</color>
 
+    <color name="checkersExtra">#ff4219</color>
+    <color name="shopriteExtra">#892890</color>
+    <color name="pnpSave">#ff0000</color>
+
 </resources>

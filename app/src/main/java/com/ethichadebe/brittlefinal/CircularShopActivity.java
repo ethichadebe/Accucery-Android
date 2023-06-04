@@ -189,9 +189,10 @@ public class CircularShopActivity extends AppCompatActivity {
                 for (int i = 0; i < size; i++) {
                     String image = data.select("div.thumb").select("img").eq(i).attr("src");
                     String name = data.select("div.item-name").eq(i).text();
-                    String price = data.select("div.product-price").select("div.currentPrice").eq(i).text().replaceAll("[^\\d.]", "");
+                    String price = data.select("div.product-price").select("div.currentPrice").eq(i).text();
+                    String savePrice = data.select("div.product-price").select("div.currentPrice").eq(i).text();
 
-                    cleanItem(name, price, image, i);
+                    cleanItem(name, price, savePrice, image, i);
 
                 }
             } else if (url.contains("https://www.woolworths.co.za/cat?Ntt=")) {
@@ -204,9 +205,10 @@ public class CircularShopActivity extends AppCompatActivity {
                 for (int i = 0; i < size; i++) {
                     String image = data.select("div.product--image").select("img").eq(i).attr("src");
                     String name = data.select("div.product-card__name").select("a").eq(i).text();
-                    String price = data.select("div.product__price").select("strong.price").eq(i).text().replaceAll("[^\\d.]", "");
+                    String price = data.select("div.product__price").select("strong.price").eq(i).text();
+                    String savePrice = data.select("div.product__price").select("strong.price").eq(i).text();
 
-                    cleanItem(name, price, image, i);
+                    cleanItem(name, price, savePrice, image, i);
                 }
 
             } else if (url.contains("https://www.makro.co.za/search/?text=")) {
@@ -220,10 +222,12 @@ public class CircularShopActivity extends AppCompatActivity {
                     String image = data.select("a.product-tile-inner__img").select("img").eq(i).attr("src");
                     String name = data.select("a.product-tile-inner__productTitle").select("span").eq(i).text();
                     String price = data.select("p.price").select("span.mak-save-price").eq(i).text() + "." +
-                            data.select("p.price").select("span.mak-product__cents").eq(i).text().replaceAll("[^\\d.]", "");
+                            data.select("p.price").select("span.mak-product__cents").eq(i).text();
+                    String savePrice = data.select("p.price").select("span.mak-save-price").eq(i).text() + "." +
+                            data.select("p.price").select("span.mak-product__cents").eq(i).text();
 
                     Log.d(TAG, "scrapeData: price " + price);
-                    cleanItem(name, price, image, i);
+                    cleanItem(name, price, savePrice, image, i);
                 }
 
             } else if (url.contains("https://www.game.co.za/l/search/?t=")) {
@@ -237,10 +241,10 @@ public class CircularShopActivity extends AppCompatActivity {
                 for (int i = 0; i < size; i++) {
                     String image = data.select("div.r-1p0dtai").select("img").eq(i).attr("src");
                     String name = data.select("a.css-4rbku5").select("div").eq(i).text();
-                    String price = data.select("div.css-901oao").eq(i).text().replace(",", ".")
-                            .replaceAll("[^\\d.]", "");
+                    String price = data.select("div.css-901oao").eq(i).text().replace(",", ".");
+                    String savePrice = data.select("div.css-901oao").eq(i).text().replace(",", ".");
 
-                    cleanItem(name, price, image, i);
+                    cleanItem(name, price, savePrice, image, i);
                 }
 
             } else {
@@ -253,9 +257,10 @@ public class CircularShopActivity extends AppCompatActivity {
                 for (int i = 0; i < size; i++) {
                     String image = data.select("figure.item-product__content").select("img").eq(i).attr("src");
                     String name = data.select("h3.item-product__name").select("a").eq(i).text();
-                    String price = data.select("div.special-price__price").select("span").eq(i).text().replaceAll("[^\\d.]", "");
+                    String price = data.select("div.special-price__price").select("span").eq(i).text();
+                    String savePrice = data.select("div.special-price__extra__price").select("span.now").eq(i).text();
 
-                    cleanItem(name, price, "https://www.shoprite.co.za/" + image, i);
+                    cleanItem(name, price, savePrice, "https://www.shoprite.co.za/" + image, i);
                 }
 
             }
@@ -266,15 +271,18 @@ public class CircularShopActivity extends AppCompatActivity {
 
     }
 
-    private void cleanItem(String name, String price, String image, int i) {
-        if (price.isEmpty()) {
-            price = "0.0";
-        }
+    private void cleanItem(String name, String price, String savePrice, String image, int i) {
         Log.d(TAG, "doInBackground: Item: " + i + "------------------------------------------------------------------");
         Log.d(TAG, "doInBackground: name: " + name);
-        Log.d(TAG, "doInBackground: price: " + price.replaceAll("[^\\d.]", "")  );
+        Log.d(TAG, "doInBackground: price: " + price);
+        //Log.d(TAG, "doInBackground: price: " + price.replaceAll("[^\\d.]", "")  );
         Log.d(TAG, "doInBackground: image: " + image);
-        items.add(new GroceryItem(name, Double.parseDouble(price.replace("R ", "").replaceAll("[^\\d.]", "")), image, getIntent().getIntExtra("sID", 0)));
+        GroceryItem item = new GroceryItem(name, Double.parseDouble(price.replace("R ", "").replaceAll("[^\\d.]", "")), image, getIntent().getIntExtra("sID", 0));
+        if (!savePrice.isEmpty()) {
+            Log.d(TAG, "doInBackground: save price: " + savePrice);
+            item.setSavePrice(Double.parseDouble(savePrice.replace("R ", "").replaceAll("[^\\d.]", "")));
+        }
+        items.add(item);
         groceryItemAdapter.setGroceryItemSearchAdapter(this, items);
 
     }
